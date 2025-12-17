@@ -1,0 +1,153 @@
+{{ 'gls-featured-products.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="gls-featured-products section-{{ section.id }}-padding">
+  <div class="gls-featured-products__container page-width">
+    <div class="gls-featured-products__header">
+      <div>
+        {%- if section.settings.heading != blank -%}
+          <h2 class="gls-featured-products__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subheading != blank -%}
+          <p class="gls-featured-products__subheading">{{ section.settings.subheading }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="gls-featured-products__grid">
+      {%- if section.settings.collection != blank -%}
+        {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+          <div class="gls-product-card">
+            <div class="gls-product-card__badge">
+              {{ product.metafields.custom.product_id | default: product.id }}
+            </div>
+            <div class="gls-product-card__image-wrapper">
+              {%- if product.featured_image != blank -%}
+                <img
+                  src="{{ product.featured_image | image_url: width: 400 }}"
+                  alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                  loading="lazy"
+                  width="{{ product.featured_image.width }}"
+                  height="{{ product.featured_image.height }}"
+                  class="gls-product-card__image"
+                >
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'gls-product-card__image gls-product-card__image--placeholder' }}
+              {%- endif -%}
+            </div>
+            <span class="gls-product-card__category">{{ product.type }}</span>
+            <h3 class="gls-product-card__title">
+              <a href="{{ product.url }}">{{ product.title }}</a>
+            </h3>
+            <p class="gls-product-card__description">{{ product.description | strip_html | truncate: 80 }}</p>
+            <div class="gls-product-card__footer">
+              {%- if product.metafields.custom.moq != blank -%}
+                <span class="gls-product-card__moq">MOQ: {{ product.metafields.custom.moq }}</span>
+              {%- endif -%}
+              <a href="{{ section.settings.quote_link | default: '/pages/contact' }}" class="gls-product-card__button">
+                Request Quote
+              </a>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        {%- for i in (1..8) -%}
+          <div class="gls-product-card">
+            <div class="gls-product-card__badge">GLF-{{ i | plus: 100 }}</div>
+            <div class="gls-product-card__image-wrapper">
+              {{ 'product-1' | placeholder_svg_tag: 'gls-product-card__image gls-product-card__image--placeholder' }}
+            </div>
+            <span class="gls-product-card__category">Food Packaging</span>
+            <h3 class="gls-product-card__title">
+              <a href="#">Sample Product {{ i }}</a>
+            </h3>
+            <p class="gls-product-card__description">Premium quality packaging solution for your business needs.</p>
+            <div class="gls-product-card__footer">
+              <span class="gls-product-card__moq">MOQ: 500</span>
+              <a href="#" class="gls-product-card__button">Request Quote</a>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GLS Featured Products",
+  "tag": "section",
+  "class": "gls-featured-products-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Best Sellers"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Our most popular packaging solutions."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 16,
+      "step": 1,
+      "default": 8,
+      "label": "Products to Show"
+    },
+    {
+      "type": "url",
+      "id": "quote_link",
+      "label": "Request Quote Link"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 80,
+      "unit": "px",
+      "label": "Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 80,
+      "unit": "px",
+      "label": "Padding Bottom"
+    }
+  ],
+  "presets": [
+    {
+      "name": "GLS Featured Products"
+    }
+  ]
+}
+{% endschema %}

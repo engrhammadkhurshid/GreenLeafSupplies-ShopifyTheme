@@ -1,0 +1,149 @@
+{{ 'gls-categories.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="gls-categories section-{{ section.id }}-padding">
+  <div class="gls-categories__container page-width">
+    <div class="gls-categories__header">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="gls-categories__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.view_all_link != blank -%}
+        <a href="{{ section.settings.view_all_link }}" class="gls-categories__view-all">
+          {{ section.settings.view_all_text | default: 'View Full Catalog' }}
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="gls-categories__grid">
+      {%- for block in section.blocks -%}
+        <a href="{{ block.settings.link | default: '#' }}" class="gls-categories__card" {{ block.shopify_attributes }}>
+          <div class="gls-categories__image-wrapper">
+            {%- if block.settings.image != blank -%}
+              <img
+                src="{{ block.settings.image | image_url: width: 600 }}"
+                alt="{{ block.settings.image.alt | default: block.settings.title | escape }}"
+                loading="lazy"
+                width="{{ block.settings.image.width }}"
+                height="{{ block.settings.image.height }}"
+                class="gls-categories__image"
+              >
+            {%- else -%}
+              {{ 'collection-1' | placeholder_svg_tag: 'gls-categories__image gls-categories__image--placeholder' }}
+            {%- endif -%}
+            <div class="gls-categories__image-overlay"></div>
+          </div>
+          <div class="gls-categories__content">
+            {%- if block.settings.title != blank -%}
+              <h3 class="gls-categories__title">{{ block.settings.title }}</h3>
+            {%- endif -%}
+            {%- if block.settings.subtitle != blank -%}
+              <p class="gls-categories__subtitle">{{ block.settings.subtitle }}</p>
+            {%- endif -%}
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GLS Categories Grid",
+  "tag": "section",
+  "class": "gls-categories-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Featured Categories"
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "View All Text",
+      "default": "View Full Catalog"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View All Link"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 80,
+      "unit": "px",
+      "label": "Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "default": 80,
+      "unit": "px",
+      "label": "Padding Bottom"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Category Name"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "4 Subcategories"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GLS Categories Grid",
+      "blocks": [
+        { "type": "category", "settings": { "title": "Food Packaging", "subtitle": "4 Subcategories" } },
+        { "type": "category", "settings": { "title": "Disposable Tableware", "subtitle": "4 Subcategories" } },
+        { "type": "category", "settings": { "title": "Napkins & Sanitary", "subtitle": "5 Subcategories" } },
+        { "type": "category", "settings": { "title": "Food & Liquid", "subtitle": "3 Subcategories" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

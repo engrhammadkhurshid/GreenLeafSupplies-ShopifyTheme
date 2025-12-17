@@ -1,0 +1,108 @@
+{{ 'gls-trusted-brands.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="gls-trusted-brands section-{{ section.id }}-padding">
+  {%- if section.settings.heading != blank -%}
+    <div class="gls-trusted-brands__header page-width">
+      <h3 class="gls-trusted-brands__heading">{{ section.settings.heading }}</h3>
+    </div>
+  {%- endif -%}
+
+  <div class="gls-trusted-brands__marquee-wrapper">
+    <div class="gls-trusted-brands__marquee">
+      <div class="gls-trusted-brands__track">
+        {%- for block in section.blocks -%}
+          <span class="gls-trusted-brands__brand" {{ block.shopify_attributes }}>
+            {{ block.settings.brand_name }}
+          </span>
+        {%- endfor -%}
+        {%- for block in section.blocks -%}
+          <span class="gls-trusted-brands__brand" aria-hidden="true">
+            {{ block.settings.brand_name }}
+          </span>
+        {%- endfor -%}
+        {%- for block in section.blocks -%}
+          <span class="gls-trusted-brands__brand" aria-hidden="true">
+            {{ block.settings.brand_name }}
+          </span>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GLS Trusted Brands",
+  "tag": "section",
+  "class": "gls-trusted-brands-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Trusted by Major Food & Restaurant Businesses"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 50,
+      "unit": "px",
+      "label": "Padding Top"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 50,
+      "unit": "px",
+      "label": "Padding Bottom"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand",
+      "settings": [
+        {
+          "type": "text",
+          "id": "brand_name",
+          "label": "Brand Name",
+          "default": "Brand Name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GLS Trusted Brands",
+      "blocks": [
+        { "type": "brand", "settings": { "brand_name": "Restaurant Chains" } },
+        { "type": "brand", "settings": { "brand_name": "Food Trucks" } },
+        { "type": "brand", "settings": { "brand_name": "Catering Services" } },
+        { "type": "brand", "settings": { "brand_name": "Grocery Stores" } },
+        { "type": "brand", "settings": { "brand_name": "Cafes & Bakeries" } },
+        { "type": "brand", "settings": { "brand_name": "Hotels & Resorts" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,159 @@
+{
+  "sections": {
+    "gls_hero": {
+      "type": "gls-hero",
+      "settings": {
+        "badge_text": "Nationwide Delivery",
+        "heading": "Premium, Sustainable",
+        "heading_highlight": "Food Packaging Nationwide",
+        "subheading": "Highest-quality food packaging products for the U.S. market. We support businesses with safety, durability, and performance.",
+        "button_label_1": "Shop Now",
+        "button_link_1": "shopify://collections/all",
+        "button_label_2": "Request a Quote",
+        "button_link_2": "/pages/contact",
+        "overlay_opacity": 70,
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "gls_value_props": {
+      "type": "gls-value-props",
+      "blocks": {
+        "block_1": {
+          "type": "value_prop",
+          "settings": {
+            "icon": "layers",
+            "title": "Wholesale Pricing",
+            "subtitle": "Tiered discounts available"
+          }
+        },
+        "block_2": {
+          "type": "value_prop",
+          "settings": {
+            "icon": "shield",
+            "title": "Trusted Quality",
+            "subtitle": "Safety & Durability"
+          }
+        },
+        "block_3": {
+          "type": "value_prop",
+          "settings": {
+            "icon": "truck",
+            "title": "Nationwide Delivery",
+            "subtitle": "Fast & Reliable Shipping"
+          }
+        },
+        "block_4": {
+          "type": "value_prop",
+          "settings": {
+            "icon": "star",
+            "title": "Premium Service",
+            "subtitle": "Customer Satisfaction Focus"
+          }
+        }
+      },
+      "block_order": ["block_1", "block_2", "block_3", "block_4"],
+      "settings": {
+        "padding_top": 25,
+        "padding_bottom": 25
+      }
+    },
+    "gls_about": {
+      "type": "gls-about",
+      "blocks": {
+        "paragraph_1": {
+          "type": "paragraph",
+          "settings": {
+            "text": "At GreenLeaf Supplies, our mission is to provide the highest-quality food packaging products in the U.S. market. We are committed to being the finest and most trusted source for premium, reliable, and sustainable packaging solutions."
+          }
+        },
+        "paragraph_2": {
+          "type": "paragraph",
+          "settings": {
+            "text": "By focusing on excellence, innovation, and customer satisfaction, we strive to support businesses nationwide with products that uphold the highest standards of safety, durability, and performance."
+          }
+        },
+        "paragraph_3": {
+          "type": "paragraph",
+          "settings": {
+            "text": "As one of the leading food-packaging suppliers on the U.S. East Coast, we are expanding our reach to serve customers across the entire nation."
+          }
+        }
+      },
+      "block_order": ["paragraph_1", "paragraph_2", "paragraph_3"],
+      "settings": {
+        "heading": "About Green Leaf Supplies",
+        "quote_text": "Committed to being the finest source for premium packaging.",
+        "button_label": "Read Our Full Mission",
+        "button_link": "/pages/about",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "gls_trusted_brands": {
+      "type": "gls-trusted-brands",
+      "blocks": {
+        "brand_1": { "type": "brand", "settings": { "brand_name": "Restaurant Chains" } },
+        "brand_2": { "type": "brand", "settings": { "brand_name": "Food Trucks" } },
+        "brand_3": { "type": "brand", "settings": { "brand_name": "Catering Services" } },
+        "brand_4": { "type": "brand", "settings": { "brand_name": "Grocery Stores" } },
+        "brand_5": { "type": "brand", "settings": { "brand_name": "Cafes & Bakeries" } },
+        "brand_6": { "type": "brand", "settings": { "brand_name": "Hotels & Resorts" } }
+      },
+      "block_order": ["brand_1", "brand_2", "brand_3", "brand_4", "brand_5", "brand_6"],
+      "settings": {
+        "heading": "Trusted by Major Food & Restaurant Businesses",
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "gls_categories": {
+      "type": "gls-categories",
+      "blocks": {
+        "cat_1": { "type": "category", "settings": { "title": "Food Packaging", "subtitle": "4 Subcategories" } },
+        "cat_2": { "type": "category", "settings": { "title": "Disposable Tableware", "subtitle": "4 Subcategories" } },
+        "cat_3": { "type": "category", "settings": { "title": "Napkins & Sanitary", "subtitle": "5 Subcategories" } },
+        "cat_4": { "type": "category", "settings": { "title": "Food & Liquid", "subtitle": "3 Subcategories" } }
+      },
+      "block_order": ["cat_1", "cat_2", "cat_3", "cat_4"],
+      "settings": {
+        "heading": "Featured Categories",
+        "view_all_text": "View Full Catalog",
+        "view_all_link": "shopify://collections/all",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "gls_featured_products": {
+      "type": "gls-featured-products",
+      "settings": {
+        "heading": "Best Sellers",
+        "subheading": "Our most popular packaging solutions.",
+        "products_to_show": 8,
+        "quote_link": "/pages/contact",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "gls_cta_banner": {
+      "type": "gls-cta-banner",
+      "settings": {
+        "heading": "Partner with Green Leaf Supplies",
+        "text": "We fulfill all packaging and tableware requirements for our clients, providing dependable, durable, and premium solutions.",
+        "button_label": "Get a Custom Quote",
+        "button_link": "/pages/contact",
+        "padding_top": 65,
+        "padding_bottom": 65
+      }
+    }
+  },
+  "order": [
+    "gls_hero",
+    "gls_value_props",
+    "gls_about",
+    "gls_trusted_brands",
+    "gls_categories",
+    "gls_featured_products",
+    "gls_cta_banner"
+  ]
+}

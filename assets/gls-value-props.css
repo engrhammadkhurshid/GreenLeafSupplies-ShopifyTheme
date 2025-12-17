@@ -1,0 +1,70 @@
+/* GLS Value Props Section Styles */
+.gls-value-props {
+  background-color: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 20;
+}
+
+.gls-value-props__container {
+  width: 100%;
+}
+
+.gls-value-props__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media screen and (min-width: 750px) {
+  .gls-value-props__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .gls-value-props__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .gls-value-props__item:not(:last-child) {
+    border-right: 1px solid #f3f4f6;
+  }
+}
+
+.gls-value-props__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+}
+
+.gls-value-props__icon {
+  color: #7AAE5C;
+  flex-shrink: 0;
+}
+
+.gls-value-props__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.gls-value-props__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.gls-value-props__title {
+  display: block;
+  color: #060316;
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.gls-value-props__subtitle {
+  color: #6b7280;
+  font-size: 0.875rem;
+}

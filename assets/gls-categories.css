@@ -1,0 +1,124 @@
+/* GLS Categories Grid Styles */
+.gls-categories {
+  background-color: #f9fafb;
+}
+
+.gls-categories__header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+@media screen and (min-width: 750px) {
+  .gls-categories__header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.gls-categories__heading {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #060316;
+  margin: 0;
+}
+
+.gls-categories__view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #7AAE5C;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.gls-categories__view-all:hover {
+  text-decoration: underline;
+}
+
+.gls-categories__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+@media screen and (min-width: 990px) {
+  .gls-categories__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.gls-categories__card {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 0.75rem;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.gls-categories__card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-color: rgba(122, 174, 92, 0.5);
+}
+
+.gls-categories__image-wrapper {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background-color: #f3f4f6;
+  overflow: hidden;
+}
+
+.gls-categories__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gls-categories__card:hover .gls-categories__image {
+  transform: scale(1.05);
+}
+
+.gls-categories__image--placeholder {
+  background-color: #e5e7eb;
+}
+
+.gls-categories__image-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.gls-categories__card:hover .gls-categories__image-overlay {
+  background-color: transparent;
+}
+
+.gls-categories__content {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.gls-categories__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #060316;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.gls-categories__card:hover .gls-categories__title {
+  color: #7AAE5C;
+}
+
+.gls-categories__subtitle {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0.5rem 0 0;
+}

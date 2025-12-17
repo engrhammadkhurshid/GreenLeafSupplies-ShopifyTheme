@@ -1,0 +1,77 @@
+{
+  "current": {
+    "color_schemes": {
+      "scheme-1": {
+        "settings": {
+          "background": "#ffffff",
+          "background_gradient": "",
+          "text": "#060316",
+          "button": "#7AAE5C",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#060316",
+          "shadow": "#060316"
+        }
+      },
+      "scheme-2": {
+        "settings": {
+          "background": "#f9fafb",
+          "background_gradient": "",
+          "text": "#060316",
+          "button": "#7AAE5C",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#060316",
+          "shadow": "#060316"
+        }
+      },
+      "scheme-3": {
+        "settings": {
+          "background": "#060316",
+          "background_gradient": "",
+          "text": "#ffffff",
+          "button": "#7AAE5C",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#ffffff",
+          "shadow": "#060316"
+        }
+      },
+      "scheme-4": {
+        "settings": {
+          "background": "#7AAE5C",
+          "background_gradient": "",
+          "text": "#ffffff",
+          "button": "#ffffff",
+          "button_label": "#7AAE5C",
+          "secondary_button_label": "#ffffff",
+          "shadow": "#060316"
+        }
+      },
+      "scheme-5": {
+        "settings": {
+          "background": "#CDF0CF",
+          "background_gradient": "",
+          "text": "#060316",
+          "button": "#7AAE5C",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#7AAE5C",
+          "shadow": "#060316"
+        }
+      }
+    },
+    "type_header_font": "poppins_n7",
+    "type_body_font": "poppins_n4",
+    "heading_scale": 100,
+    "body_scale": 100,
+    "page_width": 1400,
+    "spacing_sections": 36,
+    "buttons_radius": 4,
+    "inputs_radius": 4,
+    "card_corner_radius": 12,
+    "card_text_alignment": "center",
+    "card_shadow_opacity": 5,
+    "badge_corner_radius": 4,
+    "predictive_search_enabled": true,
+    "cart_type": "drawer",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "medium"
+  }
+}
