@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "t:sections.header.name",
   "type": "header",
@@ -9,6 +18,7 @@
           "type": "top_link",
           "settings": {
             "text": "Support",
+            "link": "",
             "highlight": false
           }
         },
@@ -16,6 +26,7 @@
           "type": "top_link",
           "settings": {
             "text": "Track Order",
+            "link": "",
             "highlight": false
           }
         },
@@ -23,22 +34,32 @@
           "type": "top_link",
           "settings": {
             "text": "Apply for Credit",
+            "link": "",
             "highlight": true
           }
         }
       },
-      "block_order": ["top-link-1", "top-link-2", "top-link-3"],
+      "block_order": [
+        "top-link-1",
+        "top-link-2",
+        "top-link-3"
+      ],
       "settings": {
+        "logo": "shopify://shop_images/gls-logo-primary.webp",
         "phone_number": "+1 862-237-7067",
         "promo_text": "Net-30 Terms Available for Qualified Buyers",
+        "promo_link": "",
         "search_placeholder": "Search SKUs, product names, or categories...",
         "search_button_text": "SEARCH",
         "catalog_text": "Shop Catalog",
         "catalog_menu": "main-menu",
         "main_menu": "main-menu",
-        "quote_text": "REQUEST QUOTE"
+        "quote_text": "REQUEST QUOTE",
+        "quote_link": ""
       }
     }
   },
-  "order": ["gls-header"]
+  "order": [
+    "gls-header"
+  ]
 }
