@@ -118,17 +118,64 @@
           </button>
           <div class="gls-header__mega-menu">
             <div class="gls-header__mega-menu-inner">
-              {% for link in linklists[section.settings.catalog_menu].links %}
-                <div class="gls-header__mega-column">
-                  <a href="{{ link.url }}" class="gls-header__mega-title">{{ link.title }}</a>
-                  {% if link.links.size > 0 %}
+              {% for block in section.blocks %}
+                {% if block.type == 'mega_category' %}
+                  <div class="gls-header__mega-column" {{ block.shopify_attributes }}>
+                    <!-- Category Thumbnail -->
+                    <a href="{{ block.settings.category_link }}" class="gls-header__mega-image-link">
+                      {% if block.settings.category_image != blank %}
+                        <img 
+                          src="{{ block.settings.category_image | image_url: width: 400 }}" 
+                          alt="{{ block.settings.category_title }}"
+                          class="gls-header__mega-image"
+                          width="250"
+                          height="150"
+                          loading="lazy"
+                        >
+                      {% else %}
+                        <div class="gls-header__mega-image-placeholder">
+                          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21 15 16 10 5 21"/>
+                          </svg>
+                        </div>
+                      {% endif %}
+                    </a>
+                    
+                    <!-- Category Title -->
+                    <a href="{{ block.settings.category_link }}" class="gls-header__mega-title">
+                      {{ block.settings.category_title }}
+                    </a>
+                    
+                    <!-- Subcategories List -->
                     <ul class="gls-header__mega-list">
-                      {% for child_link in link.links %}
-                        <li><a href="{{ child_link.url }}">{{ child_link.title }}</a></li>
-                      {% endfor %}
+                      {% if block.settings.subcategory_1 != blank %}
+                        <li><a href="{{ block.settings.subcategory_1_link }}">{{ block.settings.subcategory_1 }}</a></li>
+                      {% endif %}
+                      {% if block.settings.subcategory_2 != blank %}
+                        <li><a href="{{ block.settings.subcategory_2_link }}">{{ block.settings.subcategory_2 }}</a></li>
+                      {% endif %}
+                      {% if block.settings.subcategory_3 != blank %}
+                        <li><a href="{{ block.settings.subcategory_3_link }}">{{ block.settings.subcategory_3 }}</a></li>
+                      {% endif %}
+                      {% if block.settings.subcategory_4 != blank %}
+                        <li><a href="{{ block.settings.subcategory_4_link }}">{{ block.settings.subcategory_4 }}</a></li>
+                      {% endif %}
+                      {% if block.settings.subcategory_5 != blank %}
+                        <li><a href="{{ block.settings.subcategory_5_link }}">{{ block.settings.subcategory_5 }}</a></li>
+                      {% endif %}
+                      {% if block.settings.subcategory_6 != blank %}
+                        <li><a href="{{ block.settings.subcategory_6_link }}">{{ block.settings.subcategory_6 }}</a></li>
+                      {% endif %}
                     </ul>
-                  {% endif %}
-                </div>
+                    
+                    <!-- Request Quote Button -->
+                    <a href="{{ block.settings.quote_link | default: section.settings.quote_link }}" class="gls-header__mega-quote-btn">
+                      Request Quote
+                    </a>
+                  </div>
+                {% endif %}
               {% endfor %}
             </div>
           </div>
@@ -165,22 +212,73 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    const catalogDropdown = document.querySelector('.gls-header__catalog-dropdown');
     const catalogBtn = document.querySelector('.gls-header__catalog-btn');
     const megaMenu = document.querySelector('.gls-header__mega-menu');
     
-    if (catalogBtn && megaMenu) {
+    if (catalogBtn && megaMenu && catalogDropdown) {
+      let hoverTimeout;
+      let isMenuOpen = false;
+
+      // Function to open mega menu
+      function openMegaMenu() {
+        clearTimeout(hoverTimeout);
+        catalogBtn.setAttribute('aria-expanded', 'true');
+        megaMenu.classList.add('is-open');
+        isMenuOpen = true;
+      }
+
+      // Function to close mega menu
+      function closeMegaMenu() {
+        catalogBtn.setAttribute('aria-expanded', 'false');
+        megaMenu.classList.remove('is-open');
+        isMenuOpen = false;
+      }
+
+      // Click handler for toggle
       catalogBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        const isExpanded = this.getAttribute('aria-expanded') === 'true';
-        this.setAttribute('aria-expanded', !isExpanded);
-        megaMenu.classList.toggle('is-open');
+        e.stopPropagation();
+        if (isMenuOpen) {
+          closeMegaMenu();
+        } else {
+          openMegaMenu();
+        }
+      });
+
+      // Hover handlers for desktop
+      catalogDropdown.addEventListener('mouseenter', function() {
+        openMegaMenu();
+      });
+
+      catalogDropdown.addEventListener('mouseleave', function() {
+        hoverTimeout = setTimeout(function() {
+          closeMegaMenu();
+        }, 150);
+      });
+
+      // Keep menu open when hovering over mega menu
+      megaMenu.addEventListener('mouseenter', function() {
+        clearTimeout(hoverTimeout);
+      });
+
+      megaMenu.addEventListener('mouseleave', function() {
+        hoverTimeout = setTimeout(function() {
+          closeMegaMenu();
+        }, 150);
       });
 
       // Close on outside click
       document.addEventListener('click', function(e) {
         if (!e.target.closest('.gls-header__catalog-dropdown')) {
-          catalogBtn.setAttribute('aria-expanded', 'false');
-          megaMenu.classList.remove('is-open');
+          closeMegaMenu();
+        }
+      });
+
+      // Close on Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeMegaMenu();
         }
       });
     }
@@ -304,6 +402,106 @@
           "default": false
         }
       ]
+    },
+    {
+      "type": "mega_category",
+      "name": "Mega Menu Category",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Category Info"
+        },
+        {
+          "type": "image_picker",
+          "id": "category_image",
+          "label": "Category Thumbnail"
+        },
+        {
+          "type": "text",
+          "id": "category_title",
+          "label": "Category Title",
+          "default": "Category Name"
+        },
+        {
+          "type": "url",
+          "id": "category_link",
+          "label": "Category Link"
+        },
+        {
+          "type": "header",
+          "content": "Subcategories"
+        },
+        {
+          "type": "text",
+          "id": "subcategory_1",
+          "label": "Subcategory 1"
+        },
+        {
+          "type": "url",
+          "id": "subcategory_1_link",
+          "label": "Subcategory 1 Link"
+        },
+        {
+          "type": "text",
+          "id": "subcategory_2",
+          "label": "Subcategory 2"
+        },
+        {
+          "type": "url",
+          "id": "subcategory_2_link",
+          "label": "Subcategory 2 Link"
+        },
+        {
+          "type": "text",
+          "id": "subcategory_3",
+          "label": "Subcategory 3"
+        },
+        {
+          "type": "url",
+          "id": "subcategory_3_link",
+          "label": "Subcategory 3 Link"
+        },
+        {
+          "type": "text",
+          "id": "subcategory_4",
+          "label": "Subcategory 4"
+        },
+        {
+          "type": "url",
+          "id": "subcategory_4_link",
+          "label": "Subcategory 4 Link"
+        },
+        {
+          "type": "text",
+          "id": "subcategory_5",
+          "label": "Subcategory 5"
+        },
+        {
+          "type": "url",
+          "id": "subcategory_5_link",
+          "label": "Subcategory 5 Link"
+        },
+        {
+          "type": "text",
+          "id": "subcategory_6",
+          "label": "Subcategory 6"
+        },
+        {
+          "type": "url",
+          "id": "subcategory_6_link",
+          "label": "Subcategory 6 Link"
+        },
+        {
+          "type": "header",
+          "content": "Request Quote"
+        },
+        {
+          "type": "url",
+          "id": "quote_link",
+          "label": "Quote Button Link (optional)",
+          "info": "Leave blank to use the main Quote Button link"
+        }
+      ]
     }
   ],
   "presets": [
@@ -329,6 +527,46 @@
           "settings": {
             "text": "Apply for Credit",
             "highlight": true
+          }
+        },
+        {
+          "type": "mega_category",
+          "settings": {
+            "category_title": "Food Packaging",
+            "subcategory_1": "Fast-food boxes",
+            "subcategory_2": "Takeout bags",
+            "subcategory_3": "Beverage cups",
+            "subcategory_4": "Eco-friendly packaging"
+          }
+        },
+        {
+          "type": "mega_category",
+          "settings": {
+            "category_title": "Disposable Tableware",
+            "subcategory_1": "Plates",
+            "subcategory_2": "Bowls",
+            "subcategory_3": "Cutlery",
+            "subcategory_4": "Trays"
+          }
+        },
+        {
+          "type": "mega_category",
+          "settings": {
+            "category_title": "Napkins & Sanitary",
+            "subcategory_1": "Paper napkins",
+            "subcategory_2": "Wet wipes",
+            "subcategory_3": "Gloves",
+            "subcategory_4": "Polyethylene bags",
+            "subcategory_5": "Sanitizers"
+          }
+        },
+        {
+          "type": "mega_category",
+          "settings": {
+            "category_title": "Food & Liquid",
+            "subcategory_1": "Sauces",
+            "subcategory_2": "Oil",
+            "subcategory_3": "Breading Material"
           }
         }
       ]
