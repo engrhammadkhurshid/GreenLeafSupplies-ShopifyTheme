@@ -1,8 +1,19 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "gls_hero": {
       "type": "gls-hero",
       "settings": {
+        "background_image": "shopify://shop_images/GLS_Hero_Slider_Image_1.webp",
+        "overlay_opacity": 90,
         "badge_text": "Nationwide Delivery",
         "heading": "Premium, Sustainable",
         "heading_highlight": "Food Packaging Nationwide",
@@ -11,7 +22,7 @@
         "button_link_1": "shopify://collections/all",
         "button_label_2": "Request a Quote",
         "button_link_2": "/pages/contact",
-        "overlay_opacity": 70,
+        "hero_image": "shopify://shop_images/GLS_Hero_Image_1.webp",
         "padding_top": 100,
         "padding_bottom": 100
       }
@@ -52,7 +63,12 @@
           }
         }
       },
-      "block_order": ["block_1", "block_2", "block_3", "block_4"],
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4"
+      ],
       "settings": {
         "padding_top": 25,
         "padding_bottom": 25
@@ -80,10 +96,14 @@
           }
         }
       },
-      "block_order": ["paragraph_1", "paragraph_2", "paragraph_3"],
+      "block_order": [
+        "paragraph_1",
+        "paragraph_2",
+        "paragraph_3"
+      ],
       "settings": {
-        "heading": "About Green Leaf Supplies",
         "quote_text": "Committed to being the finest source for premium packaging.",
+        "heading": "About Green Leaf Supplies",
         "button_label": "Read Our Full Mission",
         "button_link": "/pages/about",
         "padding_top": 80,
@@ -93,14 +113,51 @@
     "gls_trusted_brands": {
       "type": "gls-trusted-brands",
       "blocks": {
-        "brand_1": { "type": "brand", "settings": { "brand_name": "Restaurant Chains" } },
-        "brand_2": { "type": "brand", "settings": { "brand_name": "Food Trucks" } },
-        "brand_3": { "type": "brand", "settings": { "brand_name": "Catering Services" } },
-        "brand_4": { "type": "brand", "settings": { "brand_name": "Grocery Stores" } },
-        "brand_5": { "type": "brand", "settings": { "brand_name": "Cafes & Bakeries" } },
-        "brand_6": { "type": "brand", "settings": { "brand_name": "Hotels & Resorts" } }
+        "brand_1": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "Restaurant Chains"
+          }
+        },
+        "brand_2": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "Food Trucks"
+          }
+        },
+        "brand_3": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "Catering Services"
+          }
+        },
+        "brand_4": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "Grocery Stores"
+          }
+        },
+        "brand_5": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "Cafes & Bakeries"
+          }
+        },
+        "brand_6": {
+          "type": "brand",
+          "settings": {
+            "brand_name": "Hotels & Resorts"
+          }
+        }
       },
-      "block_order": ["brand_1", "brand_2", "brand_3", "brand_4", "brand_5", "brand_6"],
+      "block_order": [
+        "brand_1",
+        "brand_2",
+        "brand_3",
+        "brand_4",
+        "brand_5",
+        "brand_6"
+      ],
       "settings": {
         "heading": "Trusted by Major Food & Restaurant Businesses",
         "padding_top": 50,
@@ -110,12 +167,45 @@
     "gls_categories": {
       "type": "gls-categories",
       "blocks": {
-        "cat_1": { "type": "category", "settings": { "title": "Food Packaging", "subtitle": "4 Subcategories" } },
-        "cat_2": { "type": "category", "settings": { "title": "Disposable Tableware", "subtitle": "4 Subcategories" } },
-        "cat_3": { "type": "category", "settings": { "title": "Napkins & Sanitary", "subtitle": "5 Subcategories" } },
-        "cat_4": { "type": "category", "settings": { "title": "Food & Liquid", "subtitle": "3 Subcategories" } }
+        "cat_1": {
+          "type": "category",
+          "settings": {
+            "title": "Food Packaging",
+            "subtitle": "4 Subcategories",
+            "link": ""
+          }
+        },
+        "cat_2": {
+          "type": "category",
+          "settings": {
+            "title": "Disposable Tableware",
+            "subtitle": "4 Subcategories",
+            "link": ""
+          }
+        },
+        "cat_3": {
+          "type": "category",
+          "settings": {
+            "title": "Napkins & Sanitary",
+            "subtitle": "5 Subcategories",
+            "link": ""
+          }
+        },
+        "cat_4": {
+          "type": "category",
+          "settings": {
+            "title": "Food & Liquid",
+            "subtitle": "3 Subcategories",
+            "link": ""
+          }
+        }
       },
-      "block_order": ["cat_1", "cat_2", "cat_3", "cat_4"],
+      "block_order": [
+        "cat_1",
+        "cat_2",
+        "cat_3",
+        "cat_4"
+      ],
       "settings": {
         "heading": "Featured Categories",
         "view_all_text": "View Full Catalog",
@@ -129,6 +219,7 @@
       "settings": {
         "heading": "Best Sellers",
         "subheading": "Our most popular packaging solutions.",
+        "collection": "",
         "products_to_show": 8,
         "quote_link": "/pages/contact",
         "padding_top": 80,
