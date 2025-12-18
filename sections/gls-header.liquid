@@ -362,8 +362,8 @@
     // ========================================
     // Sticky Header Scroll Animation
     // ========================================
-    const header = document.querySelector('.gls-header');
-    if (header) {
+    const headerSection = document.querySelector('.gls-header-section');
+    if (headerSection) {
       let lastScrollY = window.scrollY;
       let ticking = false;
       const scrollThreshold = 100;
@@ -373,18 +373,18 @@
 
         // Add scrolled class when scrolled past threshold
         if (currentScrollY > scrollThreshold) {
-          header.classList.add('is-scrolled');
+          headerSection.classList.add('is-scrolled');
         } else {
-          header.classList.remove('is-scrolled');
+          headerSection.classList.remove('is-scrolled');
         }
 
         // Hide header when scrolling down, show when scrolling up
         if (currentScrollY > lastScrollY && currentScrollY > 200) {
           // Scrolling down & past 200px
-          header.classList.add('is-hidden');
+          headerSection.classList.add('is-hidden');
         } else {
           // Scrolling up
-          header.classList.remove('is-hidden');
+          headerSection.classList.remove('is-hidden');
         }
 
         lastScrollY = currentScrollY;
