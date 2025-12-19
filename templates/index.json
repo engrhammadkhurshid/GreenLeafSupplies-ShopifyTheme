@@ -11,18 +11,55 @@
   "sections": {
     "gls_hero": {
       "type": "gls-hero",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "background_image": "shopify://shop_images/GLS_Hero_Slider_Image_1.webp",
+            "overlay_opacity": 60,
+            "badge_text": "Nationwide Delivery",
+            "heading": "Premium, Sustainable",
+            "heading_highlight": "Food Packaging Nationwide",
+            "subheading": "Highest-quality food packaging products for the U.S. market. We support businesses with safety, durability, and performance.",
+            "button_label_1": "Shop Now",
+            "button_link_1": "shopify://collections/all",
+            "button_label_2": "Request a Quote",
+            "button_link_2": "/pages/contact"
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "overlay_opacity": 60,
+            "badge_text": "Eco-Friendly Solutions",
+            "heading": "Sustainable Packaging",
+            "heading_highlight": "For Modern Businesses",
+            "subheading": "Reduce your environmental footprint without compromising on quality or performance.",
+            "button_label_1": "View Products",
+            "button_link_1": "shopify://collections/all",
+            "button_label_2": "Learn More",
+            "button_link_2": "/pages/about-us"
+          }
+        },
+        "slide_3": {
+          "type": "slide",
+          "settings": {
+            "overlay_opacity": 60,
+            "badge_text": "Bulk Orders Welcome",
+            "heading": "Wholesale Pricing",
+            "heading_highlight": "For Every Business Size",
+            "subheading": "From small cafes to large restaurant chains, we have packaging solutions tailored to your needs.",
+            "button_label_1": "Get a Quote",
+            "button_link_1": "/pages/request-a-quote",
+            "button_label_2": "Contact Us",
+            "button_link_2": "/pages/contact"
+          }
+        }
+      },
+      "block_order": ["slide_1", "slide_2", "slide_3"],
       "settings": {
-        "background_image": "shopify://shop_images/GLS_Hero_Slider_Image_1.webp",
-        "overlay_opacity": 90,
-        "badge_text": "Nationwide Delivery",
-        "heading": "Premium, Sustainable",
-        "heading_highlight": "Food Packaging Nationwide",
-        "subheading": "Highest-quality food packaging products for the U.S. market. We support businesses with safety, durability, and performance.",
-        "button_label_1": "Shop Now",
-        "button_link_1": "shopify://collections/all",
-        "button_label_2": "Request a Quote",
-        "button_link_2": "/pages/contact",
-        "hero_image": "shopify://shop_images/GLS_Hero_Image_1.webp",
+        "autoplay": true,
+        "autoplay_speed": 5000,
         "padding_top": 100,
         "padding_bottom": 100
       }
