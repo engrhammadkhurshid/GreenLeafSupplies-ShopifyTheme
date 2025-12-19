@@ -55,7 +55,7 @@
         "catalog_menu": "main-menu",
         "main_menu": "main-menu",
         "quote_text": "REQUEST QUOTE",
-        "quote_link": ""
+        "quote_link": "shopify://pages/request-a-quote"
       }
     }
   },
