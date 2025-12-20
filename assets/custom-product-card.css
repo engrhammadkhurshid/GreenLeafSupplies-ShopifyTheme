@@ -204,7 +204,7 @@
   margin-top: 10px;
 }
 
-.card__button {
+a.card__button {
   width: 100%;
   background-color: #7AAE5C; /* Primary Color */
   color: #fff;
@@ -217,11 +217,11 @@
   transition: opacity 0.2s;
   text-align: center;
   display: block;
-  text-decoration: none;
+  text-decoration: none !important;
   border-radius: 4px;
 }
 
-.card__button:hover {
+a.card__button:hover {
   opacity: 0.9;
   text-decoration: none !important;
 }

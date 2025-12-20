@@ -172,11 +172,25 @@
           </div>
 
           <div class="card__metadata-row">
+            {%- assign has_options = false -%}
             {%- for option in card_product.options_with_values limit: 2 -%}
                {%- unless option.name == 'Title' -%}
+                {%- assign has_options = true -%}
                 <span class="card__metadata-item">{{ option.name }}: {{ option.values | first }}{% if option.values.size > 1 %} +{{ option.values.size | minus: 1 }}{% endif %}</span>
                {%- endunless -%}
             {%- endfor -%}
+            
+            {%- unless has_options -%}
+               {%- if card_product.vendor != blank -%}
+                 <span class="card__metadata-item">{{ card_product.vendor }}</span>
+               {%- endif -%}
+            {%- endunless -%}
+
+            {%- if card_product.selected_or_first_available_variant.quantity_rule.min > 1 -%}
+              <span class="card__metadata-item" style="background-color: #e6f4ea; color: #1e7e34; border-color: #1e7e34;">
+                MOQ: {{ card_product.selected_or_first_available_variant.quantity_rule.min }}
+              </span>
+            {%- endif -%}
           </div>
 
           <div class="card-information">
