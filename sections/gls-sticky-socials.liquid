@@ -1,10 +1,19 @@
 {{ 'gls-sticky-socials.css' | asset_url | stylesheet_tag }}
 
+{%- style -%}
+  .gls-sticky-socials {
+    --social-icon-bg: {{ section.settings.icon_bg_color }};
+    --social-details-bg: {{ section.settings.details_bg_color }};
+    --social-icon-color: {{ section.settings.icon_color }};
+    --social-text-color: {{ section.settings.text_color }};
+  }
+{%- endstyle -%}
+
 <div class="gls-sticky-socials">
   {%- for block in section.blocks -%}
     <div class="gls-sticky-socials__item" {{ block.shopify_attributes }}>
       <a href="{{ block.settings.link }}" class="gls-sticky-socials__link" target="_blank">
-        <div class="gls-sticky-socials__icon-wrapper" style="--social-bg-color: {{ block.settings.color }}; --social-text-color: {{ block.settings.text_color }};">
+        <div class="gls-sticky-socials__icon-wrapper">
           {%- if block.settings.custom_icon != blank -%}
             {{ block.settings.custom_icon | image_url: width: 48 | image_tag: loading: 'lazy' }}
           {%- else -%}
@@ -22,7 +31,7 @@
             {%- endcase -%}
           {%- endif -%}
         </div>
-        <div class="gls-sticky-socials__details" style="--social-bg-color: {{ block.settings.color }}; --social-text-color: {{ block.settings.text_color }};">
+        <div class="gls-sticky-socials__details">
           {{ block.settings.text }}
         </div>
       </a>
@@ -35,7 +44,32 @@
   "name": "Sticky Socials",
   "tag": "section",
   "class": "section-sticky-socials",
-  "settings": [],
+  "settings": [
+    {
+      "type": "color",
+      "id": "icon_bg_color",
+      "label": "Icon Background Color (Primary)",
+      "default": "#7AAE5C"
+    },
+    {
+      "type": "color",
+      "id": "details_bg_color",
+      "label": "Details Background Color (Accent)",
+      "default": "#060316"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    }
+  ],
   "blocks": [
     {
       "type": "social_link",
@@ -69,18 +103,6 @@
           "type": "url",
           "id": "link",
           "label": "Link"
-        },
-        {
-          "type": "color",
-          "id": "color",
-          "label": "Background Color",
-          "default": "#7AAE5C"
-        },
-        {
-          "type": "color",
-          "id": "text_color",
-          "label": "Text Color",
-          "default": "#ffffff"
         }
       ]
     }
@@ -93,32 +115,28 @@
           "type": "social_link",
           "settings": {
             "icon": "phone",
-            "text": "+1 862-237-7067",
-            "color": "#3b82f6"
+            "text": "+1 862-237-7067"
           }
         },
         {
           "type": "social_link",
           "settings": {
             "icon": "email",
-            "text": "sales@greenleafsupplies.com",
-            "color": "#ef4444"
+            "text": "sales@greenleafsupplies.com"
           }
         },
         {
           "type": "social_link",
           "settings": {
             "icon": "whatsapp",
-            "text": "Chat on WhatsApp",
-            "color": "#22c55e"
+            "text": "Chat on WhatsApp"
           }
         },
         {
           "type": "social_link",
           "settings": {
             "icon": "quote",
-            "text": "Get A Quote",
-            "color": "#f59e0b"
+            "text": "Get A Quote"
           }
         }
       ]

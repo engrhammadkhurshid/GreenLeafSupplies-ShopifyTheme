@@ -32,8 +32,8 @@
 .gls-sticky-socials__icon-wrapper {
   width: 50px;
   height: 50px;
-  background-color: var(--social-bg-color, #7AAE5C);
-  color: var(--social-text-color, #ffffff);
+  background-color: var(--social-icon-bg, #7AAE5C);
+  color: var(--social-icon-color, #ffffff);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,7 +57,7 @@
   right: 40px; /* Starts behind the icon slightly */
   top: 0;
   height: 100%;
-  background-color: var(--social-bg-color, #7AAE5C);
+  background-color: var(--social-details-bg, #060316);
   color: var(--social-text-color, #ffffff);
   display: flex;
   align-items: center;
