@@ -9,7 +9,47 @@
  */
 {
   "sections": {
-
+    "gls_hero": {
+      "type": "gls-hero",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/GLS_Hero_Slider_Image_1.webp",
+            "overlay_opacity": 50,
+            "heading": "Premium Sustainable Packaging",
+            "subheading": "High-quality food packaging solutions for businesses nationwide."
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "overlay_opacity": 50,
+            "heading": "Eco-Friendly Solutions",
+            "subheading": "Reduce your environmental footprint without compromising on quality."
+          }
+        },
+        "slide_3": {
+          "type": "slide",
+          "settings": {
+            "overlay_opacity": 50,
+            "heading": "Wholesale Pricing Available",
+            "subheading": "From small cafes to large restaurant chains, we have solutions for you."
+          }
+        }
+      },
+      "block_order": ["slide_1", "slide_2", "slide_3"],
+      "settings": {
+        "autoplay_speed": 5,
+        "animation_type": "fade",
+        "show_arrows": true,
+        "show_dots": true,
+        "btn_primary_text": "Shop Catalog",
+        "btn_primary_link": "shopify://collections/all",
+        "btn_secondary_text": "Request A Quote",
+        "btn_secondary_link": "/pages/contact"
+      }
+    },
     "gls_value_props": {
       "type": "gls-value-props",
       "blocks": {
@@ -223,6 +263,7 @@
     }
   },
   "order": [
+    "gls_hero",
     "gls_value_props",
     "gls_about",
     "gls_trusted_brands",

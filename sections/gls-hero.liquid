@@ -1,0 +1,489 @@
+{% schema %}
+{
+  "name": "GLS Hero Slider",
+  "tag": "section",
+  "class": "section-gls-hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Slider Settings"
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Autoplay Speed",
+      "default": 5
+    },
+    {
+      "type": "select",
+      "id": "animation_type",
+      "label": "Transition Animation",
+      "options": [
+        { "value": "fade", "label": "Fade" },
+        { "value": "slide", "label": "Slide" }
+      ],
+      "default": "fade"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show Navigation Arrows",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dots",
+      "label": "Show Pagination Dots",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Global Button Settings"
+    },
+    {
+      "type": "text",
+      "id": "btn_primary_text",
+      "label": "Primary Button Text",
+      "default": "Shop Catalog"
+    },
+    {
+      "type": "url",
+      "id": "btn_primary_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "btn_secondary_text",
+      "label": "Secondary Button Text",
+      "default": "Request A Quote"
+    },
+    {
+      "type": "url",
+      "id": "btn_secondary_link",
+      "label": "Secondary Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "min": 0,
+          "max": 90,
+          "step": 5,
+          "unit": "%",
+          "label": "Overlay Opacity",
+          "default": 50
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Premium Sustainable Packaging"
+        },
+        {
+          "type": "textarea",
+          "id": "subheading",
+          "label": "Tagline / CTA",
+          "default": "High-quality food packaging solutions for businesses nationwide."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GLS Hero Slider",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  .gls-hero-section {
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    min-height: 600px;
+    position: relative;
+    overflow: hidden;
+    background-color: #000; /* Fallback */
+  }
+
+  .gls-hero-slider {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .gls-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+    z-index: 1;
+  }
+
+  /* Animation Types */
+  .gls-hero-section[data-animation="fade"] .gls-slide {
+    transform: scale(1.05);
+  }
+  .gls-hero-section[data-animation="fade"] .gls-slide.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    z-index: 2;
+  }
+
+  .gls-hero-section[data-animation="slide"] .gls-slide {
+    transform: translateX(100%);
+    opacity: 1; /* Keep opacity 1 for slide effect */
+    visibility: hidden; /* Hide until active */
+  }
+  .gls-hero-section[data-animation="slide"] .gls-slide.active {
+    transform: translateX(0);
+    visibility: visible;
+    z-index: 2;
+  }
+  .gls-hero-section[data-animation="slide"] .gls-slide.prev {
+    transform: translateX(-100%);
+    visibility: visible;
+    z-index: 1;
+  }
+
+  /* Background Image */
+  .gls-slide-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  /* Overlay */
+  .gls-slide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 1;
+  }
+
+  /* Content */
+  .gls-slide-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    text-align: center;
+    width: 90%;
+    max-width: 1200px;
+    color: #fff;
+  }
+
+  .gls-heading {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
+  }
+
+  .gls-subheading {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease 0.5s, transform 0.8s ease 0.5s;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .gls-slide.active .gls-heading,
+  .gls-slide.active .gls-subheading {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Buttons */
+  .gls-btn-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease 0.7s, transform 0.8s ease 0.7s;
+  }
+
+  .gls-slide.active .gls-btn-wrapper {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .gls-btn {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .gls-btn-primary {
+    background-color: #7AAE5C; /* Green Leaf Primary */
+    color: #fff;
+    border: 2px solid #7AAE5C;
+  }
+
+  .gls-btn-primary:hover {
+    background-color: #65944b;
+    border-color: #65944b;
+  }
+
+  .gls-btn-secondary {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+  }
+
+  .gls-btn-secondary:hover {
+    background-color: #fff;
+    color: #000;
+  }
+
+  /* Controls */
+  .gls-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+  }
+  .gls-arrow:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  .gls-arrow-prev { left: 20px; }
+  .gls-arrow-next { right: 20px; }
+
+  .gls-dots {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+  }
+  .gls-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .gls-dot.active {
+    background: #7AAE5C;
+    transform: scale(1.2);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .gls-heading { font-size: 2.5rem; }
+    .gls-subheading { font-size: 1.1rem; }
+    .gls-btn-wrapper { flex-direction: column; gap: 1rem; align-items: center; }
+    .gls-btn { width: 100%; max-width: 280px; text-align: center; }
+  }
+</style>
+
+<div class="gls-hero-section" data-autoplay-speed="{{ section.settings.autoplay_speed | times: 1000 }}" data-animation="{{ section.settings.animation_type }}">
+  <div class="gls-hero-slider">
+    {% for block in section.blocks %}
+      <div class="gls-slide {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
+        
+        <!-- Background Image -->
+        {% if block.settings.image != blank %}
+          {{ block.settings.image | image_url: width: 2000 | image_tag: class: 'gls-slide-bg', loading: 'eager' }}
+        {% else %}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'gls-slide-bg' }}
+        {% endif %}
+
+        <!-- Overlay -->
+        <div class="gls-slide-overlay" style="opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};"></div>
+
+        <!-- Content -->
+        <div class="gls-slide-content">
+          {% if block.settings.heading != blank %}
+            <h2 class="gls-heading">{{ block.settings.heading }}</h2>
+          {% endif %}
+          
+          {% if block.settings.subheading != blank %}
+            <p class="gls-subheading">{{ block.settings.subheading }}</p>
+          {% endif %}
+
+          <div class="gls-btn-wrapper">
+            {% if section.settings.btn_primary_text != blank %}
+              <a href="{{ section.settings.btn_primary_link }}" class="gls-btn gls-btn-primary">
+                {{ section.settings.btn_primary_text }}
+              </a>
+            {% endif %}
+            
+            {% if section.settings.btn_secondary_text != blank %}
+              <a href="{{ section.settings.btn_secondary_link }}" class="gls-btn gls-btn-secondary">
+                {{ section.settings.btn_secondary_text }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Controls -->
+  {% if section.settings.show_arrows and section.blocks.size > 1 %}
+    <button class="gls-arrow gls-arrow-prev" aria-label="Previous Slide">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <button class="gls-arrow gls-arrow-next" aria-label="Next Slide">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+  {% endif %}
+
+  {% if section.settings.show_dots and section.blocks.size > 1 %}
+    <div class="gls-dots">
+      {% for block in section.blocks %}
+        <button class="gls-dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" aria-label="Go to slide {{ forloop.index }}"></button>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const section = document.querySelector('.gls-hero-section');
+    if (!section) return;
+
+    const slides = section.querySelectorAll('.gls-slide');
+    const dots = section.querySelectorAll('.gls-dot');
+    const prevBtn = section.querySelector('.gls-arrow-prev');
+    const nextBtn = section.querySelector('.gls-arrow-next');
+    
+    if (slides.length < 2) return;
+
+    let currentIndex = 0;
+    const speed = parseInt(section.dataset.autoplaySpeed) || 5000;
+    let interval;
+
+    function goToSlide(index) {
+      // Handle wrapping
+      if (index < 0) index = slides.length - 1;
+      if (index >= slides.length) index = 0;
+
+      // Update classes
+      slides.forEach(slide => {
+        slide.classList.remove('active', 'prev');
+      });
+      dots.forEach(dot => dot.classList.remove('active'));
+
+      // Set active
+      slides[index].classList.add('active');
+      if (dots[index]) dots[index].classList.add('active');
+
+      // For slide animation, we might want to know previous
+      if (section.dataset.animation === 'slide') {
+         // Simple logic for now, can be enhanced
+      }
+
+      currentIndex = index;
+    }
+
+    function nextSlide() {
+      goToSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+      goToSlide(currentIndex - 1);
+    }
+
+    function startAutoplay() {
+      stopAutoplay();
+      interval = setInterval(nextSlide, speed);
+    }
+
+    function stopAutoplay() {
+      if (interval) clearInterval(interval);
+    }
+
+    // Event Listeners
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        stopAutoplay();
+        prevSlide();
+        startAutoplay();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        stopAutoplay();
+        nextSlide();
+        startAutoplay();
+      });
+    }
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        stopAutoplay();
+        goToSlide(idx);
+        startAutoplay();
+      });
+    });
+
+    // Start
+    startAutoplay();
+  });
+</script>
