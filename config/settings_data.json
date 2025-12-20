@@ -19,6 +19,7 @@
     "spacing_sections": 36,
     "animations_hover_elements": "3d-lift",
     "buttons_radius": 4,
+    "buttons_shadow_opacity": 25,
     "inputs_radius": 4,
     "card_style": "standard",
     "card_text_alignment": "center",
