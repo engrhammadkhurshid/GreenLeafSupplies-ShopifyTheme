@@ -200,6 +200,10 @@
       ],
       "settings": {
         "heading": "Trusted by Major Food & Restaurant Businesses",
+        "heading_tag": "h2",
+        "heading_size": 20,
+        "heading_color": "#7aae5c",
+        "brand_size": 30,
         "padding_top": 50,
         "padding_bottom": 50
       }
