@@ -297,6 +297,7 @@
         "feature_1": {
           "type": "feature",
           "settings": {
+            "custom_icon": "shopify://shop_images/GLS_Product_Features_-_Certified_Sustainable_Materials.webp",
             "icon": "sustainability",
             "heading": "Certified Sustainable",
             "heading_tag": "h3",
@@ -310,6 +311,7 @@
         "feature_2": {
           "type": "feature",
           "settings": {
+            "custom_icon": "shopify://shop_images/GLS_Product_Features_-_Factory-Direct_Wholesale_Pricing.webp",
             "icon": "affordability",
             "heading": "Factory-Direct Pricing",
             "heading_tag": "h3",
@@ -323,6 +325,7 @@
         "feature_3": {
           "type": "feature",
           "settings": {
+            "custom_icon": "shopify://shop_images/GLS_Product_Features_-_Predictable_Nationwide_Delivery.webp",
             "icon": "delivery",
             "heading": "Predictable Delivery",
             "heading_tag": "h3",
@@ -336,6 +339,7 @@
         "feature_4": {
           "type": "feature",
           "settings": {
+            "custom_icon": "shopify://shop_images/GLS_Product_Features_-_Industrial-Grade_Durability.webp",
             "icon": "durability",
             "heading": "Industrial Durability",
             "heading_tag": "h3",
