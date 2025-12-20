@@ -48,7 +48,13 @@
           </div>
           <div class="gls-categories__content">
             {%- if block.settings.title != blank -%}
-              <h3 class="gls-categories__title">{{ block.settings.title }}</h3>
+              {%- assign heading_tag = block.settings.heading_tag | default: 'h3' -%}
+              <{{ heading_tag }} 
+                class="gls-categories__title"
+                style="font-size: {{ block.settings.heading_size }}px; color: {{ block.settings.heading_color }};"
+              >
+                {{ block.settings.title }}
+              </{{ heading_tag }}>
             {%- endif -%}
             {%- if block.settings.subtitle != blank -%}
               <p class="gls-categories__subtitle">{{ block.settings.subtitle }}</p>
@@ -130,6 +136,41 @@
           "type": "url",
           "id": "link",
           "label": "Link"
+        },
+        {
+          "type": "header",
+          "content": "Typography"
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "Heading Tag",
+          "options": [
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "h5", "label": "H5" },
+            { "value": "h6", "label": "H6" },
+            { "value": "p", "label": "Paragraph" },
+            { "value": "span", "label": "Span" }
+          ],
+          "default": "h3"
+        },
+        {
+          "type": "range",
+          "id": "heading_size",
+          "min": 12,
+          "max": 60,
+          "step": 1,
+          "unit": "px",
+          "label": "Heading Font Size",
+          "default": 24
+        },
+        {
+          "type": "color",
+          "id": "heading_color",
+          "label": "Heading Color",
+          "default": "#FFFFFF"
         }
       ]
     }
