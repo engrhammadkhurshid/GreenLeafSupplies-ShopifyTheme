@@ -115,6 +115,12 @@
           "label": "Background Image"
         },
         {
+          "type": "color",
+          "id": "overlay_color",
+          "label": "Overlay Color",
+          "default": "#000000"
+        },
+        {
           "type": "range",
           "id": "overlay_opacity",
           "min": 0,
@@ -410,7 +416,7 @@
         {% endif %}
 
         <!-- Overlay -->
-        <div class="gls-slide-overlay" style="opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};"></div>
+        <div class="gls-slide-overlay" style="background-color: {{ block.settings.overlay_color }}; opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};"></div>
 
         <!-- Content -->
         <div class="gls-slide-content">
