@@ -199,6 +199,63 @@
                     {{ product.description }}
                   </div>
                 {%- endif -%}
+              {%- when 'metafield_badges' -%}
+                <div class="product-metafield-badges" {{ block.shopify_attributes }}>
+                  <style>
+                    .product-metafield-badges {
+                      display: flex;
+                      flex-wrap: wrap;
+                      gap: 10px;
+                      margin-top: 1.5rem;
+                      margin-bottom: 1.5rem;
+                    }
+                    .pm-badge {
+                      display: inline-flex;
+                      align-items: center;
+                      gap: 6px;
+                      padding: 8px 14px;
+                      border-radius: 6px;
+                      font-size: 14px;
+                      font-weight: 600;
+                      line-height: 1;
+                    }
+                    .pm-badge-material {
+                      background-color: #F0FDF4;
+                      color: #166534;
+                      border: 1px solid #BBF7D0;
+                    }
+                    .pm-badge-case {
+                      background-color: #FFF7ED;
+                      color: #9A3412;
+                      border: 1px solid #FFEDD5;
+                    }
+                    .pm-badge-default {
+                      background-color: #F4F4F5;
+                      color: #3F3F46;
+                      border: 1px solid #E4E4E7;
+                    }
+                  </style>
+                  {%- if product.metafields.packaging.dimensions != blank -%}
+                    <span class="pm-badge pm-badge-default">
+                      📏 {{ product.metafields.packaging.dimensions }}
+                    </span>
+                  {%- endif -%}
+                  {%- if product.metafields.packaging.material != blank -%}
+                    <span class="pm-badge pm-badge-material">
+                      🌱 {{ product.metafields.packaging.material }}
+                    </span>
+                  {%- endif -%}
+                  {%- if product.metafields.packaging.case_count != blank -%}
+                    <span class="pm-badge pm-badge-case">
+                      📦 {{ product.metafields.packaging.case_count }}
+                    </span>
+                  {%- endif -%}
+                  {%- if product.metafields.custom.moq != blank -%}
+                    <span class="pm-badge pm-badge-default">
+                      Min: {{ product.metafields.custom.moq }}
+                    </span>
+                  {%- endif -%}
+                </div>
               {%- when 'sku' -%}
                 <p
                   class="product__sku{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
@@ -773,6 +830,11 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "metafield_badges",
+      "name": "Metafield Badges",
+      "limit": 1
     },
     {
       "type": "text",
