@@ -178,6 +178,8 @@
               gap: 6px;
               margin-top: 8px;
               margin-bottom: 8px;
+              max-height: 50px; /* Limit height to prevent layout break */
+              overflow: hidden;
             }
             .b2b-badge {
               font-size: 11px;
@@ -239,12 +241,6 @@
                {%- endunless -%}
             {%- endfor -%}
             
-            {%- unless has_options -%}
-               {%- if card_product.vendor != blank -%}
-                 <span class="card__metadata-item">{{ card_product.vendor }}</span>
-               {%- endif -%}
-            {%- endunless -%}
-
             {%- if card_product.selected_or_first_available_variant.quantity_rule.min > 1 -%}
               <span class="card__metadata-item" style="background-color: #e6f4ea; color: #1e7e34; border-color: #1e7e34;">
                 MOQ: {{ card_product.selected_or_first_available_variant.quantity_rule.min }}
