@@ -221,12 +221,25 @@
 
       {% if section.settings.show_payment_icons %}
       <div class="gls-footer-bottom__payments">
-        <span class="gls-footer-bottom__payments-label">Secure Payments:</span>
-        <div class="gls-footer-payment-icons">
-          {% for type in shop.enabled_payment_types %}
-            <span class="gls-footer-payment-icon">{{ type | payment_type_svg_tag }}</span>
-          {% endfor %}
-        </div>
+        {% if section.settings.payment_image != blank %}
+          <div class="gls-footer-payment-image-wrapper" style="background-color: #fff; padding: 5px 10px; border-radius: 4px; display: inline-block;">
+            <img
+              src="{{ section.settings.payment_image | image_url: width: section.settings.payment_image_width }}"
+              alt="Payment Methods"
+              width="{{ section.settings.payment_image_width }}"
+              height="auto"
+              loading="lazy"
+              style="display: block; max-width: 100%; height: auto;"
+            >
+          </div>
+        {% else %}
+          <span class="gls-footer-bottom__payments-label">Secure Payments:</span>
+          <div class="gls-footer-payment-icons">
+            {% for type in shop.enabled_payment_types %}
+              <span class="gls-footer-payment-icon">{{ type | payment_type_svg_tag }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
       </div>
       {% endif %}
     </div>
@@ -340,6 +353,22 @@
       "id": "show_payment_icons",
       "label": "Show payment icons",
       "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "payment_image",
+      "label": "Custom Payment Image",
+      "info": "Upload a horizontal image of payment methods. Overrides default icons."
+    },
+    {
+      "type": "range",
+      "id": "payment_image_width",
+      "label": "Payment Image Width",
+      "min": 50,
+      "max": 400,
+      "step": 10,
+      "default": 200,
+      "unit": "px"
     },
     {
       "type": "header",
