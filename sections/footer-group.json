@@ -25,7 +25,7 @@
           "type": "menu",
           "settings": {
             "heading": "Customer Support",
-            "menu": "footer"
+            "menu": "customer-account-main-menu"
           }
         },
         "contact": {
