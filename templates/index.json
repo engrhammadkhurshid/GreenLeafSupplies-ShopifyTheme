@@ -24,6 +24,7 @@
         "slide_2": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/GLS_Hero_Section_Image_2.webp",
             "overlay_opacity": 50,
             "heading": "Eco-Friendly Solutions",
             "subheading": "Reduce your environmental footprint without compromising on quality."
@@ -32,13 +33,18 @@
         "slide_3": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/GLS_Hero_Section_Image_3.webp",
             "overlay_opacity": 50,
             "heading": "Wholesale Pricing Available",
             "subheading": "From small cafes to large restaurant chains, we have solutions for you."
           }
         }
       },
-      "block_order": ["slide_1", "slide_2", "slide_3"],
+      "block_order": [
+        "slide_1",
+        "slide_2",
+        "slide_3"
+      ],
       "settings": {
         "autoplay_speed": 5,
         "animation_type": "fade",
