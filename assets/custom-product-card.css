@@ -110,6 +110,7 @@
   color: #6b7280;
   flex-wrap: wrap;
   margin-top: 5px;
+  justify-content: center;
 }
 
 .card__metadata-item {
@@ -153,9 +154,11 @@
 /* Title & Price Row */
 .card__header-row {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 5px;
+  width: 100%;
 }
 
 .card__heading {
@@ -164,6 +167,8 @@
   margin: 0;
   line-height: 1.3;
   color: #7AAE5C; /* Primary Color */
+  text-align: center;
+  width: 100%;
 }
 
 .card__heading a {
@@ -192,6 +197,7 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-align: center;
 }
 
 /* Rating */
