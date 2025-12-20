@@ -51,7 +51,7 @@
         "newsletter_placeholder": "Enter your email",
         "newsletter_button_text": "Subscribe",
         "newsletter_success_message": "Thanks for subscribing!",
-        "logo": "shopify://shop_images/gls-logo-primary.webp",
+        "logo": "shopify://shop_images/GLS_Logo_Monochrome.webp",
         "logo_width": 200,
         "brand_description": "Industrial-grade packaging solutions designed for the circular economy. We help businesses scale without the waste.",
         "show_social": true,
@@ -105,7 +105,12 @@
         "whatsapp",
         "quote"
       ],
-      "settings": {}
+      "settings": {
+        "icon_bg_color": "#7aae5c",
+        "details_bg_color": "#060316",
+        "icon_color": "#ffffff",
+        "text_color": "#ffffff"
+      }
     }
   },
   "order": [
