@@ -16,8 +16,8 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/GLS_Hero_Slider_Image_1.webp",
-            "overlay_color": "#2a00ff",
-            "overlay_opacity": 90,
+            "overlay_color": "#060316",
+            "overlay_opacity": 50,
             "heading": "Premium Sustainable Packaging",
             "heading_tag": "h1",
             "subheading": "High-quality food packaging solutions for businesses nationwide."
@@ -30,7 +30,7 @@
             "overlay_color": "#000000",
             "overlay_opacity": 50,
             "heading": "Eco-Friendly Solutions",
-            "heading_tag": "h2",
+            "heading_tag": "h1",
             "subheading": "Reduce your environmental footprint without compromising on quality."
           }
         },
@@ -41,7 +41,7 @@
             "overlay_color": "#000000",
             "overlay_opacity": 50,
             "heading": "Wholesale Pricing Available",
-            "heading_tag": "h2",
+            "heading_tag": "h1",
             "subheading": "From small cafes to large restaurant chains, we have solutions for you."
           }
         }
