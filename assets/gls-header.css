@@ -74,8 +74,8 @@
 .gls-header__top-bar {
   background-color: var(--gls-dark);
   color: var(--gls-white);
-  font-size: 13px;
-  padding: 10px 0;
+  font-size: 11px;
+  padding: 2px 0;
 }
 
 .gls-header__top-bar .gls-header__container {
@@ -155,7 +155,7 @@
 ---------------------------------------- */
 .gls-header__main {
   background-color: var(--gls-white);
-  padding: 16px 0;
+  padding: 10px 0;
   border-bottom: 1px solid var(--gls-gray-200);
 }
 
@@ -367,7 +367,7 @@
   padding: 0;
   position: relative;
   border-top: 1px solid rgba(255, 255, 255, 0.15);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--gls-white);
 }
 
 .gls-header__nav .gls-header__container {
@@ -390,7 +390,7 @@
   background-color: var(--gls-primary);
   color: var(--gls-white);
   border: none;
-  padding: 12px 20px;
+  padding: 8px 20px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -432,7 +432,7 @@
 .gls-header__menu-link {
   display: flex;
   align-items: center;
-  padding: 12px 24px;
+  padding: 8px 24px;
   color: var(--gls-white);
   text-decoration: none;
   font-size: 14px;
