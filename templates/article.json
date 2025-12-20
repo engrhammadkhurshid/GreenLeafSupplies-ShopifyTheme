@@ -19,6 +19,7 @@
             "image_width": "fixed",
             "fixed_width": 760,
             "image_fit": "contain",
+            "corner_radius": 20,
             "margin_top": 100,
             "margin_bottom": 0
           }
