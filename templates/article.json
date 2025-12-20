@@ -15,7 +15,12 @@
         "featured_image": {
           "type": "featured_image",
           "settings": {
-            "image_height": "medium"
+            "image_height": "medium",
+            "image_width": "fixed",
+            "fixed_width": 760,
+            "image_fit": "contain",
+            "margin_top": 100,
+            "margin_bottom": 0
           }
         },
         "title": {
