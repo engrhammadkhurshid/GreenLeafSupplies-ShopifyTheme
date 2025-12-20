@@ -1,0 +1,91 @@
+.gls-sticky-socials {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.gls-sticky-socials__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.gls-sticky-socials__item:hover {
+  transform: translateX(-10px);
+}
+
+.gls-sticky-socials__link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.gls-sticky-socials__icon-wrapper {
+  width: 50px;
+  height: 50px;
+  background-color: var(--social-bg-color, #7AAE5C);
+  color: var(--social-text-color, #ffffff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: -2px 2px 5px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 2;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.gls-sticky-socials__icon-wrapper svg,
+.gls-sticky-socials__icon-wrapper img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.gls-sticky-socials__details {
+  position: absolute;
+  right: 40px; /* Starts behind the icon slightly */
+  top: 0;
+  height: 100%;
+  background-color: var(--social-bg-color, #7AAE5C);
+  color: var(--social-text-color, #ffffff);
+  display: flex;
+  align-items: center;
+  padding: 0 20px 0 15px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(100%); /* Hidden behind icon */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: -2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.gls-sticky-socials__item:hover .gls-sticky-socials__details {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  right: 100%; /* Moves out to the left of the icon */
+  margin-right: -2px; /* Connect visually */
+}
+
+/* Mobile handling */
+@media screen and (max-width: 768px) {
+  .gls-sticky-socials {
+    display: none; /* Often these are annoying on mobile, but can be enabled if requested */
+  }
+}

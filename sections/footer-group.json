@@ -62,9 +62,58 @@
         "show_payment_icons": true,
         "margin_top": 0
       }
+    },
+    "sticky-socials": {
+      "type": "gls-sticky-socials",
+      "blocks": {
+        "phone": {
+          "type": "social_link",
+          "settings": {
+            "icon": "phone",
+            "text": "+1 862-237-7067",
+            "link": "tel:+18622377067",
+            "color": "#3b82f6"
+          }
+        },
+        "email": {
+          "type": "social_link",
+          "settings": {
+            "icon": "email",
+            "text": "sales@greenleafsupplies.com",
+            "link": "mailto:sales@greenleafsupplies.com",
+            "color": "#ef4444"
+          }
+        },
+        "whatsapp": {
+          "type": "social_link",
+          "settings": {
+            "icon": "whatsapp",
+            "text": "Chat on WhatsApp",
+            "link": "https://wa.me/18622377067",
+            "color": "#22c55e"
+          }
+        },
+        "quote": {
+          "type": "social_link",
+          "settings": {
+            "icon": "quote",
+            "text": "Get A Quote",
+            "link": "/pages/get-a-quote",
+            "color": "#f59e0b"
+          }
+        }
+      },
+      "block_order": [
+        "phone",
+        "email",
+        "whatsapp",
+        "quote"
+      ],
+      "settings": {}
     }
   },
   "order": [
-    "gls-footer"
+    "gls-footer",
+    "sticky-socials"
   ]
 }
