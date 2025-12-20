@@ -60,6 +60,8 @@
         "terms_link": "",
         "sitemap_link": "",
         "show_payment_icons": true,
+        "payment_image": "shopify://shop_images/Secured_Payment_on_GLS.webp",
+        "payment_image_width": 200,
         "margin_top": 0
       }
     },
