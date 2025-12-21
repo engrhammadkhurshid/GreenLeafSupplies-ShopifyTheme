@@ -32,11 +32,6 @@
           {%- else -%}
             {{ 'image' | placeholder_svg_tag: 'gls-about__image gls-about__image--placeholder' }}
           {%- endif -%}
-          {%- if section.settings.quote_text != blank -%}
-            <div class="gls-about__quote-card">
-              <p class="gls-about__quote-text">"{{ section.settings.quote_text }}"</p>
-            </div>
-          {%- endif -%}
         </div>
       </div>
 
