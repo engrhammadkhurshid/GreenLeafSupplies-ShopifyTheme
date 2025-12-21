@@ -42,6 +42,7 @@
           "type": "mega_category",
           "settings": {
             "category_image": "shopify://shop_images/GLS_Food_Packaging_Category_Featured_Image.webp",
+            "image_fit": "contain",
             "category_title": "Food Packaging",
             "category_link": "",
             "subcategory_1": "Fast-food boxes",
@@ -65,6 +66,7 @@
         "mega-cat-2": {
           "type": "mega_category",
           "settings": {
+            "image_fit": "cover",
             "category_title": "Disposable Tableware",
             "category_link": "",
             "subcategory_1": "Plates",
@@ -88,6 +90,7 @@
         "mega-cat-3": {
           "type": "mega_category",
           "settings": {
+            "image_fit": "cover",
             "category_title": "Napkins & Sanitary",
             "category_link": "",
             "subcategory_1": "Paper napkins",
@@ -111,6 +114,7 @@
         "mega-cat-4": {
           "type": "mega_category",
           "settings": {
+            "image_fit": "cover",
             "category_title": "Food & Liquid",
             "category_link": "",
             "subcategory_1": "Sauces",
