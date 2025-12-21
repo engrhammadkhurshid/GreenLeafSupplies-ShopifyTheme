@@ -96,8 +96,6 @@
   }
 
   .feature-icon {
-    width: 80px;
-    height: 80px;
     margin-bottom: 0;
     color: #2E8B57; /* SeaGreen */
     display: flex;
@@ -134,9 +132,9 @@
       {%- for block in section.blocks -%}
         <div class="feature-item" {{ block.shopify_attributes }}>
           <div class="feature-icon-wrapper">
-            <div class="feature-icon">
+            <div class="feature-icon" style="width: {{ block.settings.icon_size }}px; height: {{ block.settings.icon_size }}px;">
               {%- if block.settings.custom_icon != blank -%}
-                {{ block.settings.custom_icon | image_url: width: 128 | image_tag: loading: 'lazy' }}
+                {{ block.settings.custom_icon | image_url: width: 256 | image_tag: loading: 'lazy', style: 'object-fit: ' | append: block.settings.icon_fit }}
               {%- else -%}
                 {%- case block.settings.icon -%}
                   {%- when 'sustainability' -%}
@@ -226,6 +224,28 @@
           "type": "image_picker",
           "id": "custom_icon",
           "label": "Custom Icon (Image)"
+        },
+        {
+          "type": "range",
+          "id": "icon_size",
+          "min": 24,
+          "max": 120,
+          "step": 4,
+          "unit": "px",
+          "label": "Icon Size",
+          "default": 80
+        },
+        {
+          "type": "select",
+          "id": "icon_fit",
+          "label": "Icon Fit",
+          "options": [
+            { "value": "contain", "label": "Contain (Fit)" },
+            { "value": "cover", "label": "Cover (Fill)" },
+            { "value": "fill", "label": "Stretch" },
+            { "value": "scale-down", "label": "Scale Down" }
+          ],
+          "default": "contain"
         },
         {
           "type": "select",
