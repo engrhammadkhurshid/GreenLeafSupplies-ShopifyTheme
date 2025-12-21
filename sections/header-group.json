@@ -37,12 +37,68 @@
             "link": "",
             "highlight": true
           }
+        },
+        "mega-cat-1": {
+          "type": "mega_category",
+          "settings": {
+            "category_title": "Food Packaging",
+            "subcategory_1": "Fast-food boxes",
+            "subcategory_2": "Takeout bags",
+            "subcategory_3": "Beverage cups",
+            "subcategory_4": "Eco-friendly packaging",
+            "show_view_all": false,
+            "view_all_text": "View All",
+            "quote_text": "Request Quote"
+          }
+        },
+        "mega-cat-2": {
+          "type": "mega_category",
+          "settings": {
+            "category_title": "Disposable Tableware",
+            "subcategory_1": "Plates",
+            "subcategory_2": "Bowls",
+            "subcategory_3": "Cutlery",
+            "subcategory_4": "Trays",
+            "show_view_all": false,
+            "view_all_text": "View All",
+            "quote_text": "Request Quote"
+          }
+        },
+        "mega-cat-3": {
+          "type": "mega_category",
+          "settings": {
+            "category_title": "Napkins & Sanitary",
+            "subcategory_1": "Paper napkins",
+            "subcategory_2": "Wet wipes",
+            "subcategory_3": "Gloves",
+            "subcategory_4": "Polyethylene bags",
+            "subcategory_5": "Sanitizers",
+            "show_view_all": false,
+            "view_all_text": "View All",
+            "quote_text": "Request Quote"
+          }
+        },
+        "mega-cat-4": {
+          "type": "mega_category",
+          "settings": {
+            "category_title": "Food & Liquid",
+            "subcategory_1": "Sauces",
+            "subcategory_2": "Oil",
+            "subcategory_3": "Breading Material",
+            "show_view_all": false,
+            "view_all_text": "View All",
+            "quote_text": "Request Quote"
+          }
         }
       },
       "block_order": [
         "top-link-1",
         "top-link-2",
-        "top-link-3"
+        "top-link-3",
+        "mega-cat-1",
+        "mega-cat-2",
+        "mega-cat-3",
+        "mega-cat-4"
       ],
       "settings": {
         "logo": "shopify://shop_images/GreenLeafSupplies_Header_Logo.webp",
