@@ -204,7 +204,7 @@
   border-radius: 6px;
   overflow: hidden;
   background: var(--gls-white);
-  box-shadow: 0 4px 10px #00000026;
+  box-shadow: 0 0 5px #00000026;
   padding: 4px;
 }
 
