@@ -300,11 +300,10 @@
             "custom_icon": "shopify://shop_images/GLS_Product_Features_-_Certified_Sustainable_Materials.webp",
             "icon": "sustainability",
             "heading": "Certified Sustainable",
-            "heading_tag": "h3",
-            "heading_size": 20,
-            "heading_color": "#060316",
+            "heading_size": 16,
+            "heading_color": "#7aae5c",
             "text": "100% biodegradable materials that meet industrial standards.",
-            "text_size": 16,
+            "text_size": 12,
             "text_color": "#060316"
           }
         },
@@ -314,11 +313,10 @@
             "custom_icon": "shopify://shop_images/GLS_Product_Features_-_Factory-Direct_Wholesale_Pricing.webp",
             "icon": "affordability",
             "heading": "Factory-Direct Pricing",
-            "heading_tag": "h3",
-            "heading_size": 20,
-            "heading_color": "#060316",
+            "heading_size": 16,
+            "heading_color": "#7aae5c",
             "text": "Market-beating rates on bulk orders to boost your bottom line.",
-            "text_size": 16,
+            "text_size": 12,
             "text_color": "#060316"
           }
         },
@@ -328,11 +326,10 @@
             "custom_icon": "shopify://shop_images/GLS_Product_Features_-_Predictable_Nationwide_Delivery.webp",
             "icon": "delivery",
             "heading": "Predictable Delivery",
-            "heading_tag": "h3",
-            "heading_size": 20,
-            "heading_color": "#060316",
+            "heading_size": 16,
+            "heading_color": "#7aae5c",
             "text": "Fast nationwide shipping ensures you never run out of stock.",
-            "text_size": 16,
+            "text_size": 12,
             "text_color": "#060316"
           }
         },
@@ -342,11 +339,10 @@
             "custom_icon": "shopify://shop_images/GLS_Product_Features_-_Industrial-Grade_Durability.webp",
             "icon": "durability",
             "heading": "Industrial Durability",
-            "heading_tag": "h3",
-            "heading_size": 20,
-            "heading_color": "#060316",
+            "heading_size": 16,
+            "heading_color": "#7aae5c",
             "text": "Grease-resistant and microwave-safe for commercial use.",
-            "text_size": 16,
+            "text_size": 12,
             "text_color": "#060316"
           }
         }
@@ -358,6 +354,11 @@
         "feature_4"
       ],
       "settings": {
+        "brand_image": "shopify://shop_images/GLS_Brandmark.webp",
+        "brand_image_width": 150,
+        "accent_color": "",
+        "main_heading": "Our Features",
+        "sub_heading": "Everything you need.",
         "background_color": "#f9fafb",
         "text_color": "#060316",
         "padding_top": 60,
