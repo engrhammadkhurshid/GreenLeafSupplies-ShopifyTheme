@@ -114,6 +114,11 @@
     box-shadow: 0 10px 25px rgba(0,0,0,0.05);
   }
   
+  {%- assign accent_color = section.settings.accent_color -%}
+  {%- if accent_color == blank -%}
+    {%- assign accent_color = 'rgb(var(--color-button))' -%}
+  {%- endif -%}
+
   /* Partial border effect using pseudo-element */
   .feature-icon-wrapper::after {
     content: '';
@@ -124,8 +129,8 @@
     bottom: -3px;
     border-radius: 50%;
     border: 3px solid transparent;
-    border-top-color: #8B3D49; /* Accent color from image */
-    border-right-color: #8B3D49;
+    border-top-color: {{ accent_color }};
+    border-right-color: {{ accent_color }};
     transform: rotate(-45deg);
     opacity: 0.8;
   }
@@ -139,7 +144,7 @@
   .feature-icon {
     width: 50%;
     height: 50%;
-    color: #8B3D49;
+    color: {{ accent_color }};
   }
   
   .feature-icon svg, .feature-icon img {
@@ -316,18 +321,6 @@
   "class": "section-features-grid",
   "settings": [
     {
-      "type": "text",
-      "id": "main_heading",
-      "label": "Main Heading",
-      "default": "Our Features"
-    },
-    {
-      "type": "text",
-      "id": "sub_heading",
-      "label": "Sub Heading",
-      "default": "Everything you need."
-    },
-    {
       "type": "image_picker",
       "id": "brand_image",
       "label": "Brand Center Image"
@@ -341,6 +334,24 @@
       "unit": "px",
       "label": "Brand Image Width",
       "default": 150
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "info": "Leave empty to use the theme's button color."
+    },
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Main Heading",
+      "default": "Our Features"
+    },
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "label": "Sub Heading",
+      "default": "Everything you need."
     },
     {
       "type": "color",
