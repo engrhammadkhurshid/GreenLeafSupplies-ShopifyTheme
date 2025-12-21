@@ -172,10 +172,17 @@
                     {% endif %}
                   </ul>
                   
-                  <!-- Request Quote Button -->
-                  <a href="{{ block.settings.quote_link | default: section.settings.quote_link | default: '#' }}" class="gls-header__mega-quote-btn">
-                    Request Quote
-                  </a>
+                  <!-- Buttons -->
+                  <div class="gls-header__mega-buttons">
+                    {% if block.settings.show_view_all %}
+                      <a href="{{ block.settings.category_link | default: '#' }}" class="gls-header__mega-btn gls-header__mega-btn--secondary">
+                        {{ block.settings.view_all_text }}
+                      </a>
+                    {% endif %}
+                    <a href="{{ block.settings.quote_link | default: section.settings.quote_link | default: '#' }}" class="gls-header__mega-btn gls-header__mega-btn--primary">
+                      {{ block.settings.quote_text }}
+                    </a>
+                  </div>
                 </div>
               {% endfor %}
             {% else %}
@@ -602,7 +609,25 @@
         },
         {
           "type": "header",
-          "content": "Request Quote"
+          "content": "Buttons"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_view_all",
+          "label": "Show 'View All' Button",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "view_all_text",
+          "label": "View All Button Text",
+          "default": "View All"
+        },
+        {
+          "type": "text",
+          "id": "quote_text",
+          "label": "Quote Button Text",
+          "default": "Request Quote"
         },
         {
           "type": "url",
