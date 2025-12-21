@@ -41,53 +41,94 @@
         "mega-cat-1": {
           "type": "mega_category",
           "settings": {
+            "category_image": "shopify://shop_images/GLS_Food_Packaging_Category_Featured_Image.webp",
             "category_title": "Food Packaging",
+            "category_link": "",
             "subcategory_1": "Fast-food boxes",
+            "subcategory_1_link": "",
             "subcategory_2": "Takeout bags",
+            "subcategory_2_link": "",
             "subcategory_3": "Beverage cups",
+            "subcategory_3_link": "",
             "subcategory_4": "Eco-friendly packaging",
+            "subcategory_4_link": "",
+            "subcategory_5": "",
+            "subcategory_5_link": "",
+            "subcategory_6": "",
+            "subcategory_6_link": "",
             "show_view_all": false,
             "view_all_text": "View All",
-            "quote_text": "Request Quote"
+            "quote_text": "Request Quote",
+            "quote_link": ""
           }
         },
         "mega-cat-2": {
           "type": "mega_category",
           "settings": {
             "category_title": "Disposable Tableware",
+            "category_link": "",
             "subcategory_1": "Plates",
+            "subcategory_1_link": "",
             "subcategory_2": "Bowls",
+            "subcategory_2_link": "",
             "subcategory_3": "Cutlery",
+            "subcategory_3_link": "",
             "subcategory_4": "Trays",
+            "subcategory_4_link": "",
+            "subcategory_5": "",
+            "subcategory_5_link": "",
+            "subcategory_6": "",
+            "subcategory_6_link": "",
             "show_view_all": false,
             "view_all_text": "View All",
-            "quote_text": "Request Quote"
+            "quote_text": "Request Quote",
+            "quote_link": ""
           }
         },
         "mega-cat-3": {
           "type": "mega_category",
           "settings": {
             "category_title": "Napkins & Sanitary",
+            "category_link": "",
             "subcategory_1": "Paper napkins",
+            "subcategory_1_link": "",
             "subcategory_2": "Wet wipes",
+            "subcategory_2_link": "",
             "subcategory_3": "Gloves",
+            "subcategory_3_link": "",
             "subcategory_4": "Polyethylene bags",
+            "subcategory_4_link": "",
             "subcategory_5": "Sanitizers",
+            "subcategory_5_link": "",
+            "subcategory_6": "",
+            "subcategory_6_link": "",
             "show_view_all": false,
             "view_all_text": "View All",
-            "quote_text": "Request Quote"
+            "quote_text": "Request Quote",
+            "quote_link": ""
           }
         },
         "mega-cat-4": {
           "type": "mega_category",
           "settings": {
             "category_title": "Food & Liquid",
+            "category_link": "",
             "subcategory_1": "Sauces",
+            "subcategory_1_link": "",
             "subcategory_2": "Oil",
+            "subcategory_2_link": "",
             "subcategory_3": "Breading Material",
+            "subcategory_3_link": "",
+            "subcategory_4": "",
+            "subcategory_4_link": "",
+            "subcategory_5": "",
+            "subcategory_5_link": "",
+            "subcategory_6": "",
+            "subcategory_6_link": "",
             "show_view_all": false,
             "view_all_text": "View All",
-            "quote_text": "Request Quote"
+            "quote_text": "Request Quote",
+            "quote_link": ""
           }
         }
       },
@@ -108,7 +149,7 @@
         "search_placeholder": "Search SKUs, product names, or categories...",
         "search_button_text": "SEARCH",
         "catalog_text": "Shop Catalog",
-        "catalog_menu": "main-menu",
+        "catalog_menu": "",
         "main_menu": "main-menu",
         "quote_text": "REQUEST QUOTE",
         "quote_link": "shopify://pages/request-a-quote"
