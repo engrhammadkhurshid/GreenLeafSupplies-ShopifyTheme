@@ -129,7 +129,7 @@
                       <img 
                         src="{{ block.settings.category_image | image_url: width: 400 }}" 
                         alt="{{ block.settings.category_title }}"
-                        class="gls-header__mega-image"
+                        class="gls-header__mega-image gls-header__mega-image--{{ block.settings.image_fit }}"
                         width="220"
                         height="130"
                         loading="lazy"
@@ -531,6 +531,22 @@
           "type": "image_picker",
           "id": "category_image",
           "label": "Category Thumbnail"
+        },
+        {
+          "type": "select",
+          "id": "image_fit",
+          "label": "Image Fit",
+          "options": [
+            {
+              "value": "cover",
+              "label": "Cover (Fill)"
+            },
+            {
+              "value": "contain",
+              "label": "Contain (Fit)"
+            }
+          ],
+          "default": "cover"
         },
         {
           "type": "text",
