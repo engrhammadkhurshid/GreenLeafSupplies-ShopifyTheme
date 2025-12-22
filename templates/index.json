@@ -13,8 +13,8 @@
       "type": "gls-hero-split",
       "settings": {
         "bg_image": "shopify://shop_images/GLS_Hero_Slider_Image_1.webp",
-        "bg_overlay_color": "#060316",
-        "bg_overlay_opacity": 80,
+        "bg_overlay_color": "#000000",
+        "bg_overlay_opacity": 95,
         "badge_text": "NATIONWIDE DELIVERY",
         "badge_bg_color": "#7aae5c",
         "badge_text_color": "#ffffff",
@@ -26,8 +26,16 @@
         "subheading_color": "#e5e7eb",
         "btn_primary_label": "Shop Now",
         "btn_primary_link": "shopify://collections/all",
+        "btn_primary_bg": "#7aae5c",
+        "btn_primary_text": "#ffffff",
         "btn_secondary_label": "Request a Quote",
-        "btn_secondary_link": "/pages/contact"
+        "btn_secondary_link": "/pages/contact",
+        "btn_secondary_border": "#ffffff",
+        "btn_secondary_text": "#ffffff",
+        "right_image_width": 100,
+        "right_image_fit": "contain",
+        "padding_top": 0,
+        "padding_bottom": 20
       }
     },
     "gls_hero": {
