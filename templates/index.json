@@ -9,6 +9,27 @@
  */
 {
   "sections": {
+    "gls_hero_split": {
+      "type": "gls-hero-split",
+      "settings": {
+        "bg_image": "shopify://shop_images/GLS_Hero_Slider_Image_1.webp",
+        "bg_overlay_color": "#060316",
+        "bg_overlay_opacity": 80,
+        "badge_text": "NATIONWIDE DELIVERY",
+        "badge_bg_color": "#7aae5c",
+        "badge_text_color": "#ffffff",
+        "heading_line_1": "Premium, Sustainable",
+        "heading_color_1": "#ffffff",
+        "heading_line_2": "Food Packaging Nationwide",
+        "heading_color_2": "#7aae5c",
+        "subheading": "Highest-quality food packaging products for the U.S. market. We support businesses with safety, durability, and performance.",
+        "subheading_color": "#e5e7eb",
+        "btn_primary_label": "Shop Now",
+        "btn_primary_link": "shopify://collections/all",
+        "btn_secondary_label": "Request a Quote",
+        "btn_secondary_link": "/pages/contact"
+      }
+    },
     "gls_hero": {
       "type": "gls-hero",
       "blocks": {
@@ -371,6 +392,7 @@
     }
   },
   "order": [
+    "gls_hero_split",
     "gls_hero",
     "gls_value_props",
     "gls_about",

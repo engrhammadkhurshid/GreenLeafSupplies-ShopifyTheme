@@ -1,0 +1,448 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .gls-hero-split {
+    position: relative;
+    width: 100%;
+    min-height: 100vh; /* Viewport height */
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background-color: {{ section.settings.bg_overlay_color }};
+  }
+
+  .gls-hero-split__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .gls-hero-split__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .gls-hero-split__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: {{ section.settings.bg_overlay_color }};
+    opacity: {{ section.settings.bg_overlay_opacity | divided_by: 100.0 }};
+    z-index: 1;
+  }
+
+  .gls-hero-split__content-wrapper {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media screen and (min-width: 990px) {
+    .gls-hero-split__content-wrapper {
+      grid-template-columns: 1fr 1fr;
+      padding: 0 5rem;
+    }
+  }
+
+  /* Left Column Styles */
+  .gls-hero-split__left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    max-width: 65rem;
+  }
+
+  .gls-hero-split__badge {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background-color: {{ section.settings.badge_bg_color }};
+    color: {{ section.settings.badge_text_color }};
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 4px;
+    margin-bottom: 2.4rem;
+  }
+
+  .gls-hero-split__heading {
+    margin: 0 0 2rem;
+    line-height: 1.1;
+    font-weight: 800;
+  }
+
+  .gls-hero-split__heading-line-1 {
+    display: block;
+    color: {{ section.settings.heading_color_1 }};
+    font-size: clamp(3.2rem, 5vw, 6.4rem);
+  }
+
+  .gls-hero-split__heading-line-2 {
+    display: block;
+    color: {{ section.settings.heading_color_2 }};
+    font-size: clamp(3.2rem, 5vw, 6.4rem);
+  }
+
+  .gls-hero-split__subheading {
+    font-size: 1.8rem;
+    line-height: 1.6;
+    color: {{ section.settings.subheading_color }};
+    margin-bottom: 4rem;
+    max-width: 50rem;
+  }
+
+  .gls-hero-split__buttons {
+    display: flex;
+    gap: 1.6rem;
+    flex-wrap: wrap;
+  }
+
+  .gls-hero-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.4rem 3.2rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-width: 160px;
+  }
+
+  .gls-hero-btn--primary {
+    background-color: {{ section.settings.btn_primary_bg }};
+    color: {{ section.settings.btn_primary_text }};
+    border: 2px solid {{ section.settings.btn_primary_bg }};
+  }
+
+  .gls-hero-btn--primary:hover {
+    background-color: transparent;
+    color: {{ section.settings.btn_primary_bg }};
+  }
+
+  .gls-hero-btn--secondary {
+    background-color: transparent;
+    color: {{ section.settings.btn_secondary_text }};
+    border: 2px solid {{ section.settings.btn_secondary_border }};
+  }
+
+  .gls-hero-btn--secondary:hover {
+    background-color: {{ section.settings.btn_secondary_border }};
+    color: {{ section.settings.bg_overlay_color }}; /* Contrast against border color */
+  }
+
+  /* Right Column Styles */
+  .gls-hero-split__right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .gls-hero-split__right-image {
+    width: {{ section.settings.right_image_width }}%;
+    height: auto;
+    object-fit: {{ section.settings.right_image_fit }};
+    max-height: 80vh;
+  }
+
+{%- endstyle -%}
+
+<div class="gls-hero-split section-{{ section.id }}-padding">
+  
+  <!-- Background Image -->
+  <div class="gls-hero-split__bg">
+    {%- if section.settings.bg_image != blank -%}
+      {{ section.settings.bg_image | image_url: width: 3840 | image_tag:
+        loading: 'eager',
+        widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+        alt: section.settings.bg_image.alt | escape
+      }}
+    {%- else -%}
+      {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+  </div>
+
+  <!-- Overlay -->
+  <div class="gls-hero-split__overlay"></div>
+
+  <!-- Content -->
+  <div class="gls-hero-split__content-wrapper">
+    
+    <!-- Left Column -->
+    <div class="gls-hero-split__left">
+      {%- if section.settings.badge_text != blank -%}
+        <span class="gls-hero-split__badge">{{ section.settings.badge_text }}</span>
+      {%- endif -%}
+
+      <h1 class="gls-hero-split__heading">
+        {%- if section.settings.heading_line_1 != blank -%}
+          <span class="gls-hero-split__heading-line-1">{{ section.settings.heading_line_1 }}</span>
+        {%- endif -%}
+        {%- if section.settings.heading_line_2 != blank -%}
+          <span class="gls-hero-split__heading-line-2">{{ section.settings.heading_line_2 }}</span>
+        {%- endif -%}
+      </h1>
+
+      {%- if section.settings.subheading != blank -%}
+        <div class="gls-hero-split__subheading">
+          {{ section.settings.subheading }}
+        </div>
+      {%- endif -%}
+
+      <div class="gls-hero-split__buttons">
+        {%- if section.settings.btn_primary_label != blank -%}
+          <a href="{{ section.settings.btn_primary_link }}" class="gls-hero-btn gls-hero-btn--primary">
+            {{ section.settings.btn_primary_label }}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.btn_secondary_label != blank -%}
+          <a href="{{ section.settings.btn_secondary_link }}" class="gls-hero-btn gls-hero-btn--secondary">
+            {{ section.settings.btn_secondary_label }}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="gls-hero-split__right">
+      {%- if section.settings.right_image != blank -%}
+        {{ section.settings.right_image | image_url: width: 1500 | image_tag:
+          loading: 'eager',
+          class: 'gls-hero-split__right-image',
+          alt: section.settings.right_image.alt | escape
+        }}
+      {%- endif -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "GLS Hero Split",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "color",
+      "id": "bg_overlay_color",
+      "label": "Overlay Color",
+      "default": "#060316"
+    },
+    {
+      "type": "range",
+      "id": "bg_overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay Opacity",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Left Column Content"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "NATIONWIDE DELIVERY"
+    },
+    {
+      "type": "color",
+      "id": "badge_bg_color",
+      "label": "Badge Background Color",
+      "default": "#7aae5c"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_1",
+      "label": "Heading Line 1",
+      "default": "Premium, Sustainable"
+    },
+    {
+      "type": "color",
+      "id": "heading_color_1",
+      "label": "Heading Line 1 Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_line_2",
+      "label": "Heading Line 2",
+      "default": "Food Packaging Nationwide"
+    },
+    {
+      "type": "color",
+      "id": "heading_color_2",
+      "label": "Heading Line 2 Color",
+      "default": "#7aae5c"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Highest-quality food packaging products for the U.S. market. We support businesses with safety, durability, and performance."
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading Color",
+      "default": "#e5e7eb"
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "btn_primary_label",
+      "label": "Primary Button Label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "btn_primary_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "color",
+      "id": "btn_primary_bg",
+      "label": "Primary Button Background",
+      "default": "#7aae5c"
+    },
+    {
+      "type": "color",
+      "id": "btn_primary_text",
+      "label": "Primary Button Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "btn_secondary_label",
+      "label": "Secondary Button Label",
+      "default": "Request a Quote"
+    },
+    {
+      "type": "url",
+      "id": "btn_secondary_link",
+      "label": "Secondary Button Link"
+    },
+    {
+      "type": "color",
+      "id": "btn_secondary_border",
+      "label": "Secondary Button Border/Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "btn_secondary_text",
+      "label": "Secondary Button Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Right Column Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image",
+      "label": "Right Column Image (Optional)"
+    },
+    {
+      "type": "range",
+      "id": "right_image_width",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Image Width",
+      "default": 100
+    },
+    {
+      "type": "select",
+      "id": "right_image_fit",
+      "label": "Image Object Fit",
+      "options": [
+        { "value": "contain", "label": "Contain" },
+        { "value": "cover", "label": "Cover" }
+      ],
+      "default": "contain"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "GLS Hero Split"
+    }
+  ]
+}
+{% endschema %}
