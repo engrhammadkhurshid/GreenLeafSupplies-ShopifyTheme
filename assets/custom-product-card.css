@@ -278,3 +278,78 @@ a.card__button:after {
   background-color: var(--gls-accent, #FDC15F);
   color: var(--gls-dark, #000);
 }
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 749px) {
+  /* 1. Reduce Image Height */
+  .card__inner {
+    height: 180px !important; /* Smaller image area for mobile */
+    min-height: 180px !important;
+  }
+
+  /* 2. Compact Content Padding */
+  .card__content {
+    padding: 12px !important;
+  }
+
+  /* 3. Adjust Typography & Spacing */
+  .card__category {
+    font-size: 10px;
+    margin-bottom: 2px;
+  }
+
+  .card__heading {
+    font-size: 14px;
+    height: 40px; /* Adjusted for smaller font */
+    margin-bottom: 4px;
+  }
+
+  .card__description {
+    font-size: 12px;
+    height: 54px; /* Adjusted for smaller font */
+    margin-bottom: 12px;
+    -webkit-line-clamp: 3;
+  }
+
+  /* 4. Fix Footer & Button Overflow */
+  .card__footer-row {
+    padding-top: 12px;
+    height: auto; /* Allow flexibility if needed, but try to keep compact */
+    min-height: 40px;
+    gap: 8px;
+    flex-wrap: wrap; /* Allow wrapping to prevent overflow on very small screens */
+  }
+
+  .card__moq-label {
+    font-size: 11px;
+    flex: 1; /* Allow it to take space but shrink if needed */
+    min-width: 60px; /* Ensure it doesn't get too squashed */
+  }
+
+  a.card__button {
+    padding: 6px 10px; /* Smaller padding */
+    font-size: 11px; /* Smaller font */
+    height: 30px; /* Smaller height */
+    width: auto;
+    white-space: nowrap;
+    flex-shrink: 0; /* Don't shrink the button text */
+  }
+
+  /* 5. Adjust Badges */
+  .card__sku-badge {
+    top: 8px;
+    left: 8px;
+    font-size: 9px;
+    padding: 2px 6px;
+  }
+
+  .card__badge {
+    top: 8px !important;
+    right: 8px !important;
+  }
+
+  .badge {
+    font-size: 9px;
+    padding: 2px 6px;
+  }
+}
