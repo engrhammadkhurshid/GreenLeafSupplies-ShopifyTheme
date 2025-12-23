@@ -19,10 +19,16 @@
         "badge_bg_color": "#7aae5c",
         "badge_text_color": "#ffffff",
         "heading_line_1": "Premium, Sustainable",
+        "heading_1_tag": "h1",
+        "heading_1_size": 40,
         "heading_color_1": "#ffffff",
         "heading_line_2": "Food Packaging Nationwide",
+        "heading_2_tag": "h1",
+        "heading_2_size": 64,
         "heading_color_2": "#7aae5c",
         "subheading": "Highest-quality food packaging products for the U.S. market. We support businesses with safety, durability, and performance.",
+        "subheading_tag": "p",
+        "subheading_size": 18,
         "subheading_color": "#e5e7eb",
         "btn_primary_label": "Shop Now",
         "btn_primary_link": "shopify://collections/all",
@@ -83,7 +89,13 @@
       ],
       "settings": {
         "padding_top": 25,
-        "padding_bottom": 25
+        "padding_bottom": 25,
+        "title_tag": "h4",
+        "title_size": 18,
+        "title_color": "#060316",
+        "subtitle_tag": "span",
+        "subtitle_size": 16,
+        "subtitle_color": "#6b7280"
       }
     },
     "gls_about": {
@@ -117,6 +129,11 @@
         "image": "shopify://shop_images/GLS_About_Section_Image.webp",
         "quote_text": "Committed to being the finest source for premium packaging.",
         "heading": "About Green Leaf Supplies",
+        "heading_tag": "h2",
+        "heading_size": 48,
+        "heading_color": "#7aae5c",
+        "text_size": 16,
+        "text_color": "#555555",
         "button_label": "Read Our Full Mission",
         "button_link": "/pages/about",
         "padding_top": 80,
@@ -174,9 +191,9 @@
       "settings": {
         "heading": "Trusted by Major Food & Restaurant Businesses",
         "heading_tag": "h2",
-        "heading_size": 20,
+        "heading_size": 25,
         "heading_color": "#7aae5c",
-        "brand_size": 30,
+        "brand_size": 26,
         "padding_top": 50,
         "padding_bottom": 50
       }
@@ -193,7 +210,10 @@
             "link": "shopify://collections/food-packaging",
             "heading_tag": "h3",
             "heading_size": 16,
-            "heading_color": "#7aae5c"
+            "heading_color": "#060316",
+            "subtitle_tag": "p",
+            "subtitle_size": 16,
+            "subtitle_color": "#ffffff"
           }
         },
         "cat_2": {
@@ -205,7 +225,10 @@
             "link": "shopify://collections/disposable-tableware",
             "heading_tag": "h3",
             "heading_size": 16,
-            "heading_color": "#7aae5c"
+            "heading_color": "#060316",
+            "subtitle_tag": "p",
+            "subtitle_size": 16,
+            "subtitle_color": "#ffffff"
           }
         },
         "cat_3": {
@@ -217,7 +240,10 @@
             "link": "shopify://collections/napkins-sanitary",
             "heading_tag": "h3",
             "heading_size": 16,
-            "heading_color": "#7aae5c"
+            "heading_color": "#060316",
+            "subtitle_tag": "p",
+            "subtitle_size": 16,
+            "subtitle_color": "#ffffff"
           }
         },
         "cat_4": {
@@ -229,7 +255,10 @@
             "link": "shopify://collections/food-liquid",
             "heading_tag": "h3",
             "heading_size": 16,
-            "heading_color": "#7aae5c"
+            "heading_color": "#060316",
+            "subtitle_tag": "p",
+            "subtitle_size": 16,
+            "subtitle_color": "#ffffff"
           }
         }
       },
@@ -241,6 +270,9 @@
       ],
       "settings": {
         "heading": "Featured Categories",
+        "heading_tag": "h2",
+        "heading_size": 48,
+        "heading_color": "#7aae5c",
         "view_all_text": "View Full Catalog",
         "view_all_link": "shopify://collections/all",
         "padding_top": 80,
@@ -255,6 +287,7 @@
         "heading_tag": "h2",
         "heading_size": 40,
         "heading_color": "#7aae5c",
+        "subheading_tag": "p",
         "subheading_size": 18,
         "subheading_color": "#666666",
         "collection": "featured",
@@ -331,11 +364,18 @@
         "brand_image_width": 150,
         "accent_color": "",
         "main_heading": "The Future of Packaging",
+        "main_heading_tag": "h2",
         "main_heading_size": 48,
         "main_heading_color": "#7aae5c",
         "tagline": "Better for Business. Better for the Earth.",
+        "tagline_tag": "p",
         "tagline_size": 18,
         "tagline_color": "#060316",
+        "feature_heading_size": 20,
+        "feature_heading_tag": "h3",
+        "feature_heading_color": "#060316",
+        "feature_text_size": 16,
+        "feature_text_color": "#4b5563",
         "background_color": "#f9fafb",
         "text_color": "#060316",
         "padding_top": 60,
