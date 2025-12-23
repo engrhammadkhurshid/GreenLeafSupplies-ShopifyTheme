@@ -37,11 +37,17 @@
 .gls-value-props__item {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1.5rem;
   padding: 1.5rem;
   opacity: 0;
   animation: slideInRight 0.8s ease-out forwards;
+}
+
+@media screen and (min-width: 990px) {
+  .gls-value-props__item {
+    justify-content: center;
+  }
 }
 
 .gls-value-props__icon {
