@@ -1,142 +1,48 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "intro": {
-      "type": "rich-text",
+    "main": {
+      "type": "gls-request-quote",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "feature_1": {
+          "type": "feature",
           "settings": {
-            "heading": "Bulk Orders & Custom Solutions",
-            "heading_size": "h1"
+            "title": "Best Price Guarantee",
+            "text": "We match or beat any competitor pricing on bulk orders."
           }
         },
-        "text": {
-          "type": "text",
+        "feature_2": {
+          "type": "feature",
           "settings": {
-            "text": "<p>Looking for wholesale pricing or custom packaging solutions? Fill out the form below and our team will get back to you within 24 hours with a personalized quote tailored to your business needs.</p>"
+            "title": "Fast Turnaround",
+            "text": "Get your custom quote within 24 business hours."
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "title": "Expert Support",
+            "text": "Dedicated account manager for all your packaging needs."
           }
         }
       },
       "block_order": [
-        "heading",
-        "text"
+        "feature_1",
+        "feature_2",
+        "feature_3"
       ],
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-1",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 24
-      }
-    },
-    "quote_form": {
-      "type": "contact-form",
-      "settings": {
-        "heading": "Tell Us About Your Needs",
-        "heading_size": "h2",
-        "color_scheme": "scheme-1",
-        "padding_top": 24,
-        "padding_bottom": 36
-      }
-    },
-    "benefits": {
-      "type": "multicolumn",
-      "blocks": {
-        "column1": {
-          "type": "column",
-          "settings": {
-            "title": "Volume Discounts",
-            "text": "<p>The more you order, the more you save. Our tiered pricing structure rewards bulk purchases with significant discounts.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column2": {
-          "type": "column",
-          "settings": {
-            "title": "Custom Branding",
-            "text": "<p>Add your logo and branding to any packaging product. Stand out with custom-printed boxes, bags, and containers.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column3": {
-          "type": "column",
-          "settings": {
-            "title": "Flexible Terms",
-            "text": "<p>Qualified businesses can apply for Net-30 payment terms. We make it easy to manage your packaging budget.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column1",
-        "column2",
-        "column3"
-      ],
-      "settings": {
-        "title": "Why Request a Quote?",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "primary",
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "swipe_on_mobile": true,
-        "padding_top": 36,
-        "padding_bottom": 52
-      }
-    },
-    "contact_info": {
-      "type": "rich-text",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Prefer to Talk?",
-            "heading_size": "h2"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Call us directly at <strong>+1 862-237-7067</strong> or email <strong>sales@greenleafsupplies.com</strong><br>Our team is available Monday - Friday, 9 AM - 5 PM EST</p>"
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "text"
-      ],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-2",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 40
+        "header_title": "Request A Quote",
+        "header_tagline": "Get a personalized quote for your bulk packaging needs within 24 hours.",
+        "product_categories": "Mylar Bags, Jars & Containers, Pre-Roll Packaging, Custom Branding, Other",
+        "features_title": "Why Request A Quote?",
+        "contact_title": "Prefer to Talk?",
+        "contact_text": "Our team is available Monday through Friday, 9am to 5pm EST to answer your questions.",
+        "phone": "+1 (555) 123-4567",
+        "email": "sales@greenleafsupplies.com"
       }
     }
   },
   "order": [
-    "intro",
-    "quote_form",
-    "benefits",
-    "contact_info"
+    "main"
   ]
 }

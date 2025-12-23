@@ -1,0 +1,292 @@
+{{ 'gls-request-quote.css' | asset_url | stylesheet_tag }}
+
+<div class="gls-quote-section">
+  <div class="gls-quote-container">
+    
+    <!-- Breadcrumbs -->
+    <nav class="gls-breadcrumbs" aria-label="Breadcrumb">
+      <a href="{{ routes.root_url }}">Home</a>
+      <span>/</span>
+      <span aria-current="page">{{ page.title }}</span>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="gls-quote-header">
+      {%- if section.settings.header_image != blank -%}
+        <img 
+          src="{{ section.settings.header_image | image_url: width: 240 }}" 
+          alt="{{ section.settings.header_title | escape }}"
+          class="gls-quote-header__image"
+          width="120"
+          height="120"
+          loading="eager"
+        >
+      {%- endif -%}
+      <h1 class="gls-quote-header__title">{{ section.settings.header_title | default: page.title }}</h1>
+      {%- if section.settings.header_tagline != blank -%}
+        <p class="gls-quote-header__tagline">{{ section.settings.header_tagline }}</p>
+      {%- endif -%}
+    </div>
+
+    <!-- Request Quote Form -->
+    <div class="gls-quote-form-wrapper">
+      {%- form 'contact', id: 'RequestQuoteForm', class: 'gls-quote-form' -%}
+        {%- if form.posted_successfully? -%}
+          <div class="gls-form-group gls-form-group--full">
+            <div class="form-status form-status-list form__message" tabindex="-1" autofocus>
+              {% render 'icon-success' %} {{ 'templates.contact.form.post_success' | t }}
+            </div>
+          </div>
+        {%- elsif form.errors -%}
+          <div class="gls-form-group gls-form-group--full">
+            <div class="form-status form-status-list form__message" tabindex="-1" autofocus>
+              {% render 'icon-error' %} {{ 'templates.contact.form.error_heading' | t }}
+            </div>
+          </div>
+        {%- endif -%}
+
+        <div class="gls-form-group">
+          <label class="gls-form-label" for="ContactForm-Name">Full Name *</label>
+          <input class="gls-form-input" autocomplete="name" type="text" id="ContactForm-Name" name="contact[Name]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="John Doe" required>
+        </div>
+
+        <div class="gls-form-group">
+          <label class="gls-form-label" for="ContactForm-Email">Email Address *</label>
+          <input class="gls-form-input" autocomplete="email" type="email" id="ContactForm-Email" name="contact[email]" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" placeholder="john@example.com" required>
+        </div>
+
+        <div class="gls-form-group">
+          <label class="gls-form-label" for="ContactForm-Phone">Phone Number *</label>
+          <input class="gls-form-input" autocomplete="tel" type="tel" id="ContactForm-Phone" name="contact[Phone]" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="+1 (555) 000-0000" required>
+        </div>
+
+        <div class="gls-form-group">
+          <label class="gls-form-label" for="ContactForm-Company">Company / Business Name</label>
+          <input class="gls-form-input" autocomplete="organization" type="text" id="ContactForm-Company" name="contact[Company]" placeholder="Your Company Ltd.">
+        </div>
+
+        <div class="gls-form-group">
+          <label class="gls-form-label" for="ContactForm-Product">Required Products *</label>
+          <select class="gls-form-select" id="ContactForm-Product" name="contact[Product_Category]" required>
+            <option value="" disabled selected>Select a category...</option>
+            {%- assign categories = section.settings.product_categories | split: ',' -%}
+            {%- for category in categories -%}
+              <option value="{{ category | strip }}">{{ category | strip }}</option>
+            {%- endfor -%}
+          </select>
+        </div>
+
+        <div class="gls-form-group">
+          <label class="gls-form-label" for="ContactForm-Quantity">Estimated Quantity</label>
+          <input class="gls-form-input" type="text" id="ContactForm-Quantity" name="contact[Quantity]" placeholder="e.g. 1000 units">
+        </div>
+
+        <div class="gls-form-group gls-form-group--full">
+          <label class="gls-form-label" for="ContactForm-Date">Expected Delivery Date</label>
+          <input class="gls-form-input" type="date" id="ContactForm-Date" name="contact[Expected_Date]">
+        </div>
+
+        <div class="gls-form-group gls-form-group--full">
+          <label class="gls-form-label" for="ContactForm-Body">Comments / Specific Requirements</label>
+          <textarea class="gls-form-textarea" id="ContactForm-Body" name="contact[body]" placeholder="Please describe your project requirements, specific dimensions, or any other details...">{{ form.body }}</textarea>
+        </div>
+
+        <div class="gls-form-submit">
+          <button type="submit" class="gls-btn">
+            {{ section.settings.submit_button_text | default: 'Request A Quote' }}
+          </button>
+        </div>
+      {%- endform -%}
+    </div>
+
+    <!-- Why Request Quote -->
+    <div class="gls-why-quote">
+      <h2 class="gls-why-quote__title">{{ section.settings.features_title }}</h2>
+      <div class="gls-features-grid">
+        {%- for block in section.blocks -%}
+          <div class="gls-feature-card" {{ block.shopify_attributes }}>
+            <div class="gls-feature-icon">
+              {%- if block.settings.custom_icon != blank -%}
+                <img src="{{ block.settings.custom_icon | image_url: width: 64 }}" alt="{{ block.settings.title }}" loading="lazy">
+              {%- else -%}
+                <!-- Default Icon Placeholder -->
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+              {%- endif -%}
+            </div>
+            <h3 class="gls-feature-title">{{ block.settings.title }}</h3>
+            <p class="gls-feature-text">{{ block.settings.text }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <!-- Prefer to Talk -->
+    <div class="gls-contact-info">
+      <div class="gls-contact-info__content">
+        <h2 class="gls-contact-title">{{ section.settings.contact_title }}</h2>
+        <p class="gls-contact-text">{{ section.settings.contact_text }}</p>
+        
+        <div class="gls-contact-methods">
+          {%- if section.settings.phone != blank -%}
+            <a href="tel:{{ section.settings.phone | replace: ' ', '' }}" class="gls-contact-method">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              <span>{{ section.settings.phone }}</span>
+            </a>
+          {%- endif -%}
+          
+          {%- if section.settings.email != blank -%}
+            <a href="mailto:{{ section.settings.email }}" class="gls-contact-method">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              <span>{{ section.settings.email }}</span>
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Request Quote Page",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Page Header"
+    },
+    {
+      "type": "image_picker",
+      "id": "header_image",
+      "label": "Header Image/Icon"
+    },
+    {
+      "type": "text",
+      "id": "header_title",
+      "label": "Page Title",
+      "default": "Request A Quote"
+    },
+    {
+      "type": "textarea",
+      "id": "header_tagline",
+      "label": "Tagline",
+      "default": "Get a personalized quote for your bulk packaging needs within 24 hours."
+    },
+    {
+      "type": "header",
+      "content": "Form Settings"
+    },
+    {
+      "type": "textarea",
+      "id": "product_categories",
+      "label": "Product Categories (Comma Separated)",
+      "default": "Mylar Bags, Jars & Containers, Pre-Roll Packaging, Custom Branding, Other"
+    },
+    {
+      "type": "text",
+      "id": "submit_button_text",
+      "label": "Submit Button Text",
+      "default": "Request A Quote"
+    },
+    {
+      "type": "header",
+      "content": "Why Request Quote Section"
+    },
+    {
+      "type": "text",
+      "id": "features_title",
+      "label": "Section Title",
+      "default": "Why Request A Quote?"
+    },
+    {
+      "type": "header",
+      "content": "Contact Info Section"
+    },
+    {
+      "type": "text",
+      "id": "contact_title",
+      "label": "Contact Title",
+      "default": "Prefer to Talk?"
+    },
+    {
+      "type": "textarea",
+      "id": "contact_text",
+      "label": "Contact Text",
+      "default": "Our team is available Monday through Friday, 9am to 5pm EST to answer your questions."
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone Number",
+      "default": "+1 (555) 123-4567"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email Address",
+      "default": "sales@greenleafsupplies.com"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Custom Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Feature description goes here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Request Quote Page",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Best Price Guarantee",
+            "text": "We match or beat any competitor pricing on bulk orders."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Fast Turnaround",
+            "text": "Get your custom quote within 24 business hours."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Expert Support",
+            "text": "Dedicated account manager for all your packaging needs."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

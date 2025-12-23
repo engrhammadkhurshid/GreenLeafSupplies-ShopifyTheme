@@ -1,0 +1,290 @@
+/* GLS Request a Quote Page Styles */
+
+/* General Layout */
+.gls-quote-section {
+  padding: 60px 0;
+  background-color: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+  font-family: var(--font-body-family);
+}
+
+.gls-quote-container {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Breadcrumbs */
+.gls-breadcrumbs {
+  margin-bottom: 40px;
+  font-size: 1.3rem;
+  color: rgba(var(--color-foreground), 0.75);
+  text-align: center;
+}
+
+.gls-breadcrumbs a {
+  color: rgba(var(--color-foreground), 0.75);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.gls-breadcrumbs a:hover {
+  color: rgb(var(--color-foreground));
+  text-decoration: underline;
+}
+
+.gls-breadcrumbs span {
+  margin: 0 8px;
+  color: rgba(var(--color-foreground), 0.4);
+}
+
+/* Page Header */
+.gls-quote-header {
+  max-width: 800px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+
+.gls-quote-header__image {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 24px;
+  object-fit: contain;
+  display: block;
+}
+
+.gls-quote-header__title {
+  font-family: var(--font-heading-family);
+  font-size: 3.6rem;
+  font-weight: var(--font-heading-weight);
+  color: rgb(var(--color-foreground));
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.gls-quote-header__tagline {
+  font-size: 1.8rem;
+  color: rgba(var(--color-foreground), 0.75);
+  line-height: 1.6;
+}
+
+/* Form Section */
+.gls-quote-form-wrapper {
+  max-width: 800px;
+  margin: 0 auto 80px;
+  background: rgb(var(--color-background));
+  border: 1px solid rgba(var(--color-foreground), 0.1);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.gls-quote-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.gls-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gls-form-group--full {
+  grid-column: 1 / -1;
+}
+
+.gls-form-label {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: rgb(var(--color-foreground));
+}
+
+.gls-form-input,
+.gls-form-select,
+.gls-form-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid rgba(var(--color-foreground), 0.2);
+  border-radius: 8px;
+  font-size: 1.6rem;
+  color: rgb(var(--color-foreground));
+  background-color: rgb(var(--color-background));
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: var(--font-body-family);
+}
+
+.gls-form-input:focus,
+.gls-form-select:focus,
+.gls-form-textarea:focus {
+  outline: none;
+  border-color: rgb(var(--color-foreground));
+  box-shadow: 0 0 0 2px rgba(var(--color-foreground), 0.1);
+}
+
+.gls-form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.gls-form-submit {
+  grid-column: 1 / -1;
+  margin-top: 16px;
+}
+
+.gls-btn {
+  display: inline-block;
+  width: 100%;
+  padding: 16px 32px;
+  background-color: rgb(var(--color-button));
+  color: rgb(var(--color-button-text));
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-align: center;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  text-decoration: none;
+}
+
+.gls-btn:hover {
+  opacity: 0.9;
+}
+
+/* Why Request Quote */
+.gls-why-quote {
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+.gls-why-quote__title {
+  font-family: var(--font-heading-family);
+  font-size: 3.2rem;
+  font-weight: var(--font-heading-weight);
+  margin-bottom: 40px;
+  color: rgb(var(--color-foreground));
+}
+
+.gls-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+}
+
+.gls-feature-card {
+  padding: 32px;
+  background: rgba(var(--color-foreground), 0.03);
+  border-radius: 16px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.gls-feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.gls-feature-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(var(--color-foreground));
+}
+
+.gls-feature-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.gls-feature-title {
+  font-family: var(--font-heading-family);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: rgb(var(--color-foreground));
+}
+
+.gls-feature-text {
+  font-size: 1.6rem;
+  color: rgba(var(--color-foreground), 0.75);
+  line-height: 1.5;
+}
+
+/* Contact Info */
+.gls-contact-info {
+  background-color: rgba(var(--color-foreground), 0.03);
+  border-radius: 16px;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.gls-contact-info__content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.gls-contact-title {
+  font-family: var(--font-heading-family);
+  font-size: 2.8rem;
+  font-weight: var(--font-heading-weight);
+  margin-bottom: 16px;
+  color: rgb(var(--color-foreground));
+}
+
+.gls-contact-text {
+  font-size: 1.6rem;
+  color: rgba(var(--color-foreground), 0.75);
+  margin-bottom: 32px;
+}
+
+.gls-contact-methods {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.gls-contact-method {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgb(var(--color-foreground));
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.6rem;
+  transition: opacity 0.2s;
+}
+
+.gls-contact-method:hover {
+  opacity: 0.7;
+}
+
+.gls-contact-method svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gls-quote-header__title {
+    font-size: 2.8rem;
+  }
+  
+  .gls-quote-form-wrapper {
+    padding: 24px;
+  }
+  
+  .gls-quote-form {
+    grid-template-columns: 1fr;
+  }
+  
+  .gls-contact-methods {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
