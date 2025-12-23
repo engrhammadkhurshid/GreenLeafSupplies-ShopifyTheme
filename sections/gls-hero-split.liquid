@@ -92,7 +92,7 @@
     margin-bottom: 2.4rem;
   }
 
-  .gls-hero-split__heading {
+  .gls-hero-split__heading-wrapper {
     margin: 0 0 2rem;
     line-height: 1.1;
     font-weight: 800;
@@ -101,21 +101,28 @@
   .gls-hero-split__heading-line-1 {
     display: block;
     color: {{ section.settings.heading_color_1 }};
-    font-size: clamp(3.2rem, 5vw, 6.4rem);
+    font-size: clamp({{ section.settings.heading_1_size | times: 0.6 }}px, 5vw, {{ section.settings.heading_1_size }}px);
+    margin: 0;
+    line-height: 1.1;
+    font-weight: inherit;
   }
 
   .gls-hero-split__heading-line-2 {
     display: block;
     color: {{ section.settings.heading_color_2 }};
-    font-size: clamp(3.2rem, 5vw, 6.4rem);
+    font-size: clamp({{ section.settings.heading_2_size | times: 0.6 }}px, 5vw, {{ section.settings.heading_2_size }}px);
+    margin: 0;
+    line-height: 1.1;
+    font-weight: inherit;
   }
 
   .gls-hero-split__subheading {
-    font-size: 1.8rem;
+    font-size: clamp({{ section.settings.subheading_size | times: 0.8 }}px, 3vw, {{ section.settings.subheading_size }}px);
     line-height: 1.6;
     color: {{ section.settings.subheading_color }};
     margin-bottom: 4rem;
     max-width: 50rem;
+    margin-top: 0;
   }
 
   .gls-hero-split__buttons {
@@ -205,19 +212,19 @@
         <span class="gls-hero-split__badge">{{ section.settings.badge_text }}</span>
       {%- endif -%}
 
-      <h1 class="gls-hero-split__heading">
+      <div class="gls-hero-split__heading-wrapper">
         {%- if section.settings.heading_line_1 != blank -%}
-          <span class="gls-hero-split__heading-line-1">{{ section.settings.heading_line_1 }}</span>
+          <{{ section.settings.heading_1_tag }} class="gls-hero-split__heading-line-1">{{ section.settings.heading_line_1 }}</{{ section.settings.heading_1_tag }}>
         {%- endif -%}
         {%- if section.settings.heading_line_2 != blank -%}
-          <span class="gls-hero-split__heading-line-2">{{ section.settings.heading_line_2 }}</span>
+          <{{ section.settings.heading_2_tag }} class="gls-hero-split__heading-line-2">{{ section.settings.heading_line_2 }}</{{ section.settings.heading_2_tag }}>
         {%- endif -%}
-      </h1>
+      </div>
 
       {%- if section.settings.subheading != blank -%}
-        <div class="gls-hero-split__subheading">
+        <{{ section.settings.subheading_tag }} class="gls-hero-split__subheading">
           {{ section.settings.subheading }}
-        </div>
+        </{{ section.settings.subheading_tag }}>
       {%- endif -%}
 
       <div class="gls-hero-split__buttons">
@@ -308,6 +315,32 @@
       "default": "Premium, Sustainable"
     },
     {
+      "type": "select",
+      "id": "heading_1_tag",
+      "label": "Heading Line 1 Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "p", "label": "Paragraph" },
+        { "value": "span", "label": "Span" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "range",
+      "id": "heading_1_size",
+      "min": 20,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Line 1 Size (Desktop)",
+      "default": 64
+    },
+    {
       "type": "color",
       "id": "heading_color_1",
       "label": "Heading Line 1 Color",
@@ -320,6 +353,32 @@
       "default": "Food Packaging Nationwide"
     },
     {
+      "type": "select",
+      "id": "heading_2_tag",
+      "label": "Heading Line 2 Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "p", "label": "Paragraph" },
+        { "value": "span", "label": "Span" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "range",
+      "id": "heading_2_size",
+      "min": 20,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Line 2 Size (Desktop)",
+      "default": 64
+    },
+    {
       "type": "color",
       "id": "heading_color_2",
       "label": "Heading Line 2 Color",
@@ -330,6 +389,32 @@
       "id": "subheading",
       "label": "Subheading",
       "default": "Highest-quality food packaging products for the U.S. market. We support businesses with safety, durability, and performance."
+    },
+    {
+      "type": "select",
+      "id": "subheading_tag",
+      "label": "Subheading Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "p", "label": "Paragraph" },
+        { "value": "span", "label": "Span" }
+      ],
+      "default": "p"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Subheading Size (Desktop)",
+      "default": 18
     },
     {
       "type": "color",
