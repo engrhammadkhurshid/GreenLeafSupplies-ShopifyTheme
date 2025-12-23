@@ -14,7 +14,7 @@
   position: absolute;
   right: auto;
   top: 100%;
-  width: fit-content;
+  width: max-content; /* Changed back to max-content to ensure it wraps children */
   min-width: 200px;
   max-width: calc(100vw - 4rem);
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -45,6 +45,7 @@
   list-style: none;
   padding: 0 2rem;
   margin: 0;
+  width: max-content; /* Ensure list takes up only necessary width */
 }
 
 .mega-menu__list > li {
