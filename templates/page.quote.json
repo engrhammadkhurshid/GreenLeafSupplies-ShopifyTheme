@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -31,9 +40,11 @@
         "feature_3"
       ],
       "settings": {
+        "header_image": "shopify://shop_images/GLS_Get_A_Quote_Page_Featured_Image.webp",
         "header_title": "Request A Quote",
         "header_tagline": "Get a personalized quote for your bulk packaging needs within 24 hours.",
         "product_categories": "Mylar Bags, Jars & Containers, Pre-Roll Packaging, Custom Branding, Other",
+        "submit_button_text": "Request A Quote",
         "features_title": "Why Request A Quote?",
         "contact_title": "Prefer to Talk?",
         "contact_text": "Our team is available Monday through Friday, 9am to 5pm EST to answer your questions.",

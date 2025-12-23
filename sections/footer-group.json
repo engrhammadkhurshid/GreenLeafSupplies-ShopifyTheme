@@ -45,7 +45,7 @@
         "contact"
       ],
       "settings": {
-        "newsletter_enable": true,
+        "newsletter_enable": false,
         "newsletter_title": "Join our Green Business Network",
         "newsletter_description": "Get sustainability tips and exclusive B2B offers.",
         "newsletter_placeholder": "Enter your email",
