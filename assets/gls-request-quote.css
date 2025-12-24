@@ -1,0 +1,53 @@
+/* GLS Request a Quote Page Styles */
+
+.gls-quote-section {
+  width: 100%;
+  display: block;
+}
+
+.gls-quote-container {
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  width: 100%;
+}
+
+/* Header Section */
+.gls-quote-header-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 100%;
+}
+
+.gls-quote-header-image-col {
+  display: flex;
+  width: 100%;
+}
+
+.gls-quote-header-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.gls-quote-header-content-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.gls-quote-header-title {
+  margin: 0 0 1rem 0;
+  line-height: 1.2;
+}
+
+.gls-quote-header-tagline {
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 749px) {
+  .gls-quote-header-grid {
+    grid-template-columns: 1fr;
+  }
+}

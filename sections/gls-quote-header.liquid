@@ -1,0 +1,346 @@
+{{ 'gls-request-quote.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    margin-top: {{ section.settings.margin_top }}px;
+    margin-bottom: {{ section.settings.margin_bottom }}px;
+  }
+
+  .section-{{ section.id }} .gls-quote-container {
+    max-width: {{ section.settings.section_max_width }}px;
+  }
+
+  .section-{{ section.id }} .gls-quote-header-grid {
+    align-items: {{ section.settings.vertical_alignment }};
+    justify-items: {{ section.settings.horizontal_alignment }};
+    text-align: {{ section.settings.text_alignment }};
+  }
+
+  .section-{{ section.id }} .gls-quote-header-image {
+    width: {{ section.settings.image_width }}px;
+    height: {{ section.settings.image_height }}px;
+    object-fit: {{ section.settings.image_object_fit }};
+    object-position: {{ section.settings.image_object_position }};
+    border-radius: {{ section.settings.image_border_radius }}px;
+  }
+  
+  /* If width is set to 0 (auto), let it be responsive */
+  {% if section.settings.image_width == 0 %}
+  .section-{{ section.id }} .gls-quote-header-image {
+    width: 100%;
+  }
+  {% endif %}
+
+  /* If height is set to 0 (auto) */
+  {% if section.settings.image_height == 0 %}
+  .section-{{ section.id }} .gls-quote-header-image {
+    height: auto;
+  }
+  {% endif %}
+
+  .section-{{ section.id }} .gls-quote-header-title {
+    font-size: {{ section.settings.heading_font_size }}px;
+    color: {{ section.settings.heading_color }};
+  }
+
+  .section-{{ section.id }} .gls-quote-header-tagline {
+    font-size: {{ section.settings.tagline_font_size }}px;
+    color: {{ section.settings.tagline_color }};
+  }
+  
+  .section-{{ section.id }} .gls-quote-header-content-col {
+     align-items: {{ section.settings.content_horizontal_alignment }};
+  }
+
+{%- endstyle -%}
+
+<div class="gls-quote-section section-{{ section.id }}-padding section-{{ section.id }}">
+  <div class="gls-quote-container">
+    <div class="gls-quote-header-grid">
+      
+      <!-- Left Column: Image -->
+      <div class="gls-quote-header-image-col">
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 1000 | image_tag:
+            class: 'gls-quote-header-image',
+            loading: 'eager',
+            alt: section.settings.image.alt | default: section.settings.heading | escape
+          }}
+        {%- else -%}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg gls-quote-header-image' }}
+        {%- endif -%}
+      </div>
+
+      <!-- Right Column: Content -->
+      <div class="gls-quote-header-content-col">
+        {%- if section.settings.heading != blank -%}
+          <{{ section.settings.heading_tag }} class="gls-quote-header-title">
+            {{ section.settings.heading }}
+          </{{ section.settings.heading_tag }}>
+        {%- endif -%}
+
+        {%- if section.settings.tagline != blank -%}
+          <{{ section.settings.tagline_tag }} class="gls-quote-header-tagline">
+            {{ section.settings.tagline }}
+          </{{ section.settings.tagline_tag }}>
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Quote - Header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Layout"
+    },
+    {
+      "type": "range",
+      "id": "section_max_width",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "label": "Section Max Width",
+      "default": 700
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Alignment"
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical Alignment (Grid)",
+      "options": [
+        { "value": "start", "label": "Top" },
+        { "value": "center", "label": "Center" },
+        { "value": "end", "label": "Bottom" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "content_horizontal_alignment",
+      "label": "Content Horizontal Alignment",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" }
+      ],
+      "default": "flex-start"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Image Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 0,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "label": "Image Width (0 for auto/100%)",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "min": 0,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "label": "Image Height (0 for auto)",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "image_object_fit",
+      "label": "Image Object Fit",
+      "options": [
+        { "value": "cover", "label": "Cover" },
+        { "value": "contain", "label": "Contain" },
+        { "value": "fill", "label": "Fill" },
+        { "value": "none", "label": "None" }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "select",
+      "id": "image_object_position",
+      "label": "Image Object Position",
+      "options": [
+        { "value": "center", "label": "Center" },
+        { "value": "top", "label": "Top" },
+        { "value": "bottom", "label": "Bottom" },
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Image Border Radius",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Headline Settings"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading Text",
+      "default": "Request A Quote"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 16,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Tagline Settings"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline Text",
+      "default": "Get the best prices for your bulk orders."
+    },
+    {
+      "type": "select",
+      "id": "tagline_tag",
+      "label": "Tagline Tag",
+      "options": [
+        { "value": "p", "label": "Paragraph (p)" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "span", "label": "Span" }
+      ],
+      "default": "p"
+    },
+    {
+      "type": "range",
+      "id": "tagline_font_size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Tagline Font Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "tagline_color",
+      "label": "Tagline Color",
+      "default": "#666666"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Quote - Header"
+    }
+  ]
+}
+{% endschema %}
