@@ -40,15 +40,24 @@
 
 /* Page Header */
 .gls-quote-header {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto 60px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.gls-quote-header__image-wrapper {
+  flex-shrink: 0;
 }
 
 .gls-quote-header__image {
-  margin: 0 auto 24px;
   object-fit: contain;
   display: block;
+}
+
+.gls-quote-header__content {
+  flex: 1;
 }
 
 .gls-quote-header__title {
@@ -60,6 +69,7 @@
 
 .gls-quote-header__tagline {
   line-height: 1.6;
+  margin: 0;
 }
 
 /* Form Section */
@@ -365,6 +375,12 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .gls-quote-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 24px;
+  }
+  
   .gls-quote-header__title {
     font-size: 2.8rem;
   }

@@ -28,23 +28,27 @@
     <!-- Page Header -->
     <div class="gls-quote-header">
       {%- if section.settings.header_image != blank -%}
-        <img 
-          src="{{ section.settings.header_image | image_url: width: section.settings.header_image_width }}" 
-          alt="{{ section.settings.heading | escape }}"
-          class="gls-quote-header__image"
-          width="{{ section.settings.header_image_width }}"
-          height="{{ section.settings.header_image_width }}"
-          loading="eager"
-        >
+        <div class="gls-quote-header__image-wrapper">
+          <img 
+            src="{{ section.settings.header_image | image_url: width: section.settings.header_image_width }}" 
+            alt="{{ section.settings.heading | escape }}"
+            class="gls-quote-header__image"
+            width="{{ section.settings.header_image_width }}"
+            height="{{ section.settings.header_image_width }}"
+            loading="eager"
+          >
+        </div>
       {%- endif -%}
       
-      <{{ section.settings.heading_tag | default: 'h1' }} class="gls-quote-header__title">
-        {{ section.settings.heading | default: page.title }}
-      </{{ section.settings.heading_tag | default: 'h1' }}>
-      
-      {%- if section.settings.tagline != blank -%}
-        <p class="gls-quote-header__tagline">{{ section.settings.tagline }}</p>
-      {%- endif -%}
+      <div class="gls-quote-header__content">
+        <{{ section.settings.heading_tag | default: 'h1' }} class="gls-quote-header__title">
+          {{ section.settings.heading | default: page.title }}
+        </{{ section.settings.heading_tag | default: 'h1' }}>
+        
+        {%- if section.settings.tagline != blank -%}
+          <p class="gls-quote-header__tagline">{{ section.settings.tagline }}</p>
+        {%- endif -%}
+      </div>
     </div>
 
   </div>
