@@ -111,9 +111,10 @@
         "button_hover_border_color": "#7aae5c",
         "button_hover_text_color": "#ffffff",
         "button_icon_size": 20,
-        "image_column_width": 45,
-        "image_max_width": 400,
-        "image_border_radius": 16
+        "image_column_width": 60,
+        "contact_image": "shopify://shop_images/GLS_Customer_Support_Team_Photo.webp",
+        "image_max_width": 600,
+        "image_border_radius": 10
       }
     }
   },
