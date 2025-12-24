@@ -276,7 +276,79 @@
   opacity: 0.8;
 }
 
-/* Quote Contact Section */
+/* Quote Contact Section - Two Column Grid */
+.gls-quote-section--contact .gls-quote-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.gls-quote-section--contact .gls-contact-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.gls-quote-section--contact .gls-contact-heading {
+  font-family: var(--font-heading-family);
+  font-weight: var(--font-heading-weight);
+  line-height: 1.2;
+}
+
+.gls-quote-section--contact .gls-contact-text {
+  line-height: 1.6;
+  margin: 0;
+}
+
+.gls-quote-section--contact .gls-contact-buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gls-quote-section--contact .gls-contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.gls-quote-section--contact .gls-contact-btn svg {
+  flex-shrink: 0;
+}
+
+.gls-quote-section--contact .gls-contact-image-column {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.gls-quote-section--contact .gls-contact-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.gls-quote-section--contact .gls-contact-image-placeholder {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1;
+  background: rgba(var(--color-foreground), 0.05);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gls-quote-section--contact .gls-contact-image-placeholder .placeholder-svg {
+  width: 60%;
+  height: 60%;
+  opacity: 0.3;
+}
+
+/* Quote Contact Section - Old Styles (for backwards compatibility) */
 .gls-quote-contact {
   text-align: center;
   padding: 40px 20px;
@@ -405,5 +477,30 @@
   
   .gls-features-heading {
     font-size: 2.4rem;
+  }
+  
+  /* Contact Section Two-Column Grid Responsive */
+  .gls-quote-section--contact .gls-quote-contact-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .gls-quote-section--contact .gls-contact-content {
+    order: 2;
+  }
+  
+  .gls-quote-section--contact .gls-contact-image-column {
+    order: 1;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+  
+  .gls-quote-section--contact .gls-contact-buttons {
+    justify-content: center;
+  }
+  
+  .gls-quote-section--contact .gls-contact-btn {
+    width: 100%;
+    justify-content: center;
   }
 }

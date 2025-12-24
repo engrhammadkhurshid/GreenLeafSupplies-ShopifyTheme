@@ -3,47 +3,65 @@
 {%- style -%}
   .gls-quote-section--header .gls-quote-header {
     max-width: {{ section.settings.section_width }}px;
-    justify-content: {{ section.settings.horizontal_alignment }};
-    align-items: {{ section.settings.vertical_alignment }};
+    gap: {{ section.settings.column_gap }}px;
+    padding: {{ section.settings.section_padding_y }}px {{ section.settings.section_padding_x }}px;
+    background-color: {{ section.settings.section_bg_color }};
+    border-radius: {{ section.settings.section_border_radius }}px;
   }
-  .gls-quote-header__image {
-    width: {{ section.settings.header_image_width }}px;
-    height: {{ section.settings.header_image_width }}px;
+  .gls-quote-section--header .gls-quote-header__image-column {
+    flex: 0 0 {{ section.settings.image_column_width }}%;
   }
-  .gls-quote-header__title {
+  .gls-quote-section--header .gls-quote-header__image {
+    width: 100%;
+    max-width: {{ section.settings.image_max_width }}px;
+    border-radius: {{ section.settings.image_border_radius }}px;
+  }
+  .gls-quote-section--header .gls-quote-header__content {
+    text-align: {{ section.settings.content_alignment }};
+  }
+  .gls-quote-section--header .gls-quote-header__title {
     font-size: {{ section.settings.heading_size }}px;
-    color: {{ section.settings.heading_color }};  }
-  .gls-quote-header__tagline {
+    color: {{ section.settings.heading_color }};
+    margin-bottom: {{ section.settings.heading_margin_bottom }}px;
+  }
+  .gls-quote-section--header .gls-quote-header__tagline {
     font-size: {{ section.settings.tagline_size }}px;
     color: {{ section.settings.tagline_color }};
+    line-height: {{ section.settings.tagline_line_height }};
   }
 {%- endstyle -%}
 
 <div class="gls-quote-section gls-quote-section--header">
   <div class="gls-quote-container">
     
+    {%- if section.settings.show_breadcrumbs -%}
     <!-- Breadcrumbs -->
     <nav class="gls-breadcrumbs" aria-label="Breadcrumb">
       <a href="{{ routes.root_url }}">Home</a>
       <span>/</span>
       <span aria-current="page">{{ page.title }}</span>
     </nav>
+    {%- endif -%}
 
-    <!-- Page Header -->
+    <!-- Page Header - Two Column Grid -->
     <div class="gls-quote-header">
-      {%- if section.settings.header_image != blank -%}
-        <div class="gls-quote-header__image-wrapper">
+      <!-- Left Column: Image -->
+      <div class="gls-quote-header__image-column">
+        {%- if section.settings.header_image != blank -%}
           <img 
-            src="{{ section.settings.header_image | image_url: width: section.settings.header_image_width }}" 
+            src="{{ section.settings.header_image | image_url: width: section.settings.image_max_width | times: 2 }}" 
             alt="{{ section.settings.heading | escape }}"
             class="gls-quote-header__image"
-            width="{{ section.settings.header_image_width }}"
-            height="{{ section.settings.header_image_width }}"
             loading="eager"
           >
-        </div>
-      {%- endif -%}
+        {%- else -%}
+          <div class="gls-quote-header__image-placeholder">
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {%- endif -%}
+      </div>
       
+      <!-- Right Column: Content -->
       <div class="gls-quote-header__content">
         <{{ section.settings.heading_tag | default: 'h1' }} class="gls-quote-header__title">
           {{ section.settings.heading | default: page.title }}
@@ -60,87 +78,122 @@
 
 {% schema %}
 {
-  "name": "Quote Page Header",
+  "name": "Quote - Page Header",
   "settings": [
     {
       "type": "header",
-      "content": "Layout Settings"
+      "content": "Section Layout"
     },
     {
       "type": "range",
       "id": "section_width",
       "min": 600,
-      "max": 1200,
+      "max": 1400,
       "step": 50,
       "unit": "px",
       "label": "Section Max Width",
-      "default": 800
+      "default": 1000
     },
     {
-      "type": "select",
-      "id": "horizontal_alignment",
-      "label": "Horizontal Alignment",
-      "options": [
-        { "value": "flex-start", "label": "Left" },
-        { "value": "center", "label": "Center" },
-        { "value": "flex-end", "label": "Right" },
-        { "value": "space-between", "label": "Space Between" },
-        { "value": "space-around", "label": "Space Around" }
-      ],
-      "default": "flex-start"
+      "type": "range",
+      "id": "section_padding_y",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Vertical Padding",
+      "default": 40
     },
     {
-      "type": "select",
-      "id": "vertical_alignment",
-      "label": "Vertical Alignment",
-      "options": [
-        { "value": "flex-start", "label": "Top" },
-        { "value": "center", "label": "Middle" },
-        { "value": "flex-end", "label": "Bottom" },
-        { "value": "stretch", "label": "Stretch" }
-      ],
-      "default": "center"
+      "type": "range",
+      "id": "section_padding_x",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Horizontal Padding",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Section Background Color",
+      "default": "transparent"
+    },
+    {
+      "type": "range",
+      "id": "section_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Section Border Radius",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Gap Between Columns",
+      "default": 50
+    },
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumbs",
+      "label": "Show Breadcrumbs",
+      "default": true
     },
     {
       "type": "header",
-      "content": "Page Header"
+      "content": "Left Column - Image"
+    },
+    {
+      "type": "range",
+      "id": "image_column_width",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "%",
+      "label": "Image Column Width",
+      "default": 40
     },
     {
       "type": "image_picker",
       "id": "header_image",
-      "label": "Header Image/Icon"
+      "label": "Header Image"
     },
     {
       "type": "range",
-      "id": "header_image_width",
-      "min": 40,
-      "max": 200,
-      "step": 10,
+      "id": "image_max_width",
+      "min": 200,
+      "max": 600,
+      "step": 20,
       "unit": "px",
-      "label": "Image Width",
-      "default": 120
+      "label": "Image Max Width",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Image Border Radius",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Right Column - Headline"
     },
     {
       "type": "text",
       "id": "heading",
-      "label": "Page Title",
+      "label": "Headline Text",
       "default": "Request A Quote"
-    },
-    {
-      "type": "color",
-      "id": "heading_color",
-      "label": "Title Color",
-      "default": "#111111"
-    },
-    {
-      "type": "range",
-      "id": "heading_size",
-      "min": 16,
-      "max": 64,
-      "step": 1,
-      "unit": "px",
-      "label": "Title Font Size",
-      "default": 36
     },
     {
       "type": "select",
@@ -148,6 +201,91 @@
       "label": "Heading Tag",
       "options": [
         { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Headline Font Size",
+      "default": 42
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Headline Color",
+      "default": "#7AAE5C"
+    },
+    {
+      "type": "range",
+      "id": "heading_margin_bottom",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Headline Bottom Spacing",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Right Column - Tagline"
+    },
+    {
+      "type": "textarea",
+      "id": "tagline",
+      "label": "Tagline Text",
+      "default": "Get a personalized quote for your bulk packaging needs within 24 hours."
+    },
+    {
+      "type": "range",
+      "id": "tagline_size",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Tagline Font Size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "tagline_color",
+      "label": "Tagline Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "tagline_line_height",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "label": "Tagline Line Height",
+      "default": 1.6
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content Text Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Quote - Page Header"
+    }
+  ]
+}
+{% endschema %}
         { "value": "h2", "label": "H2" },
         { "value": "h3", "label": "H3" }
       ],

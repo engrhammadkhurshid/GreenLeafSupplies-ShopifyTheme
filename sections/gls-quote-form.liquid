@@ -1,13 +1,56 @@
 {{ 'gls-request-quote.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .gls-form-label {
-    color: rgb(var(--color-button));
+  .gls-quote-section--form .gls-quote-form-wrapper {
+    max-width: {{ section.settings.form_max_width }}px;
+    background-color: {{ section.settings.form_bg_color }};
+    border-radius: {{ section.settings.form_border_radius }}px;
+    padding: {{ section.settings.form_padding }}px;
+    border: {{ section.settings.form_border_width }}px solid {{ section.settings.form_border_color }};
+  }
+  .gls-quote-section--form .gls-form-section-title {
+    font-size: {{ section.settings.section_title_size }}px;
+    color: {{ section.settings.section_title_color }};
+    text-align: {{ section.settings.section_title_alignment }};
+    margin-bottom: {{ section.settings.section_title_margin }}px;
+  }
+  .gls-quote-section--form .gls-form-label {
+    font-size: {{ section.settings.label_size }}px;
+    color: {{ section.settings.label_color }};
+  }
+  .gls-quote-section--form .gls-form-input,
+  .gls-quote-section--form .gls-form-select,
+  .gls-quote-section--form .gls-form-textarea {
+    font-size: {{ section.settings.input_size }}px;
+    border-radius: {{ section.settings.input_border_radius }}px;
+    border-color: {{ section.settings.input_border_color }};
+    padding: {{ section.settings.input_padding_y }}px {{ section.settings.input_padding_x }}px;
+  }
+  .gls-quote-section--form .gls-form-input:focus,
+  .gls-quote-section--form .gls-form-select:focus,
+  .gls-quote-section--form .gls-form-textarea:focus {
+    border-color: {{ section.settings.input_focus_color }};
+    box-shadow: 0 0 0 2px {{ section.settings.input_focus_color }}20;
+  }
+  .gls-quote-section--form .gls-btn {
+    background-color: {{ section.settings.button_bg_color }};
+    color: {{ section.settings.button_text_color }};
+    font-size: {{ section.settings.button_font_size }}px;
+    padding: {{ section.settings.button_padding_y }}px {{ section.settings.button_padding_x }}px;
+    border-radius: {{ section.settings.button_border_radius }}px;
+  }
+  .gls-quote-section--form .gls-btn:hover {
+    background-color: {{ section.settings.button_hover_bg_color }};
+    opacity: 1;
   }
 {%- endstyle -%}
 
 <div class="gls-quote-section gls-quote-section--form">
   <div class="gls-quote-container">
+    
+    {%- if section.settings.section_title != blank -%}
+      <{{ section.settings.section_title_tag }} class="gls-form-section-title">{{ section.settings.section_title }}</{{ section.settings.section_title_tag }}>
+    {%- endif -%}
     
     <!-- Request Quote Form -->
     <div class="gls-quote-form-wrapper">
@@ -29,29 +72,29 @@
         {%- endif -%}
 
         <div class="gls-form-group">
-          <label class="gls-form-label" for="ContactForm-Name">Full Name *</label>
-          <input class="gls-form-input" autocomplete="name" type="text" id="ContactForm-Name" name="contact[Name]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="John Doe" required>
+          <label class="gls-form-label" for="ContactForm-Name">{{ section.settings.name_label }} *</label>
+          <input class="gls-form-input" autocomplete="name" type="text" id="ContactForm-Name" name="contact[Name]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="{{ section.settings.name_placeholder }}" required>
         </div>
 
         <div class="gls-form-group">
-          <label class="gls-form-label" for="ContactForm-Email">Email Address *</label>
-          <input class="gls-form-input" autocomplete="email" type="email" id="ContactForm-Email" name="contact[email]" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" placeholder="john@example.com" required>
+          <label class="gls-form-label" for="ContactForm-Email">{{ section.settings.email_label }} *</label>
+          <input class="gls-form-input" autocomplete="email" type="email" id="ContactForm-Email" name="contact[email]" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" placeholder="{{ section.settings.email_placeholder }}" required>
         </div>
 
         <div class="gls-form-group">
-          <label class="gls-form-label" for="ContactForm-Phone">Phone Number *</label>
-          <input class="gls-form-input" autocomplete="tel" type="tel" id="ContactForm-Phone" name="contact[Phone]" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="+1 (555) 000-0000" required>
+          <label class="gls-form-label" for="ContactForm-Phone">{{ section.settings.phone_label }} *</label>
+          <input class="gls-form-input" autocomplete="tel" type="tel" id="ContactForm-Phone" name="contact[Phone]" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="{{ section.settings.phone_placeholder }}" required>
         </div>
 
         <div class="gls-form-group">
-          <label class="gls-form-label" for="ContactForm-Company">Company / Business Name</label>
-          <input class="gls-form-input" autocomplete="organization" type="text" id="ContactForm-Company" name="contact[Company]" placeholder="Your Company Ltd.">
+          <label class="gls-form-label" for="ContactForm-Company">{{ section.settings.company_label }}</label>
+          <input class="gls-form-input" autocomplete="organization" type="text" id="ContactForm-Company" name="contact[Company]" placeholder="{{ section.settings.company_placeholder }}">
         </div>
 
         <div class="gls-form-group">
-          <label class="gls-form-label" for="ContactForm-Product">Required Products *</label>
+          <label class="gls-form-label" for="ContactForm-Product">{{ section.settings.product_label }} *</label>
           <select class="gls-form-select" id="ContactForm-Product" name="contact[Product_Category]" required>
-            <option value="" disabled selected>Select a category...</option>
+            <option value="" disabled selected>{{ section.settings.product_placeholder }}</option>
             {%- assign categories = section.settings.product_categories | split: ',' -%}
             {%- for category in categories -%}
               <option value="{{ category | strip }}">{{ category | strip }}</option>
@@ -60,18 +103,18 @@
         </div>
 
         <div class="gls-form-group">
-          <label class="gls-form-label" for="ContactForm-Quantity">Estimated Quantity</label>
-          <input class="gls-form-input" type="text" id="ContactForm-Quantity" name="contact[Quantity]" placeholder="e.g. 1000 units">
+          <label class="gls-form-label" for="ContactForm-Quantity">{{ section.settings.quantity_label }}</label>
+          <input class="gls-form-input" type="text" id="ContactForm-Quantity" name="contact[Quantity]" placeholder="{{ section.settings.quantity_placeholder }}">
         </div>
 
         <div class="gls-form-group gls-form-group--full">
-          <label class="gls-form-label" for="ContactForm-Date">Expected Delivery Date</label>
+          <label class="gls-form-label" for="ContactForm-Date">{{ section.settings.date_label }}</label>
           <input class="gls-form-input" type="date" id="ContactForm-Date" name="contact[Expected_Date]">
         </div>
 
         <div class="gls-form-group gls-form-group--full">
-          <label class="gls-form-label" for="ContactForm-Body">Comments / Specific Requirements</label>
-          <textarea class="gls-form-textarea" id="ContactForm-Body" name="contact[body]" placeholder="Please describe your project requirements, specific dimensions, or any other details...">{{ form.body }}</textarea>
+          <label class="gls-form-label" for="ContactForm-Body">{{ section.settings.message_label }}</label>
+          <textarea class="gls-form-textarea" id="ContactForm-Body" name="contact[body]" placeholder="{{ section.settings.message_placeholder }}">{{ form.body }}</textarea>
         </div>
 
         <div class="gls-form-submit">
@@ -87,11 +130,329 @@
 
 {% schema %}
 {
-  "name": "Quote Page Form",
+  "name": "Quote - Form Section",
   "settings": [
     {
       "type": "header",
-      "content": "Form Settings"
+      "content": "Section Title"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": ""
+    },
+    {
+      "type": "select",
+      "id": "section_title_tag",
+      "label": "Title Heading Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "range",
+      "id": "section_title_size",
+      "min": 20,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "section_title_color",
+      "label": "Title Color",
+      "default": "#7AAE5C"
+    },
+    {
+      "type": "select",
+      "id": "section_title_alignment",
+      "label": "Title Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "section_title_margin",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Title Bottom Margin",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Form Container"
+    },
+    {
+      "type": "range",
+      "id": "form_max_width",
+      "min": 500,
+      "max": 1000,
+      "step": 50,
+      "unit": "px",
+      "label": "Form Max Width",
+      "default": 800
+    },
+    {
+      "type": "color",
+      "id": "form_bg_color",
+      "label": "Form Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "form_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Form Border Radius",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "form_padding",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Form Padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "form_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Form Border Width",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "form_border_color",
+      "label": "Form Border Color",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "header",
+      "content": "Form Labels"
+    },
+    {
+      "type": "range",
+      "id": "label_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Label Font Size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Label Color",
+      "default": "#7AAE5C"
+    },
+    {
+      "type": "header",
+      "content": "Form Inputs"
+    },
+    {
+      "type": "range",
+      "id": "input_size",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Input Font Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "input_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Input Border Radius",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "input_border_color",
+      "label": "Input Border Color",
+      "default": "#cccccc"
+    },
+    {
+      "type": "color",
+      "id": "input_focus_color",
+      "label": "Input Focus Color",
+      "default": "#7AAE5C"
+    },
+    {
+      "type": "range",
+      "id": "input_padding_y",
+      "min": 8,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Input Vertical Padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "input_padding_x",
+      "min": 10,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Input Horizontal Padding",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Submit Button"
+    },
+    {
+      "type": "text",
+      "id": "submit_button_text",
+      "label": "Button Text",
+      "default": "Request A Quote"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background",
+      "default": "#7AAE5C"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Button Hover Background",
+      "default": "#6a9d4e"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 14,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Font Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding_y",
+      "min": 10,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Vertical Padding",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding_x",
+      "min": 20,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Button Horizontal Padding",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Border Radius",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Form Field Labels"
+    },
+    {
+      "type": "text",
+      "id": "name_label",
+      "label": "Name Field Label",
+      "default": "Full Name"
+    },
+    {
+      "type": "text",
+      "id": "name_placeholder",
+      "label": "Name Placeholder",
+      "default": "John Doe"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Email Field Label",
+      "default": "Email Address"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email Placeholder",
+      "default": "john@example.com"
+    },
+    {
+      "type": "text",
+      "id": "phone_label",
+      "label": "Phone Field Label",
+      "default": "Phone Number"
+    },
+    {
+      "type": "text",
+      "id": "phone_placeholder",
+      "label": "Phone Placeholder",
+      "default": "+1 (555) 000-0000"
+    },
+    {
+      "type": "text",
+      "id": "company_label",
+      "label": "Company Field Label",
+      "default": "Company / Business Name"
+    },
+    {
+      "type": "text",
+      "id": "company_placeholder",
+      "label": "Company Placeholder",
+      "default": "Your Company Ltd."
+    },
+    {
+      "type": "text",
+      "id": "product_label",
+      "label": "Product Field Label",
+      "default": "Required Products"
+    },
+    {
+      "type": "text",
+      "id": "product_placeholder",
+      "label": "Product Placeholder",
+      "default": "Select a category..."
     },
     {
       "type": "textarea",
@@ -101,14 +462,38 @@
     },
     {
       "type": "text",
-      "id": "submit_button_text",
-      "label": "Submit Button Text",
-      "default": "Request A Quote"
+      "id": "quantity_label",
+      "label": "Quantity Field Label",
+      "default": "Estimated Quantity"
+    },
+    {
+      "type": "text",
+      "id": "quantity_placeholder",
+      "label": "Quantity Placeholder",
+      "default": "e.g. 1000 units"
+    },
+    {
+      "type": "text",
+      "id": "date_label",
+      "label": "Date Field Label",
+      "default": "Expected Delivery Date"
+    },
+    {
+      "type": "text",
+      "id": "message_label",
+      "label": "Message Field Label",
+      "default": "Comments / Specific Requirements"
+    },
+    {
+      "type": "text",
+      "id": "message_placeholder",
+      "label": "Message Placeholder",
+      "default": "Please describe your project requirements, specific dimensions, or any other details..."
     }
   ],
   "presets": [
     {
-      "name": "Quote Page Form"
+      "name": "Quote - Form Section"
     }
   ]
 }
