@@ -126,7 +126,37 @@
               {{ section.settings.label_phone }}
               {%- unless section.settings.required_phone == false -%}<span aria-hidden="true">*</span>{%- endunless -%}
             </label>
-            <input class="gls-form-input" autocomplete="tel" type="tel" id="ContactForm-phone" name="contact[Phone]" pattern="[0-9\-]*" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="{{ section.settings.placeholder_phone }}" {% unless section.settings.required_phone == false %}required{% endunless %}>
+            <div class="gls-phone-wrapper">
+              <select class="gls-form-select gls-country-code" name="contact[Country Code]" aria-label="Country Code">
+                <option value="+1" selected>🇺🇸 +1</option>
+                <option value="+1">🇨🇦 +1</option>
+                <option value="+44">🇬🇧 +44</option>
+                <option value="+61">🇦🇺 +61</option>
+                <option value="+91">🇮🇳 +91</option>
+                <option value="+86">🇨🇳 +86</option>
+                <option value="+81">🇯🇵 +81</option>
+                <option value="+49">🇩🇪 +49</option>
+                <option value="+33">🇫🇷 +33</option>
+                <option value="+39">🇮🇹 +39</option>
+                <option value="+34">🇪🇸 +34</option>
+                <option value="+55">🇧🇷 +55</option>
+                <option value="+52">🇲🇽 +52</option>
+                <option value="+971">🇦🇪 +971</option>
+                <option value="+966">🇸🇦 +966</option>
+                <option value="+92">🇵🇰 +92</option>
+                <option value="+27">🇿🇦 +27</option>
+                <option value="+7">🇷🇺 +7</option>
+                <option value="+82">🇰🇷 +82</option>
+                <option value="+31">🇳🇱 +31</option>
+                <option value="+46">🇸🇪 +46</option>
+                <option value="+41">🇨🇭 +41</option>
+                <option value="+90">🇹🇷 +90</option>
+                <option value="+65">🇸🇬 +65</option>
+                <option value="+64">🇳🇿 +64</option>
+                <option value="">Other</option>
+              </select>
+              <input class="gls-form-input" autocomplete="tel" type="tel" id="ContactForm-phone" name="contact[Phone]" pattern="[0-9\-]*" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="{{ section.settings.placeholder_phone }}" {% unless section.settings.required_phone == false %}required{% endunless %}>
+            </div>
           </div>
 
           <!-- Company -->

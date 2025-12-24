@@ -84,6 +84,18 @@
   margin-left: 4px;
 }
 
+.gls-phone-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.gls-country-code {
+  width: 110px !important;
+  flex: 0 0 auto;
+  padding-right: 25px !important; /* Make room for arrow */
+  text-overflow: ellipsis;
+}
+
 .gls-form-input,
 .gls-form-select,
 .gls-form-textarea {
