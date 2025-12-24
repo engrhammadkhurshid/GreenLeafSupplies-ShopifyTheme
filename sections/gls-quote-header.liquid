@@ -1,14 +1,18 @@
 {{ 'gls-request-quote.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  .gls-quote-section--header .gls-quote-header {
+    max-width: {{ section.settings.section_width }}px;
+    justify-content: {{ section.settings.horizontal_alignment }};
+    align-items: {{ section.settings.vertical_alignment }};
+  }
   .gls-quote-header__image {
     width: {{ section.settings.header_image_width }}px;
     height: {{ section.settings.header_image_width }}px;
   }
   .gls-quote-header__title {
     font-size: {{ section.settings.heading_size }}px;
-    color: {{ section.settings.heading_color }};
-  }
+    color: {{ section.settings.heading_color }};  }
   .gls-quote-header__tagline {
     font-size: {{ section.settings.tagline_size }}px;
     color: {{ section.settings.tagline_color }};
@@ -58,6 +62,45 @@
 {
   "name": "Quote Page Header",
   "settings": [
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "section_width",
+      "min": 600,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "label": "Section Max Width",
+      "default": 800
+    },
+    {
+      "type": "select",
+      "id": "horizontal_alignment",
+      "label": "Horizontal Alignment",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" },
+        { "value": "space-between", "label": "Space Between" },
+        { "value": "space-around", "label": "Space Around" }
+      ],
+      "default": "flex-start"
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical Alignment",
+      "options": [
+        { "value": "flex-start", "label": "Top" },
+        { "value": "center", "label": "Middle" },
+        { "value": "flex-end", "label": "Bottom" },
+        { "value": "stretch", "label": "Stretch" }
+      ],
+      "default": "center"
+    },
     {
       "type": "header",
       "content": "Page Header"
