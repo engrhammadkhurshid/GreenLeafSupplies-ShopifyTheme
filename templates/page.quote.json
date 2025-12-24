@@ -16,14 +16,14 @@
         "horizontal_alignment": "center",
         "vertical_alignment": "center",
         "header_image": "shopify://shop_images/GLS_Get_A_Quote_Page_Featured_Image.webp",
-        "header_image_width": 120,
+        "header_image_width": 200,
         "heading": "Request A Quote",
         "heading_color": "#7aae5c",
-        "heading_size": 42,
+        "heading_size": 40,
         "heading_tag": "h1",
-        "tagline": "Get a personalized quote for your bulk packaging needs within 24 hours.",
+        "tagline": "For your bulk packaging needs",
         "tagline_color": "#666666",
-        "tagline_size": 16
+        "tagline_size": 15
       }
     },
     "form": {
