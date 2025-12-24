@@ -104,32 +104,47 @@
         <div class="gls-quote-form-grid">
           <!-- Full Name -->
           <div class="gls-form-group">
-            <label class="gls-form-label" for="ContactForm-name">{{ section.settings.label_name }}</label>
-            <input class="gls-form-input" autocomplete="name" type="text" id="ContactForm-name" name="contact[Name]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="{{ section.settings.placeholder_name }}">
+            <label class="gls-form-label" for="ContactForm-name">
+              {{ section.settings.label_name }}
+              {%- if section.settings.required_name -%}<span aria-hidden="true">*</span>{%- endif -%}
+            </label>
+            <input class="gls-form-input" autocomplete="name" type="text" id="ContactForm-name" name="contact[Name]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="{{ section.settings.placeholder_name }}" {% if section.settings.required_name %}required{% endif %}>
           </div>
 
           <!-- Email -->
           <div class="gls-form-group">
-            <label class="gls-form-label" for="ContactForm-email">{{ section.settings.label_email }}</label>
-            <input class="gls-form-input" autocomplete="email" type="email" id="ContactForm-email" name="contact[email]" spellcheck="false" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" aria-required="true" {% if form.errors contains 'email' %}aria-invalid="true" aria-describedby="ContactForm-email-error"{% endif %} placeholder="{{ section.settings.placeholder_email }}" required>
+            <label class="gls-form-label" for="ContactForm-email">
+              {{ section.settings.label_email }}
+              {%- if section.settings.required_email -%}<span aria-hidden="true">*</span>{%- endif -%}
+            </label>
+            <input class="gls-form-input" autocomplete="email" type="email" id="ContactForm-email" name="contact[email]" spellcheck="false" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" aria-required="true" {% if form.errors contains 'email' %}aria-invalid="true" aria-describedby="ContactForm-email-error"{% endif %} placeholder="{{ section.settings.placeholder_email }}" {% if section.settings.required_email %}required{% endif %}>
           </div>
 
           <!-- Phone -->
           <div class="gls-form-group">
-            <label class="gls-form-label" for="ContactForm-phone">{{ section.settings.label_phone }}</label>
-            <input class="gls-form-input" autocomplete="tel" type="tel" id="ContactForm-phone" name="contact[Phone]" pattern="[0-9\-]*" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="{{ section.settings.placeholder_phone }}">
+            <label class="gls-form-label" for="ContactForm-phone">
+              {{ section.settings.label_phone }}
+              {%- if section.settings.required_phone -%}<span aria-hidden="true">*</span>{%- endif -%}
+            </label>
+            <input class="gls-form-input" autocomplete="tel" type="tel" id="ContactForm-phone" name="contact[Phone]" pattern="[0-9\-]*" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="{{ section.settings.placeholder_phone }}" {% if section.settings.required_phone %}required{% endif %}>
           </div>
 
           <!-- Company -->
           <div class="gls-form-group">
-            <label class="gls-form-label" for="ContactForm-company">{{ section.settings.label_company }}</label>
-            <input class="gls-form-input" type="text" id="ContactForm-company" name="contact[Company]" placeholder="{{ section.settings.placeholder_company }}">
+            <label class="gls-form-label" for="ContactForm-company">
+              {{ section.settings.label_company }}
+              {%- if section.settings.required_company -%}<span aria-hidden="true">*</span>{%- endif -%}
+            </label>
+            <input class="gls-form-input" type="text" id="ContactForm-company" name="contact[Company]" placeholder="{{ section.settings.placeholder_company }}" {% if section.settings.required_company %}required{% endif %}>
           </div>
 
           <!-- Product Category -->
           <div class="gls-form-group">
-            <label class="gls-form-label" for="ContactForm-category">{{ section.settings.label_category }}</label>
-            <select class="gls-form-select" id="ContactForm-category" name="contact[Product Category]">
+            <label class="gls-form-label" for="ContactForm-category">
+              {{ section.settings.label_category }}
+              {%- if section.settings.required_category -%}<span aria-hidden="true">*</span>{%- endif -%}
+            </label>
+            <select class="gls-form-select" id="ContactForm-category" name="contact[Product Category]" {% if section.settings.required_category %}required{% endif %}>
               {%- assign categories = section.settings.product_categories | split: ',' -%}
               {%- for category in categories -%}
                 <option value="{{ category | strip }}">{{ category | strip }}</option>
@@ -139,14 +154,20 @@
 
           <!-- Quantity -->
           <div class="gls-form-group">
-            <label class="gls-form-label" for="ContactForm-quantity">{{ section.settings.label_quantity }}</label>
-            <input class="gls-form-input" type="text" id="ContactForm-quantity" name="contact[Quantity]" placeholder="{{ section.settings.placeholder_quantity }}">
+            <label class="gls-form-label" for="ContactForm-quantity">
+              {{ section.settings.label_quantity }}
+              {%- if section.settings.required_quantity -%}<span aria-hidden="true">*</span>{%- endif -%}
+            </label>
+            <input class="gls-form-input" type="text" id="ContactForm-quantity" name="contact[Quantity]" placeholder="{{ section.settings.placeholder_quantity }}" {% if section.settings.required_quantity %}required{% endif %}>
           </div>
 
           <!-- Message -->
           <div class="gls-form-group gls-form-group--full">
-            <label class="gls-form-label" for="ContactForm-body">{{ section.settings.label_message }}</label>
-            <textarea class="gls-form-textarea" rows="10" id="ContactForm-body" name="contact[body]" placeholder="{{ section.settings.placeholder_message }}">
+            <label class="gls-form-label" for="ContactForm-body">
+              {{ section.settings.label_message }}
+              {%- if section.settings.required_message -%}<span aria-hidden="true">*</span>{%- endif -%}
+            </label>
+            <textarea class="gls-form-textarea" rows="10" id="ContactForm-body" name="contact[body]" placeholder="{{ section.settings.placeholder_message }}" {% if section.settings.required_message %}required{% endif %}>
               {{- form.body -}}
             </textarea>
           </div>
@@ -514,6 +535,12 @@
       "default": "Full Name"
     },
     {
+      "type": "checkbox",
+      "id": "required_name",
+      "label": "Name Required",
+      "default": true
+    },
+    {
       "type": "text",
       "id": "placeholder_name",
       "label": "Name Placeholder",
@@ -524,6 +551,12 @@
       "id": "label_email",
       "label": "Email Label",
       "default": "Email Address"
+    },
+    {
+      "type": "checkbox",
+      "id": "required_email",
+      "label": "Email Required",
+      "default": true
     },
     {
       "type": "text",
@@ -538,6 +571,12 @@
       "default": "Phone Number"
     },
     {
+      "type": "checkbox",
+      "id": "required_phone",
+      "label": "Phone Required",
+      "default": true
+    },
+    {
       "type": "text",
       "id": "placeholder_phone",
       "label": "Phone Placeholder",
@@ -548,6 +587,12 @@
       "id": "label_company",
       "label": "Company Label",
       "default": "Company Name"
+    },
+    {
+      "type": "checkbox",
+      "id": "required_company",
+      "label": "Company Required",
+      "default": true
     },
     {
       "type": "text",
@@ -562,6 +607,12 @@
       "default": "Product Category"
     },
     {
+      "type": "checkbox",
+      "id": "required_category",
+      "label": "Category Required",
+      "default": true
+    },
+    {
       "type": "textarea",
       "id": "product_categories",
       "label": "Product Categories (Comma Separated)",
@@ -574,6 +625,12 @@
       "default": "Estimated Quantity"
     },
     {
+      "type": "checkbox",
+      "id": "required_quantity",
+      "label": "Quantity Required",
+      "default": true
+    },
+    {
       "type": "text",
       "id": "placeholder_quantity",
       "label": "Quantity Placeholder",
@@ -584,6 +641,12 @@
       "id": "label_message",
       "label": "Message Label",
       "default": "Additional Details"
+    },
+    {
+      "type": "checkbox",
+      "id": "required_message",
+      "label": "Message Required",
+      "default": true
     },
     {
       "type": "text",

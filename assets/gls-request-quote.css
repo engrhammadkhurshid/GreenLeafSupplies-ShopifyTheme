@@ -79,6 +79,11 @@
   display: block;
 }
 
+.gls-form-label span[aria-hidden="true"] {
+  color: #EB001B;
+  margin-left: 4px;
+}
+
 .gls-form-input,
 .gls-form-select,
 .gls-form-textarea {
