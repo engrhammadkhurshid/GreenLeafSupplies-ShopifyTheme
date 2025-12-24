@@ -1,29 +1,72 @@
 {{ 'gls-request-quote.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .gls-contact-heading {
-    color: rgb(var(--color-button));
+  .gls-quote-section--contact .gls-quote-contact {
+    max-width: {{ section.settings.section_width }}px;
+    text-align: {{ section.settings.text_alignment }};
+    background-color: {{ section.settings.background_color }};
+    padding: {{ section.settings.section_padding }}px;
+    border-radius: {{ section.settings.border_radius }}px;
+  }
+  .gls-quote-section--contact .gls-contact-heading {
+    font-size: {{ section.settings.heading_size }}px;
+    color: {{ section.settings.heading_color }};
+  }
+  .gls-quote-section--contact .gls-contact-text {
+    font-size: {{ section.settings.text_size }}px;
+    color: {{ section.settings.text_color }};
+  }
+  .gls-quote-section--contact .gls-contact-actions {
+    justify-content: {{ section.settings.buttons_alignment }};
+  }
+  .gls-quote-section--contact .gls-btn--outline {
+    background-color: {{ section.settings.button_bg_color }};
+    border-color: {{ section.settings.button_border_color }};
+    color: {{ section.settings.button_text_color }};
+    font-size: {{ section.settings.button_font_size }}px;
+    padding: {{ section.settings.button_padding_y }}px {{ section.settings.button_padding_x }}px;
+    border-radius: {{ section.settings.button_border_radius }}px;
+  }
+  .gls-quote-section--contact .gls-btn--outline:hover {
+    background-color: {{ section.settings.button_hover_bg_color }};
+    color: {{ section.settings.button_hover_text_color }};
+  }
+  .gls-quote-section--contact .gls-btn--outline svg {
+    width: {{ section.settings.icon_size }}px;
+    height: {{ section.settings.icon_size }}px;
   }
 {%- endstyle -%}
 
 <div class="gls-quote-section gls-quote-section--contact">
   <div class="gls-quote-container">
     
-    <!-- Prefer to Talk? -->
+    <!-- Contact Section -->
     <div class="gls-quote-contact">
-      <h2 class="gls-contact-heading">{{ section.settings.contact_heading | default: 'Prefer to Talk?' }}</h2>
+      <{{ section.settings.heading_tag }} class="gls-contact-heading">{{ section.settings.contact_heading | default: 'Prefer to Talk?' }}</{{ section.settings.heading_tag }}>
       <p class="gls-contact-text">{{ section.settings.contact_text | default: 'Give us a call or email us directly.' }}</p>
       <div class="gls-contact-actions">
         {%- if section.settings.phone_number != blank -%}
           <a href="tel:{{ section.settings.phone_number }}" class="gls-btn gls-btn--outline">
-            <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.308 15.275l-2.308-2.308a1.923 1.923 0 00-2.721 0l-.577.577a29.043 29.043 0 01-6.247-6.246l.577-.577a1.923 1.923 0 000-2.721L4.724 1.692a1.923 1.923 0 00-2.721 0L1.1 2.595c-1.387 1.386-.578 5.062 2.379 8.02 2.957 2.957 6.634 3.766 8.02 2.38l.903-.904a1.923 1.923 0 000-2.721l2.185 2.184a1.923 1.923 0 002.721 0l.903-.903a1.923 1.923 0 000-2.721l.097-.097z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            {{ section.settings.phone_number }}
+            {%- if section.settings.show_phone_icon -%}
+              {%- if section.settings.phone_icon_svg != blank -%}
+                {{ section.settings.phone_icon_svg }}
+              {%- else -%}
+                <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.308 15.275l-2.308-2.308a1.923 1.923 0 00-2.721 0l-.577.577a29.043 29.043 0 01-6.247-6.246l.577-.577a1.923 1.923 0 000-2.721L4.724 1.692a1.923 1.923 0 00-2.721 0L1.1 2.595c-1.387 1.386-.578 5.062 2.379 8.02 2.957 2.957 6.634 3.766 8.02 2.38l.903-.904a1.923 1.923 0 000-2.721l2.185 2.184a1.923 1.923 0 002.721 0l.903-.903a1.923 1.923 0 000-2.721l.097-.097z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              {%- endif -%}
+            {%- endif -%}
+            {{ section.settings.phone_button_text | default: section.settings.phone_number }}
           </a>
         {%- endif -%}
         {%- if section.settings.email_address != blank -%}
           <a href="mailto:{{ section.settings.email_address }}" class="gls-btn gls-btn--outline">
-            <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="4" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M1 6l9 5 9-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            {{ section.settings.email_address }}
+            {%- if section.settings.show_email_icon -%}
+              {%- if section.settings.email_icon_svg != blank -%}
+                {{ section.settings.email_icon_svg }}
+              {%- else -%}
+                <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="4" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M1 6l9 5 9-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              {%- endif -%}
+            {%- endif -%}
+            {{ section.settings.email_button_text | default: section.settings.email_address }}
           </a>
         {%- endif -%}
       </div>
@@ -37,16 +80,123 @@
   "name": "Quote Page Contact",
   "settings": [
     {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "section_width",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "label": "Section Max Width",
+      "default": 800
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Section Padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Border Radius",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Heading Settings"
+    },
+    {
       "type": "text",
       "id": "contact_heading",
-      "label": "Contact Heading",
+      "label": "Heading Text",
       "default": "Prefer to Talk?"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 16,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 28
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#7AAE5C"
+    },
+    {
+      "type": "header",
+      "content": "Description Text"
     },
     {
       "type": "textarea",
       "id": "contact_text",
-      "label": "Contact Text",
+      "label": "Description Text",
       "default": "Give us a call or email us directly."
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text Font Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Phone Button"
     },
     {
       "type": "text",
@@ -56,9 +206,150 @@
     },
     {
       "type": "text",
+      "id": "phone_button_text",
+      "label": "Phone Button Text (Optional)",
+      "info": "Leave blank to show the phone number"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_phone_icon",
+      "label": "Show Phone Icon",
+      "default": true
+    },
+    {
+      "type": "html",
+      "id": "phone_icon_svg",
+      "label": "Custom Phone Icon (SVG)",
+      "info": "Paste custom SVG code. Leave blank for default icon."
+    },
+    {
+      "type": "header",
+      "content": "Email Button"
+    },
+    {
+      "type": "text",
       "id": "email_address",
       "label": "Email Address",
       "default": "sales@greenleafsupplies.com"
+    },
+    {
+      "type": "text",
+      "id": "email_button_text",
+      "label": "Email Button Text (Optional)",
+      "info": "Leave blank to show the email address"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_email_icon",
+      "label": "Show Email Icon",
+      "default": true
+    },
+    {
+      "type": "html",
+      "id": "email_icon_svg",
+      "label": "Custom Email Icon (SVG)",
+      "info": "Paste custom SVG code. Leave blank for default icon."
+    },
+    {
+      "type": "header",
+      "content": "Button Styling"
+    },
+    {
+      "type": "select",
+      "id": "buttons_alignment",
+      "label": "Buttons Alignment",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" },
+        { "value": "space-between", "label": "Space Between" },
+        { "value": "space-around", "label": "Space Around" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Font Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding_x",
+      "min": 10,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Horizontal Padding",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "button_padding_y",
+      "min": 8,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Vertical Padding",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Border Radius",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background Color",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button Border Color",
+      "default": "#7AAE5C"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#7AAE5C"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "Button Hover Background",
+      "default": "#7AAE5C"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button Hover Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Icon Settings"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 14,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon Size",
+      "default": 20
     }
   ],
   "presets": [
