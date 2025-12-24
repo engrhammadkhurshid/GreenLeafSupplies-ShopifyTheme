@@ -1,8 +1,42 @@
 {{ 'gls-request-quote.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .gls-feature-title {
-    color: rgb(var(--color-button));
+  .gls-quote-section--features .gls-quote-features {
+    max-width: {{ section.settings.section_width }}px;
+    text-align: {{ section.settings.text_alignment }};
+  }
+  .gls-quote-section--features .gls-features-heading {
+    font-size: {{ section.settings.heading_size }}px;
+    color: {{ section.settings.heading_color }};
+    margin-bottom: {{ section.settings.heading_margin_bottom }}px;
+  }
+  .gls-quote-section--features .gls-features-grid {
+    gap: {{ section.settings.grid_gap }}px;
+    justify-content: {{ section.settings.cards_alignment }};
+  }
+  .gls-quote-section--features .gls-feature-card {
+    background-color: {{ section.settings.card_bg_color }};
+    border-radius: {{ section.settings.card_border_radius }}px;
+    padding: {{ section.settings.card_padding }}px;
+    text-align: {{ section.settings.card_text_alignment }};
+  }
+  .gls-quote-section--features .gls-feature-icon {
+    color: {{ section.settings.icon_color }};
+    margin-bottom: {{ section.settings.icon_margin_bottom }}px;
+  }
+  .gls-quote-section--features .gls-feature-icon svg,
+  .gls-quote-section--features .gls-feature-icon img {
+    width: {{ section.settings.icon_size }}px;
+    height: {{ section.settings.icon_size }}px;
+  }
+  .gls-quote-section--features .gls-feature-title {
+    font-size: {{ section.settings.title_size }}px;
+    color: {{ section.settings.title_color }};
+    margin-bottom: {{ section.settings.title_margin_bottom }}px;
+  }
+  .gls-quote-section--features .gls-feature-text {
+    font-size: {{ section.settings.description_size }}px;
+    color: {{ section.settings.description_color }};
   }
 {%- endstyle -%}
 
@@ -11,18 +45,24 @@
     
     <!-- Why Request A Quote Grid -->
     <div class="gls-quote-features">
-      <h2 class="gls-features-heading">{{ section.settings.features_heading | default: 'Why Request A Quote?' }}</h2>
+      <{{ section.settings.heading_tag }} class="gls-features-heading">{{ section.settings.features_heading | default: 'Why Request A Quote?' }}</{{ section.settings.heading_tag }}>
       <div class="gls-features-grid">
         {%- for block in section.blocks -%}
-          <div class="gls-feature-card">
+          <div class="gls-feature-card" {{ block.shopify_attributes }}>
             <div class="gls-feature-icon">
-              {%- if block.settings.icon_svg != blank -%}
+              {%- if block.settings.icon_image != blank -%}
+                <img 
+                  src="{{ block.settings.icon_image | image_url: width: section.settings.icon_size | times: 2 }}" 
+                  alt="{{ block.settings.title | escape }}"
+                  loading="lazy"
+                >
+              {%- elsif block.settings.icon_svg != blank -%}
                 {{ block.settings.icon_svg }}
               {%- else -%}
                 <svg aria-hidden="true" focusable="false" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2"/><path d="M12 20L17 25L28 14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               {%- endif -%}
             </div>
-            <h3 class="gls-feature-title">{{ block.settings.title }}</h3>
+            <{{ block.settings.title_tag | default: 'h3' }} class="gls-feature-title">{{ block.settings.title }}</{{ block.settings.title_tag | default: 'h3' }}>
             <p class="gls-feature-text">{{ block.settings.text }}</p>
           </div>
         {%- endfor -%}
@@ -37,28 +77,270 @@
   "name": "Quote Page Features",
   "settings": [
     {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "section_width",
+      "min": 600,
+      "max": 1400,
+      "step": 50,
+      "unit": "px",
+      "label": "Section Max Width",
+      "default": 1200
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Section Text Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Section Heading"
+    },
+    {
       "type": "text",
       "id": "features_heading",
-      "label": "Features Heading",
+      "label": "Heading Text",
       "default": "Why Request A Quote?"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 20,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#7AAE5C"
+    },
+    {
+      "type": "range",
+      "id": "heading_margin_bottom",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Heading Bottom Spacing",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Grid Settings"
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Gap Between Cards",
+      "default": 32
+    },
+    {
+      "type": "select",
+      "id": "cards_alignment",
+      "label": "Cards Alignment",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" },
+        { "value": "space-between", "label": "Space Between" },
+        { "value": "space-around", "label": "Space Around" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Card Styling"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card Background Color",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Card Border Radius",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "min": 16,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Card Padding",
+      "default": 32
+    },
+    {
+      "type": "select",
+      "id": "card_text_alignment",
+      "label": "Card Text Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Icon Settings"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 24,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Icon Size",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon Color",
+      "default": "#7AAE5C"
+    },
+    {
+      "type": "range",
+      "id": "icon_margin_bottom",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Icon Bottom Spacing",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Feature Title Settings"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Font Size",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#7AAE5C"
+    },
+    {
+      "type": "range",
+      "id": "title_margin_bottom",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Title Bottom Spacing",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Description Settings"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Description Font Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#666666"
     }
   ],
   "blocks": [
     {
       "type": "feature",
-      "name": "Feature",
+      "name": "Feature Card",
       "settings": [
+        {
+          "type": "header",
+          "content": "Icon Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image",
+          "info": "Upload an image for the icon. Takes priority over SVG."
+        },
         {
           "type": "html",
           "id": "icon_svg",
           "label": "Icon SVG Code",
-          "info": "Paste SVG code here. If empty, a default checkmark will be used."
+          "info": "Paste SVG code here. Used if no image is uploaded."
+        },
+        {
+          "type": "header",
+          "content": "Content"
         },
         {
           "type": "text",
           "id": "title",
           "label": "Title",
           "default": "Feature Title"
+        },
+        {
+          "type": "select",
+          "id": "title_tag",
+          "label": "Title Heading Tag",
+          "options": [
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "h5", "label": "H5" },
+            { "value": "p", "label": "Paragraph" }
+          ],
+          "default": "h3"
         },
         {
           "type": "textarea",
