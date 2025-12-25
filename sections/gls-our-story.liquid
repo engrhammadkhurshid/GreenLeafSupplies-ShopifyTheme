@@ -35,6 +35,7 @@
       height: auto;
     {% endif %}
     object-fit: {{ section.settings.image_object_fit }};
+    border-radius: {{ section.settings.image_border_radius }}px;
     display: block;
   }
 
@@ -193,6 +194,16 @@
       ],
       "default": "cover",
       "label": "Object Fit Type"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Image Border Radius",
+      "default": 0
     },
     {
       "type": "range",
