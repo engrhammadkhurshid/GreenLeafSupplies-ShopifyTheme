@@ -13,7 +13,7 @@
       "type": "main-login",
       "settings": {
         "logo": "shopify://shop_images/GreenLeafSupplies_Header_Logo.webp",
-        "logo_width": 300,
+        "logo_width": 200,
         "padding_top": 36,
         "padding_bottom": 36
       }
