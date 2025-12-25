@@ -353,3 +353,20 @@ a.card__button:after {
     padding: 2px 6px;
   }
 }
+
+/* Make entire card clickable */
+.card__heading a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* Ensure buttons remain clickable on top of the card link */
+.card__button {
+  position: relative;
+  z-index: 2;
+}

@@ -176,13 +176,8 @@
           </div>
 
           <div class="card__footer-row">
-            {%- if card_product.selected_or_first_available_variant.quantity_rule.min > 0 -%}
-              <span class="card__moq-label">
-                MOQ: {{ card_product.selected_or_first_available_variant.quantity_rule.min }}
-              </span>
-            {%- else -%}
-               <span class="card__moq-label">MOQ: 1</span>
-            {%- endif -%}
+            {%- assign moq = card_product.metafields.custom.moq | default: 1 -%}
+            <span class="card__moq-label">MOQ: {{ moq }}</span>
 
             {% if card_product.price == 0 %}
               <a href="/pages/request-a-quote?product={{ card_product.title | url_encode }}" class="card__button">
