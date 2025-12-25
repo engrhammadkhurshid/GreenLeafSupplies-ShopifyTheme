@@ -28,7 +28,6 @@
 
   .gls-our-mission-{{ section.id }} .gls-our-mission__headline {
     font-family: {{ section.settings.headline_font }};
-    font-weight: {{ section.settings.headline_weight }};
     font-size: {{ section.settings.headline_size }}px;
     color: {{ section.settings.headline_color }};
     text-align: {{ section.settings.headline_alignment }};
@@ -37,7 +36,6 @@
 
   .gls-our-mission-{{ section.id }} .gls-our-mission__content {
     font-family: {{ section.settings.content_font }};
-    font-weight: {{ section.settings.content_weight }};
     font-size: {{ section.settings.content_size }}px;
     color: {{ section.settings.content_color }};
     text-align: {{ section.settings.content_alignment }};
@@ -314,58 +312,22 @@
       "options": [
         {
           "value": "var(--font-heading-family)",
-          "label": "Heading Font"
+          "label": "Lato Black (900)"
+        },
+        {
+          "value": "var(--font-heading-secondary-family)",
+          "label": "Montserrat Semi-Bold (600)"
         },
         {
           "value": "var(--font-body-family)",
-          "label": "Body Font"
+          "label": "Montserrat Regular (400)"
         },
         {
-          "value": "Arial, sans-serif",
-          "label": "Arial"
-        },
-        {
-          "value": "Georgia, serif",
-          "label": "Georgia"
-        },
-        {
-          "value": "'Times New Roman', serif",
-          "label": "Times New Roman"
+          "value": "var(--font-button-family)",
+          "label": "Montserrat Medium (500)"
         }
       ],
       "default": "var(--font-heading-family)"
-    },
-    {
-      "type": "select",
-      "id": "headline_weight",
-      "label": "Headline Font Weight",
-      "options": [
-        {
-          "value": "300",
-          "label": "Light (300)"
-        },
-        {
-          "value": "400",
-          "label": "Regular (400)"
-        },
-        {
-          "value": "500",
-          "label": "Medium (500)"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold (600)"
-        },
-        {
-          "value": "700",
-          "label": "Bold (700)"
-        },
-        {
-          "value": "800",
-          "label": "Extra Bold (800)"
-        }
-      ],
-      "default": "700"
     },
     {
       "type": "range",
@@ -429,54 +391,22 @@
       "options": [
         {
           "value": "var(--font-body-family)",
-          "label": "Body Font"
+          "label": "Montserrat Regular (400)"
+        },
+        {
+          "value": "var(--font-button-family)",
+          "label": "Montserrat Medium (500)"
+        },
+        {
+          "value": "var(--font-heading-secondary-family)",
+          "label": "Montserrat Semi-Bold (600)"
         },
         {
           "value": "var(--font-heading-family)",
-          "label": "Heading Font"
-        },
-        {
-          "value": "Arial, sans-serif",
-          "label": "Arial"
-        },
-        {
-          "value": "Georgia, serif",
-          "label": "Georgia"
-        },
-        {
-          "value": "'Times New Roman', serif",
-          "label": "Times New Roman"
+          "label": "Lato Black (900)"
         }
       ],
       "default": "var(--font-body-family)"
-    },
-    {
-      "type": "select",
-      "id": "content_weight",
-      "label": "Content Font Weight",
-      "options": [
-        {
-          "value": "300",
-          "label": "Light (300)"
-        },
-        {
-          "value": "400",
-          "label": "Regular (400)"
-        },
-        {
-          "value": "500",
-          "label": "Medium (500)"
-        },
-        {
-          "value": "600",
-          "label": "Semi Bold (600)"
-        },
-        {
-          "value": "700",
-          "label": "Bold (700)"
-        }
-      ],
-      "default": "400"
     },
     {
       "type": "range",
