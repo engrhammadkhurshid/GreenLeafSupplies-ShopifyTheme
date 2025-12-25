@@ -77,42 +77,31 @@
         "button_border_radius": 8,
         "button_font_size": 16,
         "label_name": "Full Name",
+        "required_name": true,
         "placeholder_name": "Enter your full name",
         "label_email": "Email Address",
+        "required_email": true,
         "placeholder_email": "Enter your email",
         "label_phone": "Phone Number",
+        "required_phone": true,
         "placeholder_phone": "Enter your phone number",
         "label_company": "Company Name",
+        "required_company": true,
         "placeholder_company": "Enter your company name",
         "label_category": "Product Category",
+        "required_category": true,
         "product_categories": "Food Packaging, Disposable Tableware, Napkins & Sanitary, Food & Liquid",
         "label_quantity": "Estimated Quantity",
+        "required_quantity": true,
         "placeholder_quantity": "e.g., 1000 units",
         "label_message": "Additional Details",
+        "required_message": true,
         "placeholder_message": "Tell us more about your requirements..."
-      }
-    },
-    "prefer_to_talk": {
-      "type": "gls-prefer-to-talk",
-      "settings": {
-        "section_max_width": 1000,
-        "margin_top": 0,
-        "margin_bottom": 60,
-        "padding_top": 0,
-        "padding_bottom": 40,
-        "title": "Prefer to talk to someone?",
-        "text": "<p>Our team is here to help you with any questions you may have.</p>",
-        "left_content": "<p>Give us a call or send us an email and we'll get back to you as soon as possible.</p>",
-        "phone_number": "+1 (555) 123-4567",
-        "phone_label": "Call Us",
-        "email_address": "info@example.com",
-        "email_label": "Email Us"
       }
     }
   },
   "order": [
     "header",
-    "form",
-    "prefer_to_talk"
+    "form"
   ]
 }
