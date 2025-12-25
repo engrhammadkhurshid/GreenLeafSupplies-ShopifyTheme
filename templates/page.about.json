@@ -12,41 +12,94 @@
     "banner": {
       "type": "gls-featured-about",
       "settings": {
-        "headline_text": "About Green Leaf Supplies",
-        "tagline_text": "Your trusted partner for premium, sustainable packaging solutions",
         "max_width": 800,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "background_color": "#ffffff",
+        "padding_top": 52,
+        "padding_bottom": 52,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "headline_text": "About Green Leaf Supplies",
+        "headline_tag": "h2",
+        "headline_size": 32,
+        "headline_color": "#7aae5c",
+        "headline_alignment": "left",
+        "tagline_text": "Your trusted partner for premium, sustainable packaging solutions",
+        "tagline_tag": "p",
+        "tagline_size": 18,
+        "tagline_color": "#666666",
+        "tagline_alignment": "left"
       }
     },
     "about_content": {
       "type": "gls-our-mission",
       "settings": {
-        "image": "shopify://shop_images/GLS_About_Us_Page_Featured_Image.webp",
+        "vertical_alignment": "start",
+        "max_width": 1200,
+        "background_color": "#ffffff",
+        "padding_top": 52,
+        "padding_bottom": 52,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "image": "shopify://shop_images/GLS_About_Us_Featured_Image.webp",
+        "image_scale": 100,
+        "image_fit": "cover",
+        "left_column_padding": 20,
+        "left_column_vertical_align": "center",
+        "left_column_horizontal_align": "left",
+        "right_column_padding": 0,
+        "right_column_row_gap": 0,
+        "right_column_vertical_align": "flex-start",
+        "right_column_horizontal_align": "left",
         "headline_text": "<p>Our Mission</p>",
         "headline_tag": "h2",
+        "headline_font": "var(--font-heading-family)",
+        "headline_size": 42,
+        "headline_color": "#7aae5c",
+        "headline_alignment": "left",
+        "headline_line_height": 1.2,
         "content_text": "<p>At GreenLeaf Supplies, our mission is to provide the highest-quality food packaging products in the U.S. market. We are committed to being the finest and most trusted source for premium, reliable, and sustainable packaging solutions.</p><p>By focusing on excellence, innovation, and customer satisfaction, we strive to support businesses nationwide with products that uphold the highest standards of safety, durability, and performance.</p>",
-        "max_width": 1200,
-        "padding_top": 52,
-        "padding_bottom": 52
+        "content_font": "var(--font-body-family)",
+        "content_size": 16,
+        "content_color": "#333333",
+        "content_alignment": "left",
+        "content_line_height": 1.6
       }
     },
     "our_story": {
       "type": "gls-our-story",
       "settings": {
-        "image": "shopify://shop_images/GLS_About_Us_Page_Our_Story_Image.webp",
-        "headline_text": "Our Story",
-        "headline_tag": "h2",
-        "content_text": "<p>As one of the leading food-packaging suppliers on the U.S. East Coast, we are expanding our reach to serve customers across the entire nation. Founded with a vision to revolutionize the packaging industry, Green Leaf Supplies has grown from a small regional supplier to a nationwide partner for businesses of all sizes.</p><p>Our commitment to sustainability drives everything we do. We believe that quality packaging shouldn't come at the expense of our environment.</p>",
-        "button_label": "Contact Our Team",
-        "button_link": "/pages/contact",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_left": 20,
+        "padding_right": 20,
+        "max_width": 1200,
+        "image": "shopify://shop_images/Wholesale_warehouse_of_Green_Leaf_Supplies_showing_bulk_eco-friendly_packaging_inventory_Image_f3d53268-70ac-4c13-95b9-da4e8583ef83.webp",
         "image_scale": 100,
+        "image_height_mode": "fixed",
+        "image_fixed_height": 400,
+        "image_min_height": 300,
         "image_object_fit": "cover",
+        "image_border_radius": 12,
         "image_padding": 0,
         "image_vertical_alignment": "center",
         "image_horizontal_alignment": "center",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "image_bg_color": "rgba(0,0,0,0)",
+        "headline_text": "Our Story",
+        "headline_tag": "h2",
+        "headline_size": "h1",
+        "headline_font_family": "var(--font-heading-family)",
+        "headline_color": "#7aae5c",
+        "content_text": "<p>As one of the leading food-packaging suppliers on the U.S. East Coast, we are expanding our reach to serve customers across the entire nation. Founded with a vision to revolutionize the packaging industry, Green Leaf Supplies has grown from a small regional supplier to a nationwide partner for businesses of all sizes.</p><p>Our commitment to sustainability drives everything we do. We believe that quality packaging shouldn't come at the expense of our environment.</p>",
+        "text_font_family": "var(--font-body-family)",
+        "text_color": "#000000",
+        "content_text_alignment": "left",
+        "button_label": "Contact Our Team",
+        "button_link": "/pages/contact",
+        "content_padding": 20,
+        "content_vertical_alignment": "center",
+        "content_horizontal_alignment": "flex-start",
+        "text_alignment": "left",
+        "content_bg_color": "rgba(0,0,0,0)"
       }
     },
     "values": {
@@ -55,33 +108,78 @@
         "value_1": {
           "type": "value_block",
           "settings": {
+            "icon_name": "leaf",
+            "custom_icon": "shopify://shop_images/GLS_Product_Features_-_Certified_Sustainable_Materials.webp",
+            "icon_svg": "",
+            "icon_size": 32,
+            "icon_color": "#ffffff",
             "title": "Quality First",
+            "title_size": 20,
+            "title_color": "#ffffff",
             "text": "We source only the finest materials and maintain rigorous quality control standards to ensure every product meets our high expectations.",
-            "icon_name": "star"
+            "text_size": 16,
+            "text_color": "#f0f0f0",
+            "text_alignment": "left",
+            "card_bg_color": "#7aae5c",
+            "card_shadow_color": "#0000001a",
+            "card_border_radius": 12
           }
         },
         "value_2": {
           "type": "value_block",
           "settings": {
+            "icon_name": "leaf",
+            "icon_svg": "",
+            "icon_size": 32,
+            "icon_color": "#ffffff",
             "title": "Sustainability",
+            "title_size": 20,
+            "title_color": "#ffffff",
             "text": "Our eco-friendly packaging solutions help businesses reduce their environmental footprint without compromising on performance.",
-            "icon_name": "leaf"
+            "text_size": 16,
+            "text_color": "#f0f0f0",
+            "text_alignment": "left",
+            "card_bg_color": "#7aae5c",
+            "card_shadow_color": "#0000001a",
+            "card_border_radius": 12
           }
         },
         "value_3": {
           "type": "value_block",
           "settings": {
+            "icon_name": "heart",
+            "icon_svg": "",
+            "icon_size": 32,
+            "icon_color": "#ffffff",
             "title": "Customer Focus",
+            "title_size": 20,
+            "title_color": "#ffffff",
             "text": "Your success is our priority. We work closely with each client to understand their unique needs and deliver tailored solutions.",
-            "icon_name": "heart"
+            "text_size": 16,
+            "text_color": "#f0f0f0",
+            "text_alignment": "left",
+            "card_bg_color": "#7aae5c",
+            "card_shadow_color": "#0000001a",
+            "card_border_radius": 12
           }
         },
         "value_4": {
           "type": "value_block",
           "settings": {
+            "icon_name": "box",
+            "icon_svg": "",
+            "icon_size": 32,
+            "icon_color": "#ffffff",
             "title": "Innovation",
+            "title_size": 20,
+            "title_color": "#ffffff",
             "text": "We continuously explore new materials and technologies to bring you the most advanced packaging solutions available.",
-            "icon_name": "box"
+            "text_size": 16,
+            "text_color": "#f0f0f0",
+            "text_alignment": "left",
+            "card_bg_color": "#7aae5c",
+            "card_shadow_color": "#0000001a",
+            "card_border_radius": 12
           }
         }
       },
@@ -94,7 +192,10 @@
       "settings": {
         "heading": "Our Core Values",
         "heading_size": 48,
+        "heading_color": "#7aae5c",
         "heading_column_width": 30,
+        "background_color": "#ffffff",
+        "max_width": 1200,
         "padding_top": 52,
         "padding_bottom": 52
       }
