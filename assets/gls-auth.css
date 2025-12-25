@@ -77,19 +77,20 @@
 .gls-auth-card button {
   width: 100%;
   margin-top: 1.5rem;
-  background-color: rgb(var(--color-button));
-  color: rgb(var(--color-button-text));
+  background-color: #7AAE5C; /* GLS Primary Green */
+  color: #ffffff;
   border: none;
   padding: 1.5rem;
   border-radius: 6px;
   font-weight: bold;
   cursor: pointer;
-  transition: opacity 0.3s;
+  transition: opacity 0.3s, background-color 0.3s;
   font-size: 1.6rem;
 }
 
 .gls-auth-card button:hover {
-  opacity: 0.9;
+  background-color: #6a9d4d; /* GLS Primary Dark */
+  opacity: 1;
 }
 
 .gls-auth-card a {
