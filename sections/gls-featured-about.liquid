@@ -24,38 +24,26 @@
   }
 
   .gls-featured-about-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1.5rem;
   }
 
   @media screen and (min-width: 750px) {
     .gls-featured-about-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      gap: 2rem;
     }
-  }
-
-  .gls-featured-about-image-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
-  .gls-featured-about-image {
-    width: {{ section.settings.image_scale }}%;
-    height: auto;
-    object-fit: {{ section.settings.image_fit }};
-    display: block;
-    max-width: 100%;
-    border-radius: 8px;
   }
 
   .gls-featured-about-content {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1rem;
+    width: 100%;
   }
 
   .gls-featured-headline {
@@ -79,16 +67,6 @@
 <div class="section-{{ section.id }}-padding" style="background-color: {{ section.settings.background_color }};">
   <div class="gls-featured-about-container">
     <div class="gls-featured-about-grid">
-      <div class="gls-featured-about-image-wrapper">
-        {%- if section.settings.image != blank -%}
-          {{ section.settings.image | image_url: width: 1000 | image_tag:
-            class: 'gls-featured-about-image',
-            loading: 'lazy'
-          }}
-        {%- else -%}
-          {{ 'image' | placeholder_svg_tag: 'placeholder-svg gls-featured-about-image' }}
-        {%- endif -%}
-      </div>
       <div class="gls-featured-about-content">
         <{{ section.settings.headline_tag }} class="gls-featured-headline">
           {{ section.settings.headline_text }}
@@ -165,36 +143,6 @@
       "unit": "px",
       "label": "Margin Bottom",
       "default": 0
-    },
-    {
-      "type": "header",
-      "content": "Image Settings (Left Column)"
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Image"
-    },
-    {
-      "type": "range",
-      "id": "image_scale",
-      "min": 50,
-      "max": 100,
-      "step": 5,
-      "unit": "%",
-      "label": "Image Scale",
-      "default": 100
-    },
-    {
-      "type": "select",
-      "id": "image_fit",
-      "label": "Object Fit",
-      "options": [
-        { "value": "cover", "label": "Cover" },
-        { "value": "contain", "label": "Contain" },
-        { "value": "fill", "label": "Fill" }
-      ],
-      "default": "cover"
     },
     {
       "type": "header",

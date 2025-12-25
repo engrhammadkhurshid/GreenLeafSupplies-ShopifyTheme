@@ -12,7 +12,6 @@
     "banner": {
       "type": "gls-featured-about",
       "settings": {
-        "image": "shopify://shop_images/GLS_About_Us_Page_Featured_Image.webp",
         "headline_text": "About Green Leaf Supplies",
         "tagline_text": "Your trusted partner for premium, sustainable packaging solutions",
         "max_width": 800,
@@ -23,6 +22,7 @@
     "about_content": {
       "type": "gls-our-mission",
       "settings": {
+        "image": "shopify://shop_images/GLS_About_Us_Page_Featured_Image.webp",
         "headline_text": "<p>Our Mission</p>",
         "headline_tag": "h2",
         "content_text": "<p>At GreenLeaf Supplies, our mission is to provide the highest-quality food packaging products in the U.S. market. We are committed to being the finest and most trusted source for premium, reliable, and sustainable packaging solutions.</p><p>By focusing on excellence, innovation, and customer satisfaction, we strive to support businesses nationwide with products that uphold the highest standards of safety, durability, and performance.</p>",

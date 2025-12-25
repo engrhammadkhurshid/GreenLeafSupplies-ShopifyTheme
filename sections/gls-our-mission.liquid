@@ -23,7 +23,34 @@
   }
 
   .gls-our-mission-{{ section.id }} .gls-our-mission__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
     align-items: {{ section.settings.vertical_alignment }};
+  }
+
+  @media screen and (min-width: 750px) {
+    .gls-our-mission-{{ section.id }} .gls-our-mission__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+  }
+
+  .gls-our-mission-{{ section.id }} .gls-our-mission__image-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: {{ section.settings.left_column_horizontal_align }};
+    align-items: {{ section.settings.left_column_vertical_align }};
+    padding: {{ section.settings.left_column_padding }}px;
+  }
+
+  .gls-our-mission-{{ section.id }} .gls-our-mission__image {
+    width: {{ section.settings.image_scale }}%;
+    height: auto;
+    object-fit: {{ section.settings.image_fit }};
+    display: block;
+    max-width: 100%;
+    border-radius: 8px;
   }
 
   .gls-our-mission-{{ section.id }} .gls-our-mission__headline {
@@ -32,6 +59,7 @@
     color: {{ section.settings.headline_color }};
     text-align: {{ section.settings.headline_alignment }};
     line-height: {{ section.settings.headline_line_height }};
+    margin-bottom: 1.5rem;
   }
 
   .gls-our-mission-{{ section.id }} .gls-our-mission__content {
@@ -58,17 +86,26 @@
 <div class="gls-our-mission-wrapper section-{{ section.id }}-padding">
   <div class="gls-our-mission gls-our-mission-{{ section.id }}">
     <div class="gls-our-mission__grid">
-      <!-- Left Column: Headline -->
-      <div class="gls-our-mission__left-column">
+      <!-- Left Column: Image -->
+      <div class="gls-our-mission__image-wrapper">
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 1000 | image_tag:
+            class: 'gls-our-mission__image',
+            loading: 'lazy'
+          }}
+        {%- else -%}
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg gls-our-mission__image' }}
+        {%- endif -%}
+      </div>
+
+      <!-- Right Column: Headline + Rich Text -->
+      <div class="gls-our-mission__right-column">
         {%- if section.settings.headline_text != blank -%}
           <{{ section.settings.headline_tag }} class="gls-our-mission__headline">
             {{ section.settings.headline_text }}
           </{{ section.settings.headline_tag }}>
         {%- endif -%}
-      </div>
 
-      <!-- Right Column: Rich Text -->
-      <div class="gls-our-mission__right-column">
         {%- if section.settings.content_text != blank -%}
           <div class="gls-our-mission__content rte">
             {{ section.settings.content_text }}
@@ -166,6 +203,32 @@
     {
       "type": "header",
       "content": "Column Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image (Left Column)"
+    },
+    {
+      "type": "range",
+      "id": "image_scale",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Image Scale",
+      "default": 100
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Object Fit",
+      "options": [
+        { "value": "cover", "label": "Cover" },
+        { "value": "contain", "label": "Contain" },
+        { "value": "fill", "label": "Fill" }
+      ],
+      "default": "cover"
     },
     {
       "type": "range",
