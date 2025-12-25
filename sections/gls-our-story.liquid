@@ -1,0 +1,625 @@
+{{ 'gls-our-story.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
+    margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+    }
+  }
+
+  .gls-our-story-{{ section.id }} {
+    max-width: {{ section.settings.max_width }}px;
+    background-color: {{ section.settings.background_color }};
+  }
+
+  .gls-our-story-{{ section.id }} .gls-our-story__grid {
+    align-items: {{ section.settings.vertical_alignment }};
+  }
+
+  .gls-our-story-{{ section.id }} .gls-our-story__image img {
+    object-fit: {{ section.settings.image_fit }};
+    transform: scale({{ section.settings.image_scale | divided_by: 100.0 }});
+  }
+
+  .gls-our-story-{{ section.id }} .gls-our-story__left-column {
+    padding: {{ section.settings.left_column_padding }}px;
+    justify-content: {{ section.settings.left_column_vertical_align }};
+    text-align: {{ section.settings.left_column_horizontal_align }};
+  }
+
+  .gls-our-story-{{ section.id }} .gls-our-story__right-column {
+    padding: {{ section.settings.right_column_padding }}px;
+    justify-content: {{ section.settings.right_column_vertical_align }};
+    text-align: {{ section.settings.right_column_horizontal_align }};
+  }
+
+  .gls-our-story-{{ section.id }} .gls-our-story__headline {
+    font-family: {{ section.settings.headline_font }};
+    font-size: {{ section.settings.headline_size }}px;
+    color: {{ section.settings.headline_color }};
+    text-align: {{ section.settings.headline_alignment }};
+    line-height: {{ section.settings.headline_line_height }};
+  }
+
+  .gls-our-story-{{ section.id }} .gls-our-story__content {
+    font-family: {{ section.settings.content_font }};
+    font-size: {{ section.settings.content_size }}px;
+    color: {{ section.settings.content_color }};
+    text-align: {{ section.settings.content_alignment }};
+    line-height: {{ section.settings.content_line_height }};
+  }
+
+  .gls-our-story-{{ section.id }} .gls-our-story__button {
+    background-color: {{ section.settings.button_bg_color }};
+    color: {{ section.settings.button_text_color }};
+    padding: {{ section.settings.button_padding_vertical }}px {{ section.settings.button_padding_horizontal }}px;
+    font-size: {{ section.settings.button_font_size }}px;
+    border-radius: {{ section.settings.button_radius }}px;
+  }
+
+  .gls-our-story-{{ section.id }} .gls-our-story__button:hover {
+    background-color: {{ section.settings.button_bg_hover_color }};
+  }
+{%- endstyle -%}
+
+<div class="gls-our-story-wrapper section-{{ section.id }}-padding">
+  <div class="gls-our-story gls-our-story-{{ section.id }}">
+    <div class="gls-our-story__grid">
+      <!-- Left Column: Image -->
+      <div class="gls-our-story__left-column">
+        <div class="gls-our-story__image">
+          {%- if section.settings.image != blank -%}
+            <img
+              src="{{ section.settings.image | image_url: width: 800 }}"
+              alt="{{ section.settings.image.alt | escape }}"
+              width="{{ section.settings.image.width }}"
+              height="{{ section.settings.image.height }}"
+              loading="lazy"
+            >
+          {%- else -%}
+            <div class="gls-our-story__placeholder">
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- Right Column: Content -->
+      <div class="gls-our-story__right-column">
+        <div class="gls-our-story__content-wrapper">
+          {%- if section.settings.headline_text != blank -%}
+            <{{ section.settings.headline_tag }} class="gls-our-story__headline">
+              {{ section.settings.headline_text }}
+            </{{ section.settings.headline_tag }}>
+          {%- endif -%}
+
+          {%- if section.settings.content_text != blank -%}
+            <div class="gls-our-story__content rte">
+              {{ section.settings.content_text }}
+            </div>
+          {%- endif -%}
+
+          {%- if section.settings.button_label != blank -%}
+            <a href="{{ section.settings.button_link }}" class="gls-our-story__button">
+              {{ section.settings.button_label }}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Our Story",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical Alignment",
+      "options": [
+        {
+          "value": "start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 600,
+      "max": 1400,
+      "step": 50,
+      "unit": "px",
+      "label": "Maximum Width",
+      "default": 1200
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Column Settings"
+    },
+    {
+      "type": "range",
+      "id": "left_column_padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Left Column Padding",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "left_column_vertical_align",
+      "label": "Left Column Vertical Alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "left_column_horizontal_align",
+      "label": "Left Column Horizontal Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "right_column_padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Right Column Padding",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "right_column_vertical_align",
+      "label": "Right Column Vertical Alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "right_column_horizontal_align",
+      "label": "Right Column Horizontal Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Image Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image Fit",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
+        },
+        {
+          "value": "fill",
+          "label": "Fill"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "range",
+      "id": "image_scale",
+      "min": 50,
+      "max": 150,
+      "step": 5,
+      "unit": "%",
+      "label": "Image Scale",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Headline Settings"
+    },
+    {
+      "type": "text",
+      "id": "headline_text",
+      "label": "Headline Text",
+      "default": "Our Story"
+    },
+    {
+      "type": "select",
+      "id": "headline_tag",
+      "label": "Headline Tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "h4",
+          "label": "H4"
+        },
+        {
+          "value": "p",
+          "label": "Paragraph"
+        }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "select",
+      "id": "headline_font",
+      "label": "Headline Font",
+      "options": [
+        {
+          "value": "var(--font-heading-family)",
+          "label": "Lato Black (900)"
+        },
+        {
+          "value": "var(--font-heading-secondary-family)",
+          "label": "Montserrat Semi-Bold (600)"
+        },
+        {
+          "value": "var(--font-body-family)",
+          "label": "Montserrat Regular (400)"
+        },
+        {
+          "value": "var(--font-button-family)",
+          "label": "Montserrat Medium (500)"
+        }
+      ],
+      "default": "var(--font-heading-family)"
+    },
+    {
+      "type": "range",
+      "id": "headline_size",
+      "min": 16,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Headline Size",
+      "default": 42
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Headline Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "headline_alignment",
+      "label": "Headline Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "headline_line_height",
+      "min": 1.0,
+      "max": 2.0,
+      "step": 0.1,
+      "label": "Headline Line Height",
+      "default": 1.2
+    },
+    {
+      "type": "header",
+      "content": "Content Settings"
+    },
+    {
+      "type": "richtext",
+      "id": "content_text",
+      "label": "Content Text",
+      "default": "<p>As one of the leading food-packaging suppliers on the U.S. East Coast, we are expanding our reach to serve customers across the entire nation. Founded with a vision to revolutionize the packaging industry, Green Leaf Supplies has grown from a small regional supplier to a nationwide partner for businesses of all sizes.</p><p>Our commitment to sustainability drives everything we do. We believe that quality packaging shouldn't come at the expense of our environment.</p>"
+    },
+    {
+      "type": "select",
+      "id": "content_font",
+      "label": "Content Font",
+      "options": [
+        {
+          "value": "var(--font-body-family)",
+          "label": "Montserrat Regular (400)"
+        },
+        {
+          "value": "var(--font-button-family)",
+          "label": "Montserrat Medium (500)"
+        },
+        {
+          "value": "var(--font-heading-secondary-family)",
+          "label": "Montserrat Semi-Bold (600)"
+        },
+        {
+          "value": "var(--font-heading-family)",
+          "label": "Lato Black (900)"
+        }
+      ],
+      "default": "var(--font-body-family)"
+    },
+    {
+      "type": "range",
+      "id": "content_size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Content Size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "content_color",
+      "label": "Content Color",
+      "default": "#333333"
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        },
+        {
+          "value": "justify",
+          "label": "Justify"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "content_line_height",
+      "min": 1.0,
+      "max": 2.5,
+      "step": 0.1,
+      "label": "Content Line Height",
+      "default": 1.6
+    },
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Contact Our Team"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "/pages/contact"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button Background Color",
+      "default": "#7AAE5C"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_hover_color",
+      "label": "Button Hover Background Color",
+      "default": "#6a9d4d"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Font Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Vertical Padding",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "min": 16,
+      "max": 64,
+      "step": 4,
+      "unit": "px",
+      "label": "Button Horizontal Padding",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Border Radius",
+      "default": 6
+    }
+  ],
+  "presets": [
+    {
+      "name": "Our Story"
+    }
+  ]
+}
+{% endschema %}

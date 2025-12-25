@@ -1,0 +1,147 @@
+/* GLS Our Story Section Styles */
+
+.gls-our-story-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.gls-our-story {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.gls-our-story__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media screen and (min-width: 750px) {
+  .gls-our-story__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}
+
+.gls-our-story__left-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.gls-our-story__right-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.gls-our-story__image {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.gls-our-story__image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.gls-our-story__placeholder {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+.gls-our-story__content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.gls-our-story__headline {
+  margin: 0;
+  font-weight: 700;
+}
+
+.gls-our-story__content {
+  margin: 0;
+}
+
+.gls-our-story__content p {
+  margin-bottom: 1.5rem;
+}
+
+.gls-our-story__content p:last-child {
+  margin-bottom: 0;
+}
+
+.gls-our-story__content h1,
+.gls-our-story__content h2,
+.gls-our-story__content h3,
+.gls-our-story__content h4,
+.gls-our-story__content h5,
+.gls-our-story__content h6 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.gls-our-story__content ul,
+.gls-our-story__content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+.gls-our-story__content li {
+  margin-bottom: 0.5rem;
+}
+
+.gls-our-story__content a {
+  color: #7AAE5C;
+  text-decoration: underline;
+  transition: opacity 0.3s ease;
+}
+
+.gls-our-story__content a:hover {
+  opacity: 0.8;
+}
+
+.gls-our-story__button {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+  max-width: fit-content;
+}
+
+.gls-our-story__button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile optimizations */
+@media screen and (max-width: 749px) {
+  .gls-our-story__grid {
+    gap: 2rem;
+  }
+  
+  .gls-our-story__headline {
+    margin-bottom: 1rem;
+  }
+  
+  .gls-our-story__button {
+    width: 100%;
+  }
+}
