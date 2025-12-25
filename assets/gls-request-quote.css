@@ -55,8 +55,8 @@
   }
 
   .gls-quote-header-content-col {
-    align-items: center;
-    text-align: center;
+    align-items: center !important;
+    text-align: center !important;
   }
 
   .gls-quote-header-title,
