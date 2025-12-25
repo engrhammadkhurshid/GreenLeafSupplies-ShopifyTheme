@@ -98,10 +98,28 @@
         "required_message": true,
         "placeholder_message": "Tell us more about your requirements..."
       }
+    },
+    "prefer_to_talk": {
+      "type": "gls-prefer-to-talk",
+      "settings": {
+        "section_max_width": 1000,
+        "margin_top": 0,
+        "margin_bottom": 60,
+        "padding_top": 0,
+        "padding_bottom": 40,
+        "title": "Prefer to talk to someone?",
+        "text": "<p>Our team is here to help you with any questions you may have.</p>",
+        "left_content": "<p>Give us a call or send us an email and we'll get back to you as soon as possible.</p>",
+        "phone_number": "+1 (555) 123-4567",
+        "phone_label": "Call Us",
+        "email_address": "info@example.com",
+        "email_label": "Email Us"
+      }
     }
   },
   "order": [
     "header",
-    "form"
+    "form",
+    "prefer_to_talk"
   ]
 }
