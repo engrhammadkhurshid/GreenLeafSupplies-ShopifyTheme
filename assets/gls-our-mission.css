@@ -1,0 +1,94 @@
+/* GLS Our Mission Section Styles */
+
+.gls-our-mission-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.gls-our-mission {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.gls-our-mission__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media screen and (min-width: 750px) {
+  .gls-our-mission__grid {
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+  }
+}
+
+.gls-our-mission__left-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.gls-our-mission__right-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.gls-our-mission__headline {
+  margin: 0;
+  font-weight: 700;
+}
+
+.gls-our-mission__content {
+  margin: 0;
+}
+
+.gls-our-mission__content p {
+  margin-bottom: 1.5rem;
+}
+
+.gls-our-mission__content p:last-child {
+  margin-bottom: 0;
+}
+
+.gls-our-mission__content h1,
+.gls-our-mission__content h2,
+.gls-our-mission__content h3,
+.gls-our-mission__content h4,
+.gls-our-mission__content h5,
+.gls-our-mission__content h6 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.gls-our-mission__content ul,
+.gls-our-mission__content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+.gls-our-mission__content li {
+  margin-bottom: 0.5rem;
+}
+
+.gls-our-mission__content a {
+  color: #7AAE5C;
+  text-decoration: underline;
+  transition: opacity 0.3s ease;
+}
+
+.gls-our-mission__content a:hover {
+  opacity: 0.8;
+}
+
+/* Mobile optimizations */
+@media screen and (max-width: 749px) {
+  .gls-our-mission__headline {
+    margin-bottom: 1rem;
+  }
+}

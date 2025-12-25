@@ -21,33 +21,14 @@
       }
     },
     "about_content": {
-      "type": "rich-text",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Our Mission",
-            "heading_size": "h1"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>At GreenLeaf Supplies, our mission is to provide the highest-quality food packaging products in the U.S. market. We are committed to being the finest and most trusted source for premium, reliable, and sustainable packaging solutions.</p><p>By focusing on excellence, innovation, and customer satisfaction, we strive to support businesses nationwide with products that uphold the highest standards of safety, durability, and performance.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "text"
-      ],
+      "type": "gls-our-mission",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-1",
-        "full_width": true,
+        "headline_text": "<p>Our Mission</p>",
+        "headline_tag": "h2",
+        "content_text": "<p>At GreenLeaf Supplies, our mission is to provide the highest-quality food packaging products in the U.S. market. We are committed to being the finest and most trusted source for premium, reliable, and sustainable packaging solutions.</p><p>By focusing on excellence, innovation, and customer satisfaction, we strive to support businesses nationwide with products that uphold the highest standards of safety, durability, and performance.</p>",
+        "max_width": 1200,
         "padding_top": 52,
-        "padding_bottom": 24
+        "padding_bottom": 52
       }
     },
     "image_with_text": {
