@@ -97,7 +97,6 @@
 
   .gls-talk-right {
     min-height: 250px;
-    order: -1; /* Optional: move image to top on mobile */
   }
   
   .gls-talk-buttons {
