@@ -4,12 +4,18 @@
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    padding-left: {{ section.settings.padding_left | times: 0.75 | round: 0 }}px;
+    padding-right: {{ section.settings.padding_right | times: 0.75 | round: 0 }}px;
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
   }
 
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-left: {{ section.settings.padding_left }}px;
+      padding-right: {{ section.settings.padding_right }}px;
     }
   }
 
@@ -63,7 +69,7 @@
   }
 {%- endstyle -%}
 
-<div class="gls-our-story page-width section-{{ section.id }}-padding">
+<div class="gls-our-story section-{{ section.id }}-padding">
   <div class="gls-our-story__grid">
     
     <!-- Left Column: Image -->
@@ -132,6 +138,36 @@
       "unit": "px",
       "label": "Padding Bottom",
       "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Left",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Right",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 400,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "label": "Max Width",
+      "default": 1200
     },
     {
       "type": "header",
