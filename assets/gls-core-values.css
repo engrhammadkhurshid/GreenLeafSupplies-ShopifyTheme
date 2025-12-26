@@ -145,23 +145,55 @@
 @media (max-width: 576px) {
   .gls-core-values__item {
     flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
   }
 
-  .gls-core-values__icon,
-  .gls-core-values__content {
-    margin-left: 0;
+  .gls-core-values__number {
+    margin-bottom: 8px;
+    font-size: var(--number-size);
+    flex: none;
+    align-self: flex-start;
   }
 
   .gls-core-values__icon {
-    margin-bottom: 10px;
+    margin: 0 0 12px 0;
+    width: 100%;
+    max-width: 80px;
+    min-width: 40px;
     justify-content: flex-start;
+    align-items: center;
+    display: flex;
   }
-  
-  .gls-core-values__number {
-    margin-bottom: 10px;
+  .gls-core-values__icon img {
+    width: var(--icon-width);
+    max-width: 80px;
+    min-width: 32px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
   }
-  
-  /* Adjust hover for mobile to avoid weird jumps */
+
+  .gls-core-values__content {
+    margin-left: 0;
+    width: 100%;
+    padding: 0;
+  }
+
+  .gls-core-values__item-title {
+    font-size: var(--title-size);
+    margin-bottom: 6px;
+    text-align: left;
+  }
+
+  .gls-core-values__item-text {
+    font-size: var(--text-size);
+    text-align: left;
+  }
+
+  /* Remove hover transform for mobile */
   .gls-core-values__item:hover {
     transform: none;
   }
