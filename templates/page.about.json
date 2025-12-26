@@ -122,7 +122,10 @@
             "text": "We source only the finest materials and maintain rigorous quality control standards to ensure every product meets our high expectations.",
             "text_color": "#f0f0f0",
             "mobile_text_size": 14,
-            "text_size": 16
+            "text_size": 16,
+            "align_desktop": "flex-start",
+            "align_mobile": "flex-start",
+            "justify_mobile": "justify"
           }
         },
         "value_2": {
@@ -142,7 +145,10 @@
             "text": "Our eco-friendly packaging solutions help businesses reduce their environmental footprint without compromising on performance.",
             "text_color": "#f0f0f0",
             "mobile_text_size": 14,
-            "text_size": 16
+            "text_size": 16,
+            "align_desktop": "flex-start",
+            "align_mobile": "flex-start",
+            "justify_mobile": "justify"
           }
         },
         "value_3": {
@@ -162,7 +168,10 @@
             "text": "Your success is our priority. We work closely with each client to understand their unique needs and deliver tailored solutions.",
             "text_color": "#f0f0f0",
             "mobile_text_size": 14,
-            "text_size": 16
+            "text_size": 16,
+            "align_desktop": "flex-start",
+            "align_mobile": "flex-start",
+            "justify_mobile": "justify"
           }
         },
         "value_4": {
@@ -182,7 +191,10 @@
             "text": "We continuously explore new materials and technologies to bring you the most advanced packaging solutions available.",
             "text_color": "#f0f0f0",
             "mobile_text_size": 14,
-            "text_size": 16
+            "text_size": 16,
+            "align_desktop": "flex-start",
+            "align_mobile": "flex-start",
+            "justify_mobile": "justify"
           }
         }
       },
