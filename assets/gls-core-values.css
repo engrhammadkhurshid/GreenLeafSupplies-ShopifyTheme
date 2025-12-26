@@ -69,7 +69,7 @@
   margin-bottom: 30px;
   padding-bottom: 30px;
   /* Border color set via Liquid */
-  
+  align-items: var(--align-desktop, flex-start);
   /* Animation Setup */
   opacity: 0; /* Start hidden */
   animation: fadeInUp 0.8s ease-out forwards;
@@ -145,7 +145,7 @@
 @media (max-width: 576px) {
   .gls-core-values__item {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: var(--align-mobile, flex-start);
     gap: 0;
     margin-bottom: 24px;
     padding-bottom: 24px;
@@ -185,12 +185,12 @@
   .gls-core-values__item-title {
     font-size: var(--title-size);
     margin-bottom: 6px;
-    text-align: left;
+    text-align: var(--justify-mobile, left);
   }
 
   .gls-core-values__item-text {
     font-size: var(--text-size);
-    text-align: left;
+    text-align: var(--justify-mobile, left);
   }
 
   /* Remove hover transform for mobile */

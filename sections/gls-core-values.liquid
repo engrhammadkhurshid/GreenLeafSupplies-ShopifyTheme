@@ -82,7 +82,22 @@
     <!-- Content Rows -->
     <div class="gls-core-values__rows">
       {%- for block in section.blocks -%}
-        <div class="gls-core-values__item" {{ block.shopify_attributes }} style="--number-size: {{ block.settings.mobile_number_size }}px; --desktop-number-size: {{ block.settings.number_size }}px; --icon-width: {{ block.settings.mobile_icon_width }}px; --desktop-icon-width: {{ block.settings.icon_width }}px; --title-size: {{ block.settings.mobile_title_size }}px; --desktop-title-size: {{ block.settings.title_size }}px; --text-size: {{ block.settings.mobile_text_size }}px; --desktop-text-size: {{ block.settings.text_size }}px;">
+        <div class="gls-core-values__item"
+          {{ block.shopify_attributes }}
+          style="
+            --number-size: {{ block.settings.mobile_number_size }}px;
+            --desktop-number-size: {{ block.settings.number_size }}px;
+            --icon-width: {{ block.settings.mobile_icon_width }}px;
+            --desktop-icon-width: {{ block.settings.icon_width }}px;
+            --title-size: {{ block.settings.mobile_title_size }}px;
+            --desktop-title-size: {{ block.settings.title_size }}px;
+            --text-size: {{ block.settings.mobile_text_size }}px;
+            --desktop-text-size: {{ block.settings.text_size }}px;
+            --align-desktop: {{ block.settings.align_desktop }};
+            --align-mobile: {{ block.settings.align_mobile }};
+            --justify-mobile: {{ block.settings.justify_mobile }};
+          "
+        >
           
           <!-- Number -->
           <div class="gls-core-values__number" style="color: {{ block.settings.number_color }};">
@@ -478,6 +493,40 @@
           "unit": "px",
           "label": "Text Size",
           "default": 16
+        },
+        {
+          "type": "select",
+          "id": "align_desktop",
+          "label": "Desktop Content Alignment",
+          "options": [
+            { "value": "flex-start", "label": "Left/Top" },
+            { "value": "center", "label": "Center" },
+            { "value": "flex-end", "label": "Right/Bottom" }
+          ],
+          "default": "flex-start"
+        },
+        {
+          "type": "select",
+          "id": "align_mobile",
+          "label": "Mobile Content Alignment",
+          "options": [
+            { "value": "flex-start", "label": "Left/Top" },
+            { "value": "center", "label": "Center" },
+            { "value": "flex-end", "label": "Right/Bottom" }
+          ],
+          "default": "flex-start"
+        },
+        {
+          "type": "select",
+          "id": "justify_mobile",
+          "label": "Mobile Text Justification",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" },
+            { "value": "justify", "label": "Justify" }
+          ],
+          "default": "left"
         }
       ]
     }
