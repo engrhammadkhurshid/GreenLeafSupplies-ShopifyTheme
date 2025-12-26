@@ -24,7 +24,18 @@
   .gls-core-values-{{ section.id }} .gls-core-values__heading {
     font-size: {{ section.settings.heading_size }}px;
     color: {{ section.settings.heading_color }};
+    font-family: {{ section.settings.heading_font_family }};
     width: 100%;
+  }
+
+  .gls-core-values-{{ section.id }} .gls-core-values__grid {
+    gap: {{ section.settings.grid_gap_mobile }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .gls-core-values-{{ section.id }} .gls-core-values__grid {
+      gap: {{ section.settings.grid_gap_desktop }}px;
+    }
   }
 
   @media screen and (min-width: 990px) {
@@ -59,37 +70,43 @@
                 background-color: {{ block.settings.card_bg_color }};
                 border-radius: {{ block.settings.card_border_radius }}px;
                 box-shadow: 0 4px 12px {{ block.settings.card_shadow_color }};
+                border: {{ block.settings.card_border_width }}px solid {{ block.settings.card_border_color }};
+                padding: {{ block.settings.card_padding }}px;
               "
             >
-              <div class="gls-core-values__item-icon" style="width: {{ block.settings.icon_size }}px; height: {{ block.settings.icon_size }}px;">
-                {%- if block.settings.custom_icon != blank -%}
-                  {{ block.settings.custom_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
-                {%- elsif block.settings.icon_svg != blank -%}
-                  <span class="gls-icon-svg" style="color: {{ block.settings.icon_color }};">
-                    {{ block.settings.icon_svg }}
-                  </span>
-                {%- else -%}
-                  {% render 'icon-accordion', icon: block.settings.icon_name %} 
-                  <!-- Fallback or use a snippet that handles multiple icons based on name -->
-                  <!-- Since we don't have a generic icon snippet, I'll use inline SVGs for the select options in the logic below -->
-                  {% case block.settings.icon_name %}
-                    {% when 'star' %}
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" style="color: {{ block.settings.icon_color }};"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    {% when 'leaf' %}
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" style="color: {{ block.settings.icon_color }};"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66l.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/></svg>
-                    {% when 'shield' %}
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" style="color: {{ block.settings.icon_color }};"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
-                    {% when 'heart' %}
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" style="color: {{ block.settings.icon_color }};"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                    {% when 'box' %}
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" style="color: {{ block.settings.icon_color }};"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
-                  {% endcase %}
-                {%- endif -%}
+              <div class="gls-core-values__item-icon-wrapper" style="
+                background-color: {{ block.settings.icon_bg_color }};
+                padding: {{ block.settings.icon_padding }}px;
+                border-radius: {{ block.settings.icon_border_radius }}px;
+              ">
+                <div class="gls-core-values__item-icon" style="width: {{ block.settings.icon_size }}px; height: {{ block.settings.icon_size }}px;">
+                  {%- if block.settings.custom_icon != blank -%}
+                    {{ block.settings.custom_icon | image_url: width: 100 | image_tag: loading: 'lazy' }}
+                  {%- elsif block.settings.icon_svg != blank -%}
+                    <span class="gls-icon-svg" style="color: {{ block.settings.icon_color }};">
+                      {{ block.settings.icon_svg }}
+                    </span>
+                  {%- else -%}
+                    {% case block.settings.icon_name %}
+                      {% when 'star' %}
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" style="color: {{ block.settings.icon_color }};"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                      {% when 'leaf' %}
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" style="color: {{ block.settings.icon_color }};"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66l.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/></svg>
+                      {% when 'shield' %}
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" style="color: {{ block.settings.icon_color }};"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+                      {% when 'heart' %}
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" style="color: {{ block.settings.icon_color }};"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                      {% when 'box' %}
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" style="color: {{ block.settings.icon_color }};"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+                    {% endcase %}
+                  {%- endif -%}
+                </div>
               </div>
               <div class="gls-core-values__item-content">
                 <h3 class="gls-core-values__item-title" style="
                   font-size: {{ block.settings.title_size }}px;
                   color: {{ block.settings.title_color }};
+                  font-family: {{ block.settings.title_font_family }};
                 ">
                   {{ block.settings.title }}
                 </h3>
@@ -97,6 +114,7 @@
                   font-size: {{ block.settings.text_size }}px;
                   color: {{ block.settings.text_color }};
                   text-align: {{ block.settings.text_alignment }};
+                  font-family: {{ block.settings.text_font_family }};
                 ">
                   {{ block.settings.text }}
                 </div>
@@ -116,6 +134,10 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "header",
+      "content": "Section Layout"
+    },
     {
       "type": "text",
       "id": "heading",
@@ -137,6 +159,16 @@
       "id": "heading_color",
       "label": "Heading Color",
       "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "heading_font_family",
+      "label": "Heading Font Family",
+      "options": [
+        { "value": "var(--font-heading-family)", "label": "Lato (Heading)" },
+        { "value": "var(--font-body-family)", "label": "Montserrat (Body)" }
+      ],
+      "default": "var(--font-heading-family)"
     },
     {
       "type": "range",
@@ -166,6 +198,26 @@
     },
     {
       "type": "range",
+      "id": "grid_gap_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Grid Gap (Desktop)",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "grid_gap_mobile",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Grid Gap (Mobile)",
+      "default": 24
+    },
+    {
+      "type": "range",
       "id": "padding_top",
       "min": 0,
       "max": 100,
@@ -191,6 +243,10 @@
       "name": "Value Box",
       "limit": 4,
       "settings": [
+        {
+          "type": "header",
+          "content": "Icon Settings"
+        },
         {
           "type": "select",
           "id": "icon_name",
@@ -231,6 +287,88 @@
           "default": "#ffffff"
         },
         {
+          "type": "color",
+          "id": "icon_bg_color",
+          "label": "Icon Background Color",
+          "default": "transparent"
+        },
+        {
+          "type": "range",
+          "id": "icon_padding",
+          "min": 0,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "label": "Icon Padding",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "icon_border_radius",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Icon Border Radius",
+          "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Card Settings"
+        },
+        {
+          "type": "color",
+          "id": "card_bg_color",
+          "label": "Card Background Color",
+          "default": "#7AAE5C"
+        },
+        {
+          "type": "color",
+          "id": "card_shadow_color",
+          "label": "Shadow Color",
+          "default": "rgba(0,0,0,0.1)"
+        },
+        {
+          "type": "range",
+          "id": "card_border_radius",
+          "min": 0,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "label": "Card Border Radius",
+          "default": 12
+        },
+        {
+          "type": "range",
+          "id": "card_border_width",
+          "min": 0,
+          "max": 10,
+          "step": 1,
+          "unit": "px",
+          "label": "Card Border Width",
+          "default": 0
+        },
+        {
+          "type": "color",
+          "id": "card_border_color",
+          "label": "Card Border Color",
+          "default": "transparent"
+        },
+        {
+          "type": "range",
+          "id": "card_padding",
+          "min": 0,
+          "max": 60,
+          "step": 4,
+          "unit": "px",
+          "label": "Card Padding",
+          "default": 32
+        },
+        {
+          "type": "header",
+          "content": "Typography"
+        },
+        {
           "type": "text",
           "id": "title",
           "label": "Title",
@@ -251,6 +389,16 @@
           "id": "title_color",
           "label": "Title Color",
           "default": "#ffffff"
+        },
+        {
+          "type": "select",
+          "id": "title_font_family",
+          "label": "Title Font Family",
+          "options": [
+            { "value": "var(--font-heading-family)", "label": "Lato (Heading)" },
+            { "value": "var(--font-body-family)", "label": "Montserrat (Body)" }
+          ],
+          "default": "var(--font-heading-family)"
         },
         {
           "type": "textarea",
@@ -287,26 +435,14 @@
           "default": "left"
         },
         {
-          "type": "color",
-          "id": "card_bg_color",
-          "label": "Card Background Color",
-          "default": "#7AAE5C"
-        },
-        {
-          "type": "color",
-          "id": "card_shadow_color",
-          "label": "Shadow Color",
-          "default": "rgba(0,0,0,0.1)"
-        },
-        {
-          "type": "range",
-          "id": "card_border_radius",
-          "min": 0,
-          "max": 40,
-          "step": 2,
-          "unit": "px",
-          "label": "Card Border Radius",
-          "default": 12
+          "type": "select",
+          "id": "text_font_family",
+          "label": "Text Font Family",
+          "options": [
+            { "value": "var(--font-heading-family)", "label": "Lato (Heading)" },
+            { "value": "var(--font-body-family)", "label": "Montserrat (Body)" }
+          ],
+          "default": "var(--font-body-family)"
         }
       ]
     }
