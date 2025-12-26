@@ -1,115 +1,104 @@
+/* Import Fonts to match the design */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap');
+
 .gls-core-values {
   width: 100%;
-  position: relative;
-  overflow: hidden;
+  font-family: "Nunito", sans-serif;
 }
 
 .gls-core-values__container {
+  max-width: 1320px; /* Bootstrap container max-width */
   margin: 0 auto;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   width: 100%;
 }
 
-.gls-core-values__layout {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
+/* Header Styles */
+.gls-core-values__header {
+  margin-bottom: 70px;
 }
 
-/* Desktop Layout: Side by Side */
-@media screen and (min-width: 990px) {
-  .gls-core-values__layout {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 0; /* Gap is handled by column widths in Liquid */
-  }
+.gls-core-values__subheading {
+  font-family: 'Tangerine', cursive;
+  text-transform: capitalize;
+  font-weight: 100;
+  display: inline-block;
+  position: relative;
+  padding-left: 80px;
+  line-height: 1;
+  margin-bottom: 10px;
 }
 
-.gls-core-values__heading-column {
-  width: 100%;
+.gls-core-values__subheading::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 60px;
+  border-bottom: 1px solid; /* Color set via Liquid */
+  height: 2px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .gls-core-values__heading {
+  text-transform: capitalize;
+  font-weight: 700;
   margin: 0;
   line-height: 1.2;
-  font-weight: 700;
-  position: sticky;
-  top: 2rem;
 }
 
-.gls-core-values__grid-column {
-  width: 100%;
-}
-
-.gls-core-values__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  width: 100%;
-}
-
-@media screen and (min-width: 750px) {
-  .gls-core-values__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+/* List Item Styles */
+.gls-core-values__rows {
+  display: flex;
+  flex-direction: column;
 }
 
 .gls-core-values__item {
   display: flex;
-  flex-direction: row; /* Side by side layout */
-  align-items: stretch; /* Ensure both columns stretch to full height */
-  height: 100%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden; /* Keeps content inside border radius */
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  /* Border color set via Liquid */
 }
 
-.gls-core-values__item:hover {
-  transform: translateY(-5px);
+.gls-core-values__item:last-child {
+  border-bottom: 0 !important;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
-.gls-core-values__item-icon-wrapper {
-  width: 40%; /* Fixed 40% width */
-  flex-shrink: 0;
+.gls-core-values__number {
+  flex: 0 0 30px;
+  font-weight: 400;
+}
+
+.gls-core-values__icon {
+  flex: 0 0 60px;
+  margin-left: 60px;
   display: flex;
-  flex-direction: column; /* Allows vertical alignment */
-  height: auto; /* Stretches to parent height */
-  margin: 0; /* Reset margin */
-  line-height: 0;
+  align-items: flex-start;
+  justify-content: center;
 }
 
-.gls-core-values__item-icon {
-  display: block;
+.gls-core-values__icon svg,
+.gls-core-values__icon img {
   width: 100%;
   height: auto;
-  max-width: 100%;
-}
-
-.gls-core-values__item-icon svg {
-  width: 100%;
-  height: 100%;
   display: block;
-  object-fit: contain;
 }
 
-.gls-core-values__item-icon img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
-}
-
-.gls-core-values__item-content {
-  width: 60%; /* Remaining width */
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+.gls-core-values__content {
+  flex: 1;
+  margin-left: 60px;
 }
 
 .gls-core-values__item-title {
-  margin: 0 0 0.5rem;
-  line-height: 1.3;
+  text-transform: capitalize;
   font-weight: 700;
+  margin: 0 0 10px;
+  line-height: 1.2;
 }
 
 .gls-core-values__item-text {
@@ -119,4 +108,25 @@
 
 .gls-core-values__item-text p {
   margin: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 576px) {
+  .gls-core-values__item {
+    flex-direction: column;
+  }
+
+  .gls-core-values__icon,
+  .gls-core-values__content {
+    margin-left: 0;
+  }
+
+  .gls-core-values__icon {
+    margin-bottom: 10px;
+    justify-content: flex-start;
+  }
+  
+  .gls-core-values__number {
+    margin-bottom: 10px;
+  }
 }
