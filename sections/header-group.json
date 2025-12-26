@@ -44,7 +44,7 @@
             "category_image": "shopify://shop_images/GLS_Food_Packaging_Category_Featured_Image.webp",
             "image_fit": "contain",
             "category_title": "Food Packaging",
-            "category_link": "",
+            "category_link": "shopify://collections/food-packaging",
             "subcategory_1": "Fast-food boxes",
             "subcategory_1_link": "",
             "subcategory_2": "Takeout bags",
@@ -69,7 +69,7 @@
             "category_image": "shopify://shop_images/GLS_Disposable_Tableware_Category_Featured_Image.webp",
             "image_fit": "contain",
             "category_title": "Disposable Tableware",
-            "category_link": "",
+            "category_link": "shopify://collections/disposable-tableware",
             "subcategory_1": "Plates",
             "subcategory_1_link": "",
             "subcategory_2": "Bowls",
@@ -159,7 +159,15 @@
         "catalog_menu": "",
         "main_menu": "main-menu",
         "quote_text": "REQUEST QUOTE",
-        "quote_link": "shopify://pages/request-a-quote"
+        "quote_link": "shopify://pages/request-a-quote",
+        "top_bar_font_size": 12,
+        "top_bar_text_color": "#ffffff",
+        "nav_link_font_size": 14,
+        "nav_link_color": "#333333",
+        "mega_menu_heading_size": 16,
+        "mega_menu_heading_color": "#333333",
+        "mega_menu_link_size": 14,
+        "mega_menu_link_color": "#666666"
       }
     }
   },
