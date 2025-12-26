@@ -41,7 +41,7 @@
         "right_image": "shopify://shop_images/GLS_Hero_Section_Image_Right.webp",
         "right_image_width": 100,
         "right_image_fit": "contain",
-        "padding_top": 0,
+        "padding_top": 20,
         "padding_bottom": 80
       }
     },
