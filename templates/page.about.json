@@ -46,7 +46,7 @@
         "left_column_padding": 20,
         "left_column_vertical_align": "center",
         "left_column_horizontal_align": "left",
-        "right_column_padding": 0,
+        "right_column_padding": 20,
         "right_column_row_gap": 0,
         "right_column_vertical_align": "flex-start",
         "right_column_horizontal_align": "left",
@@ -61,7 +61,7 @@
         "content_font": "var(--font-body-family)",
         "content_size": 16,
         "content_color": "#333333",
-        "content_alignment": "left",
+        "content_alignment": "justify",
         "content_line_height": 1.6
       }
     },
@@ -92,7 +92,7 @@
         "content_text": "<p>As one of the leading food-packaging suppliers on the U.S. East Coast, we are expanding our reach to serve customers across the entire nation. Founded with a vision to revolutionize the packaging industry, Green Leaf Supplies has grown from a small regional supplier to a nationwide partner for businesses of all sizes.</p><p>Our commitment to sustainability drives everything we do. We believe that quality packaging shouldn't come at the expense of our environment.</p>",
         "text_font_family": "var(--font-body-family)",
         "text_color": "#000000",
-        "content_text_alignment": "left",
+        "content_text_alignment": "justify",
         "button_label": "Contact Our Team",
         "button_link": "/pages/contact",
         "content_padding": 20,
