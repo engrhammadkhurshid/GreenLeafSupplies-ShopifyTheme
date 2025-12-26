@@ -194,46 +194,41 @@
         "border_color": "#ffffff33"
       }
     },
-    "cta": {
-      "type": "rich-text",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Ready to Partner With Us?",
-            "heading_size": "h1"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Whether you're a small café or a large restaurant chain, we have the packaging solutions to meet your needs. Contact us today to discuss your requirements.</p>"
-          }
-        },
-        "button": {
-          "type": "button",
-          "settings": {
-            "button_label": "Get a Custom Quote",
-            "button_link": "/pages/quote",
-            "button_style_secondary": false,
-            "button_label_2": "Contact Us",
-            "button_link_2": "/pages/contact",
-            "button_style_secondary_2": true
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "text",
-        "button"
-      ],
+    "gls_prefer_to_talk_EDUrpU": {
+      "type": "gls-prefer-to-talk",
+      "name": "Prefer to Talk",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-1",
-        "full_width": true,
-        "padding_top": 52,
-        "padding_bottom": 52
+        "section_max_width": 1200,
+        "bg_color": "#f9f9f9",
+        "margin_top": 20,
+        "margin_bottom": 0,
+        "padding_top": 60,
+        "padding_bottom": 0,
+        "title": "Prefer to talk to someone?",
+        "title_font_size": 36,
+        "title_color": "#7aae5c",
+        "text": "<p>Our team is here to help you with any questions you may have.</p>",
+        "text_font_size": 18,
+        "text_color": "#060316",
+        "left_content": "<p>Give us a call or send us an email and we'll get back to you as soon as possible.</p>",
+        "content_font_size": 16,
+        "content_color": "#060316",
+        "phone_number": "+1 (555) 123-4567",
+        "phone_label": "Call Us",
+        "phone_btn_bg": "#7AAE5C",
+        "phone_btn_text": "#ffffff",
+        "phone_btn_border": "#7AAE5C",
+        "phone_btn_hover_bg": "#68964e",
+        "phone_btn_hover_text": "#ffffff",
+        "email_address": "info@example.com",
+        "email_label": "Email Us",
+        "email_btn_bg": "#ffffff",
+        "email_btn_text": "#7AAE5C",
+        "email_btn_border": "#7AAE5C",
+        "email_btn_hover_bg": "#f0f9eb",
+        "email_btn_hover_text": "#7AAE5C",
+        "btn_font_size": 16,
+        "image": "shopify://shop_images/GLS_Customer_Support_Team_Photo.webp"
       }
     }
   },
@@ -242,6 +237,6 @@
     "about_content",
     "our_story",
     "values",
-    "cta"
+    "gls_prefer_to_talk_EDUrpU"
   ]
 }
