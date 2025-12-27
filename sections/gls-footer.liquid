@@ -485,6 +485,56 @@
   ],
   "blocks": [
     {
+      "type": "brand_information",
+      "name": "Brand Column",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "range",
+          "id": "logo_width",
+          "label": "Logo width",
+          "min": 50,
+          "max": 250,
+          "step": 10,
+          "default": 150,
+          "unit": "px"
+        },
+        {
+          "type": "textarea",
+          "id": "brand_description",
+          "label": "Brand description",
+          "default": "Industrial-grade packaging solutions designed for the circular economy. We help businesses scale without the waste."
+        },
+        {
+          "type": "range",
+          "id": "brand_text_size",
+          "min": 12,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "label": "Brand Description Size",
+          "default": 16
+        },
+        {
+          "type": "color",
+          "id": "brand_text_color",
+          "label": "Brand Description Color",
+          "default": "#cbd5e1"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_social",
+          "label": "Show social icons",
+          "default": true
+        }
+      ]
+    },
+    {
       "type": "menu",
       "name": "Menu Column",
       "settings": [
@@ -544,6 +594,9 @@
     {
       "name": "GLS Footer",
       "blocks": [
+        {
+          "type": "brand_information"
+        },
         {
           "type": "menu",
           "settings": {
