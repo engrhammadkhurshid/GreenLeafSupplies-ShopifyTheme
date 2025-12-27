@@ -21,7 +21,8 @@
             "logo_width": 200,
             "brand_description": "Industrial-grade packaging solutions designed for the circular economy. We help businesses scale without the waste.",
             "brand_text_size": 16,
-            "brand_text_color": "#cbd5e1"
+            "brand_text_color": "#cbd5e1",
+            "show_social": true
           }
         },
         "menu_shop": {
