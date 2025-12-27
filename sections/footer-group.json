@@ -14,46 +14,7 @@
     "gls-footer": {
       "type": "gls-footer",
       "blocks": {
-        "social_facebook": {
-          "type": "social_icon",
-          "settings": {
-            "icon_type": "facebook",
-            "link": "https://facebook.com/greenleafsupplies",
-            "icon_color": "#ffffff",
-            "background_color": "#3b5998",
-            "background_shape": "circle"
-          }
-        },
-        "social_instagram": {
-          "type": "social_icon",
-          "settings": {
-            "icon_type": "instagram",
-            "link": "https://instagram.com/greenleafsupplies",
-            "icon_color": "#ffffff",
-            "background_color": "#E4405F",
-            "background_shape": "circle"
-          }
-        },
-        "social_tiktok": {
-          "type": "social_icon",
-          "settings": {
-            "icon_type": "tiktok",
-            "link": "https://tiktok.com/@greenleafsupplies",
-            "icon_color": "#ffffff",
-            "background_color": "#000000",
-            "background_shape": "circle"
-          }
-        },
-        "social_youtube": {
-          "type": "social_icon",
-          "settings": {
-            "icon_type": "youtube",
-            "link": "https://youtube.com/greenleafsupplies",
-            "icon_color": "#ffffff",
-            "background_color": "#FF0000",
-            "background_shape": "circle"
-          }
-        },
+
         "menu_shop": {
           "type": "menu",
           "settings": {
@@ -80,10 +41,7 @@
         }
       },
       "block_order": [
-        "social_facebook",
-        "social_instagram",
-        "social_tiktok",
-        "social_youtube",
+
         "menu_shop",
         "menu_support",
         "contact"
@@ -105,14 +63,7 @@
         "brand_description": "Industrial-grade packaging solutions designed for the circular economy. We help businesses scale without the waste.",
         "brand_text_size": 16,
         "brand_text_color": "#cbd5e1",
-        "social_row_margin_top": 20,
-        "social_row_margin_bottom": 20,
-        "social_row_padding_top": 10,
-        "social_row_padding_bottom": 10,
-        "social_row_padding_left": 0,
-        "social_row_padding_right": 0,
-        "social_row_background_color": "transparent",
-        "social_row_border_radius": 0,
+
         "show_social": true,
         "column_heading_size": 18,
         "column_heading_tag": "h4",
