@@ -229,6 +229,56 @@
   height: 18px;
 }
 
+/* Custom Social Media Row */
+.gls-footer-social-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.gls-footer-social-icon {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUpSocial 0.6s ease-out forwards;
+}
+
+.gls-footer-social-icon:nth-child(1) { animation-delay: 0.1s; }
+.gls-footer-social-icon:nth-child(2) { animation-delay: 0.2s; }
+.gls-footer-social-icon:nth-child(3) { animation-delay: 0.3s; }
+.gls-footer-social-icon:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeInUpSocial {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gls-footer-social-icon__container {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.gls-footer-social-icon:hover .gls-footer-social-icon__container {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.gls-footer-social-icon svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.gls-footer-social-icon:hover svg {
+  transform: scale(1.1);
+}
+
 /* Menu Columns */
 .gls-footer-column__title {
   font-size: 14px;
