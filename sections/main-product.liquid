@@ -208,6 +208,9 @@
                     {{ product.description }}
                   </div>
                 {%- endif -%}
+                
+                {%- comment -%} Product Metadata Display {%- endcomment -%}
+                {% render 'product-metadata', product: product %}
 
               {%- when 'sku' -%}
                 <p

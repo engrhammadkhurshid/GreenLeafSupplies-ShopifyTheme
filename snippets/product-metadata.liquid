@@ -1,0 +1,155 @@
+{% comment %}
+  Product Metadata Display Snippet
+  
+  Displays custom metafields for Green Leaf Supplies products
+  Shows: Material, Weight, Case Count, Features
+  
+  Usage: {% render 'product-metadata', product: product %}
+{% endcomment %}
+
+{%- liquid
+  assign has_metadata = false
+  if product.metafields.custom.material or product.metafields.custom.weight_approx or product.metafields.custom.case_count or product.metafields.custom.features
+    assign has_metadata = true
+  endif
+-%}
+
+{% if has_metadata %}
+<div class="product-metadata">
+  <div class="product-metadata__container">
+    <h3 class="product-metadata__title">Product Specifications</h3>
+    
+    <dl class="product-metadata__list">
+      {% if product.metafields.custom.material %}
+        <div class="product-metadata__item">
+          <dt class="product-metadata__label">
+            <svg class="product-metadata__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 2L3 6V10C3 14.5 6.5 18.5 10 19C13.5 18.5 17 14.5 17 10V6L10 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Material
+          </dt>
+          <dd class="product-metadata__value">{{ product.metafields.custom.material }}</dd>
+        </div>
+      {% endif %}
+
+      {% if product.metafields.custom.weight_approx %}
+        <div class="product-metadata__item">
+          <dt class="product-metadata__label">
+            <svg class="product-metadata__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 10H17M10 3V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            Weight
+          </dt>
+          <dd class="product-metadata__value">{{ product.metafields.custom.weight_approx }}</dd>
+        </div>
+      {% endif %}
+
+      {% if product.metafields.custom.case_count %}
+        <div class="product-metadata__item">
+          <dt class="product-metadata__label">
+            <svg class="product-metadata__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M7 3V7M13 3V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            Case Count
+          </dt>
+          <dd class="product-metadata__value">{{ product.metafields.custom.case_count }}</dd>
+        </div>
+      {% endif %}
+
+      {% if product.metafields.custom.features %}
+        <div class="product-metadata__item product-metadata__item--features">
+          <dt class="product-metadata__label">
+            <svg class="product-metadata__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 10L9 12L13 8M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Features
+          </dt>
+          <dd class="product-metadata__value product-metadata__value--features">
+            {{ product.metafields.custom.features | newline_to_br }}
+          </dd>
+        </div>
+      {% endif %}
+    </dl>
+  </div>
+</div>
+
+<style>
+  .product-metadata {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+  }
+
+  .product-metadata__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+    color: #1a1a1a;
+  }
+
+  .product-metadata__list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .product-metadata__item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: start;
+    padding: 0.75rem;
+    background: white;
+    border-radius: 6px;
+  }
+
+  .product-metadata__label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: #495057;
+    min-width: 120px;
+  }
+
+  .product-metadata__icon {
+    flex-shrink: 0;
+    color: #7aae5c;
+  }
+
+  .product-metadata__value {
+    color: #212529;
+    line-height: 1.6;
+  }
+
+  .product-metadata__value--features {
+    line-height: 1.8;
+  }
+
+  .product-metadata__item--features {
+    grid-template-columns: 1fr;
+  }
+
+  .product-metadata__item--features .product-metadata__label {
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .product-metadata {
+      padding: 1rem;
+    }
+
+    .product-metadata__item {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+
+    .product-metadata__label {
+      min-width: auto;
+    }
+  }
+</style>
+{% endif %}

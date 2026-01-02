@@ -1,0 +1,138 @@
+{
+    "metafield_definitions": [
+        {
+            "namespace": "custom",
+            "key": "material",
+            "name": "Material",
+            "description": "Product material composition (e.g., 100% Sugarcane Bagasse, MFPP, Food-Grade Aluminum)",
+            "type": "single_line_text_field",
+            "validations": []
+        },
+        {
+            "namespace": "custom",
+            "key": "weight_approx",
+            "name": "Weight (Approx.)",
+            "description": "Approximate weight per unit (e.g., 20–35 g per unit)",
+            "type": "single_line_text_field",
+            "validations": []
+        },
+        {
+            "namespace": "custom",
+            "key": "case_count",
+            "name": "Case Count",
+            "description": "Number of pieces per case (e.g., 200 / 400 / 500 pcs per case)",
+            "type": "single_line_text_field",
+            "validations": []
+        },
+        {
+            "namespace": "custom",
+            "key": "features",
+            "name": "Features",
+            "description": "Product features and benefits (multiple lines allowed)",
+            "type": "multi_line_text_field",
+            "validations": []
+        },
+        {
+            "namespace": "custom",
+            "key": "category",
+            "name": "Product Category",
+            "description": "Main product category",
+            "type": "single_line_text_field",
+            "validations": []
+        },
+        {
+            "namespace": "custom",
+            "key": "subcategory",
+            "name": "Product Subcategory",
+            "description": "Product subcategory",
+            "type": "single_line_text_field",
+            "validations": []
+        }
+    ],
+    "instructions": {
+        "how_to_add": [
+            "1. Go to Shopify Admin → Settings → Custom data → Products",
+            "2. Click 'Add definition'",
+            "3. For each metafield above:",
+            "   - Enter the Name (e.g., 'Material')",
+            "   - Enter the Namespace and key (e.g., 'custom.material')",
+            "   - Select the Type (e.g., 'Single line text')",
+            "   - Add the Description",
+            "   - Click 'Save'",
+            "4. Repeat for all 6 metafields"
+        ],
+        "alternative_method": [
+            "Use Shopify GraphQL API to bulk create metafield definitions.",
+            "See: https://shopify.dev/docs/api/admin-graphql/latest/mutations/metafieldDefinitionCreate"
+        ]
+    },
+    "variant_options_to_configure": {
+        "size": [
+            "6×6\"",
+            "7×5\"",
+            "8×8\"",
+            "9×6\"",
+            "9×9\"",
+            "6\"",
+            "7\"",
+            "9\"",
+            "10\""
+        ],
+        "compartments": [
+            "1",
+            "2",
+            "3"
+        ],
+        "color": [
+            "Natural",
+            "White",
+            "Black",
+            "Clear",
+            "Kraft",
+            "Silver",
+            "Off-White"
+        ],
+        "capacity": [
+            "4 oz",
+            "8 oz",
+            "12 oz",
+            "16 oz",
+            "24 oz",
+            "450 ml",
+            "650 ml",
+            "750 ml",
+            "1000 ml",
+            "1 oz",
+            "2 oz"
+        ],
+        "ply": [
+            "1-Ply",
+            "2-Ply",
+            "3-Ply"
+        ],
+        "type": [
+            "Fork",
+            "Spoon",
+            "Knife",
+            "Flat Lid",
+            "Dome Lid"
+        ],
+        "shape": [
+            "Rectangle",
+            "Round"
+        ],
+        "fold": [
+            "C-Fold",
+            "Z-Fold"
+        ],
+        "packaging": [
+            "Individual",
+            "Bulk Pack"
+        ],
+        "fragrance": [
+            "Unscented",
+            "Lemon",
+            "Aloe"
+        ]
+    }
+}
