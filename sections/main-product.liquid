@@ -243,69 +243,6 @@
                   </details>
                 </div>
               {%- when 'quantity_selector' -%}
-                <div class="product-metafield-badges" {{ block.shopify_attributes }}>
-                  <style>
-                    .product-metafield-badges {
-                      display: flex;
-                      flex-wrap: wrap;
-                      gap: 10px;
-                      margin-top: 1.5rem;
-                      margin-bottom: 1.5rem;
-                    }
-                    .pm-badge {
-                      display: inline-flex;
-                      align-items: center;
-                      gap: 6px;
-                      padding: 8px 14px;
-                      border-radius: 6px;
-                      font-size: 14px;
-                      font-weight: 600;
-                      line-height: 1;
-                    }
-                    .pm-badge-material {
-                      background-color: #F0FDF4;
-                      color: #166534;
-                      border: 1px solid #BBF7D0;
-                    }
-                    .pm-badge-case {
-                      background-color: #FFF7ED;
-                      color: #9A3412;
-                      border: 1px solid #FFEDD5;
-                    }
-                    .pm-badge-default {
-                      background-color: #F4F4F5;
-                      color: #3F3F46;
-                      border: 1px solid #E4E4E7;
-                    }
-                  </style>
-                  {%- for field in product.metafields.packaging -%}
-                    {%- assign key = field.first -%}
-                    {%- assign value = field.last -%}
-                    {%- if value != blank -%}
-                      {%- assign badge_class = 'pm-badge-default' -%}
-                      {%- if key == 'material' -%}
-                        {%- assign badge_class = 'pm-badge-material' -%}
-                      {%- elsif key == 'case_count' -%}
-                        {%- assign badge_class = 'pm-badge-case' -%}
-                      {%- endif -%}
-                      <span class="pm-badge {{ badge_class }}">
-                        {{ key | replace: '_', ' ' | capitalize }}: {{ value }}
-                      </span>
-                    {%- endif -%}
-                  {%- endfor -%}
-                  {%- for field in product.metafields.custom -%}
-                    {%- assign key = field.first -%}
-                    {%- assign value = field.last -%}
-                    {%- if key == 'short_description' -%}
-                      {%- continue -%}
-                    {%- endif -%}
-                    {%- if value != blank -%}
-                      <span class="pm-badge pm-badge-default">
-                        {{ key | replace: '_', ' ' | capitalize }}: {{ value }}
-                      </span>
-                    {%- endif -%}
-                  {%- endfor -%}
-                </div>
                 {%- if product.metafields.custom.short_description != blank -%}
                   <div class="product__short-description rte" style="margin-bottom: 1.5rem;">
                     {{ product.metafields.custom.short_description }}
