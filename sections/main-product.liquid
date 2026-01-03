@@ -555,6 +555,12 @@
                     show_pickup_availability: true
                   -%}
                 {% endif %}
+                
+                {%- comment -%} Product Specifications {%- endcomment -%}
+                <div style="margin-top: 2rem;">
+                  {% render 'product-metadata', product: product %}
+                </div>
+                
               {%- when 'rating' -%}
                 {%- if product.metafields.reviews.rating.value != blank -%}
                   <div class="rating-wrapper">
@@ -754,98 +760,107 @@
       </div>
     </div>
 
-    {%- comment -%} Product Description & Specifications Section {%- endcomment -%}
-    {%- if product.description != blank -%}
-      <div class="product-description-section">
+    {%- comment -%} Product Description Section {%- endcomment -%}
+    {%- if product.description != blank and section.settings.enable_description_section -%}
+      <div class="product-description-section" style="
+        margin-top: {{ section.settings.description_margin_top }}px;
+        margin-bottom: {{ section.settings.description_margin_bottom }}px;
+        background-color: {{ section.settings.description_bg_color }};
+        padding-top: {{ section.settings.description_padding_top }}px;
+        padding-bottom: {{ section.settings.description_padding_bottom }}px;
+      ">
         <div class="page-width">
           <div class="product-description-container">
-            {%- if product.description != blank -%}
-              <div class="product-description-content">
-                <h2 class="product-description-title">Product Description</h2>
-                <div class="product__description rte">
-                  {{ product.description }}
-                </div>
-              </div>
-            {%- endif -%}
-            
-            {%- comment -%} Product Metadata/Specifications {%- endcomment -%}
-            <div class="product-description-specs">
-              {% render 'product-metadata', product: product %}
+            <h2 class="product-description-title" style="
+              font-size: {{ section.settings.description_title_size }}px;
+              color: {{ section.settings.description_title_color }};
+              font-weight: {{ section.settings.description_title_weight }};
+              text-align: {{ section.settings.description_title_align }};
+            ">
+              {{ section.settings.description_title }}
+            </h2>
+            <div class="product__description rte" style="
+              font-size: {{ section.settings.description_text_size }}px;
+              color: {{ section.settings.description_text_color }};
+              line-height: {{ section.settings.description_line_height }};
+              text-align: {{ section.settings.description_text_align }};
+            ">
+              {{ product.description }}
             </div>
           </div>
         </div>
       </div>
 
       <style>
-        .product-description-section {
-          margin-top: 4rem;
-          margin-bottom: 4rem;
-          background: #ffffff;
-        }
-
         .product-description-container {
-          max-width: 1200px;
+          max-width: {{ section.settings.description_max_width }}px;
           margin: 0 auto;
           padding: 0 2rem;
         }
 
-        .product-description-content {
-          margin-bottom: 3rem;
-        }
-
         .product-description-title {
-          font-size: 2rem;
-          font-weight: 600;
+          margin-bottom: 2.5rem;
+          padding-bottom: 1.5rem;
+          border-bottom: {{ section.settings.description_title_border_width }}px solid {{ section.settings.description_title_border_color }};
+        }
+
+        .product__description h1,
+        .product__description h2,
+        .product__description h3,
+        .product__ h4,
+        .product__description h5,
+        .product__description h6 {
+          margin-top: 2.5rem;
+          margin-bottom: 1.25rem;
+          font-weight: 700;
+          color: {{ section.settings.description_heading_color }};
+        }
+
+        .product__description h2 {
+          font-size: calc({{ section.settings.description_text_size }}px * 1.75);
+        }
+
+        .product__description h3 {
+          font-size: calc({{ section.settings.description_text_size }}px * 1.5);
+        }
+
+        .product__description h4 {
+          font-size: calc({{ section.settings.description_text_size }}px * 1.25);
+        }
+
+        .product__description p {
           margin-bottom: 1.5rem;
-          color: #1a1a1a;
-          padding-bottom: 1rem;
-          border-bottom: 2px solid #e5e7eb;
         }
 
-        .product-description-content .product__description {
-          font-size: 1rem;
-          line-height: 1.8;
-          color: #4b5563;
+        .product__description ul,
+        .product__description ol {
+          margin-left: 2rem;
+          margin-bottom: 1.5rem;
         }
 
-        .product-description-content .product__description h1,
-        .product-description-content .product__description h2,
-        .product-description-content .product__description h3,
-        .product-description-content .product__description h4 {
-          margin-top: 2rem;
-          margin-bottom: 1rem;
-          color: #1f2937;
+        .product__description li {
+          margin-bottom: 0.75rem;
         }
 
-        .product-description-content .product__description p {
-          margin-bottom: 1rem;
+        .product__description strong,
+        .product__description b {
+          font-weight: 700;
+          color: {{ section.settings.description_heading_color }};
         }
 
-        .product-description-content .product__description ul,
-        .product-description-content .product__description ol {
-          margin-left: 1.5rem;
-          margin-bottom: 1rem;
+        .product__description a {
+          color: {{ section.settings.description_link_color }};
+          text-decoration: underline;
         }
 
-        .product-description-content .product__description li {
-          margin-bottom: 0.5rem;
-        }
-
-        .product-description-specs {
-          margin-top: 2rem;
-        }
-
-        /* Override metadata styles for this section */
-        .product-description-specs .product-metadata {
-          margin: 0;
-          background: #f9fafb;
-          border: 1px solid #e5e7eb;
+        .product__description a:hover {
+          opacity: 0.8;
         }
 
         @media (max-width: 768px) {
           .product-description-section {
-            margin-top: 2rem;
-            margin-bottom: 2rem;
+            padding-top: calc({{ section.settings.description_padding_top }}px * 0.6) !important;
+            padding-bottom: calc({{ section.settings.description_padding_bottom }}px * 0.6) !important;
           }
 
           .product-description-container {
@@ -853,7 +868,11 @@
           }
 
           .product-description-title {
-            font-size: 1.5rem;
+            font-size: calc({{ section.settings.description_title_size }}px * 0.75) !important;
+          }
+
+          .product__description {
+            font-size: calc({{ section.settings.description_text_size }}px * 0.9) !important;
           }
         }
       </style>
@@ -2441,7 +2460,226 @@
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
+    },
+    {
+      "type": "header",
+      "content": "Product Description Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_description_section",
+      "label": "Enable description section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "description_title",
+      "label": "Section title",
+      "default": "Product Description"
+    },
+    {
+      "type": "range",
+      "id": "description_title_size",
+      "min": 16,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Title font size",
       "default": 36
+    },
+    {
+      "type": "color",
+      "id": "description_title_color",
+      "label": "Title color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "select",
+      "id": "description_title_weight",
+      "label": "Title font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "select",
+      "id": "description_title_align",
+      "label": "Title alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "description_title_border_width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Title border width",
+      "default": 3
+    },
+    {
+      "type": "color",
+      "id": "description_title_border_color",
+      "label": "Title border color",
+      "default": "#7aae5c"
+    },
+    {
+      "type": "range",
+      "id": "description_text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text font size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "description_text_color",
+      "label": "Text color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "description_heading_color",
+      "label": "Headings color (H2-H6)",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "description_link_color",
+      "label": "Link color",
+      "default": "#7aae5c"
+    },
+    {
+      "type": "select",
+      "id": "description_line_height",
+      "label": "Line height",
+      "options": [
+        {
+          "value": "1.4",
+          "label": "Tight (1.4)"
+        },
+        {
+          "value": "1.6",
+          "label": "Normal (1.6)"
+        },
+        {
+          "value": "1.8",
+          "label": "Relaxed (1.8)"
+        },
+        {
+          "value": "2.0",
+          "label": "Loose (2.0)"
+        }
+      ],
+      "default": "1.8"
+    },
+    {
+      "type": "select",
+      "id": "description_text_align",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "justify",
+          "label": "Justify"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "description_max_width",
+      "min": 800,
+      "max": 1400,
+      "step": 50,
+      "unit": "px",
+      "label": "Maximum content width",
+      "default": 1200
+    },
+    {
+      "type": "color",
+      "id": "description_bg_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "description_margin_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "description_margin_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin bottom",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "description_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "description_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 40
     }
   ]
 }
