@@ -761,7 +761,7 @@
     </div>
 
     {%- comment -%} Product Description Section {%- endcomment -%}
-    {%- if product.description != blank and section.settings.enable_description_section -%}
+    {%- if product.description != blank and section.settings.enable_description_section != false -%}
       <div class="product-description-section" style="
         margin-top: {{ section.settings.description_margin_top }}px;
         margin-bottom: {{ section.settings.description_margin_bottom }}px;
