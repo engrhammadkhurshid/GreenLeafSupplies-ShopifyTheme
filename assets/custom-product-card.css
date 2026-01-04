@@ -371,42 +371,4 @@ a.card__button:after {
   z-index: 2;
 }
 
-/* 7. Full Card Clickability */
-.card-link-overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  content: '';
-  cursor: pointer;
-}
 
-/* Ensure the card content container allows clicks to pass through to the overlay */
-.product-card-wrapper .card__content {
-  pointer-events: none;
-  position: relative;
-  z-index: 2; /* Keep above overlay visually */
-}
-
-/* Re-enable clicks on interactive elements inside the card */
-.product-card-wrapper .card__button,
-.product-card-wrapper .card__heading a,
-.product-card-wrapper .card-information a,
-.product-card-wrapper .card__badge,
-.product-card-wrapper .card__sku-badge {
-  pointer-events: auto;
-  position: relative;
-  z-index: 3;
-}
-
-/* Ensure image area doesn't block clicks (it's usually fine but good to be safe) */
-.product-card-wrapper .card__inner {
-  pointer-events: none;
-}
-
-/* But if there are buttons on the image (like secondary image or quick add), re-enable them */
-.product-card-wrapper .card__inner .quick-add {
-  pointer-events: auto;
-}
