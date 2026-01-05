@@ -3633,3 +3633,10 @@ h3, h4, h5, .h3, .h4, .h5 {
   font-family: var(--font-button-family);
   font-weight: 500;
 }
+
+/* Efficiency: Content Visibility for Below-Fold Sections */
+.shopify-section + .shopify-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 800px; 
+}
+

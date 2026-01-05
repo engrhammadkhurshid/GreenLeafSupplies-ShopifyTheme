@@ -37,7 +37,7 @@
               width="{{ section.settings.image.width }}"
               height="{{ section.settings.image.height }}"
               class="gls-about__image"
-              style="height: {{ section.settings.image_height }}px; object-fit: {{ section.settings.image_object_fit }};"
+              style="height: {{ section.settings.image_height }}px; object-fit: cover;"
             >
           {%- else -%}
             {{ 'image' | placeholder_svg_tag: 'gls-about__image gls-about__image--placeholder' }}
@@ -69,6 +69,13 @@
     </div>
   </div>
 </section>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    content-visibility: auto;
+    contain-intrinsic-size: 1000px; 
+  }
+{%- endstyle -%}
 
 {% schema %}
 {
