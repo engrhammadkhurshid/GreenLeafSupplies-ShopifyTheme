@@ -8,9 +8,11 @@
   Usage:
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
+
+{{ 'gls-custom-sizes.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'gls-custom-sizes.js' | asset_url }}" defer="defer"></script>
+
 {%- unless product.has_only_default_variant -%}
-  {{ 'gls-custom-sizes.css' | asset_url | stylesheet_tag }}
-  <script src="{{ 'gls-custom-sizes.js' | asset_url }}" defer="defer"></script>
   <variant-selects
     id="variant-selects-{{ section.id }}"
     data-section="{{ section.id }}"
@@ -145,4 +147,33 @@
       {{ product.selected_or_first_available_variant | json }}
     </script>
   </variant-selects>
+
+{%- else -%}
+  {%- comment -%}
+    Fallback for products without variants (Simple Products):
+    Forcefully render a 'Size' option with just the Custom Size button.
+  {%- endcomment -%}
+  <fieldset class="js product-form__input product-form__input--pill">
+    <legend class="form__label">Size/Capacity:</legend>
+    <button type="button" class="gls-custom-size-btn" id="CustomSizeBtn-simple-{{ section.id }}">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right:4px; vertical-align:middle;">
+        <path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+      </svg>
+      Custom Size
+    </button>
+
+    <div class="gls-custom-size-input-row" data-section-id="simple-{{ section.id }}">
+      <label for="CustomSizeInput-simple-{{ section.id }}">Your size:</label>
+      <input
+        type="text"
+        id="CustomSizeInput-simple-{{ section.id }}"
+        class="gls-custom-size-text"
+        placeholder="e.g. 15oz, 450ml"
+        autocomplete="off"
+      >
+    </div>
+    <p class="gls-custom-size-hint">
+      Enter your desired size above. When you click <strong>Get A Quote</strong> or <strong>Buy Now</strong>, your custom size will be included.
+    </p>
+  </fieldset>
 {%- endunless -%}
