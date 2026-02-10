@@ -168,6 +168,23 @@
             <input class="gls-form-input" type="text" id="ContactForm-company" name="contact[Company]" placeholder="{{ section.settings.placeholder_company }}" {% unless section.settings.required_company == false %}required{% endunless %}>
           </div>
 
+          <!-- Product of Interest (auto-populated from URL) -->
+          <div class="gls-form-group gls-form-group--full" id="QuoteForm-ProductInfo-Wrapper">
+            <label class="gls-form-label" for="ContactForm-product-interest">
+              Product of Interest
+            </label>
+            <div class="gls-product-interest-field" id="QuoteForm-ProductInterest-Container">
+              <input class="gls-form-input" type="text" id="ContactForm-product-interest" name="contact[Product of Interest]" placeholder="Enter product name or arrive from a product page" readonly>
+              <input type="hidden" id="ContactForm-product-url" name="contact[Product URL]" value="">
+              <button type="button" class="gls-product-interest-clear" id="QuoteForm-ClearProduct" aria-label="Clear product selection" style="display:none;">
+                ✕
+              </button>
+            </div>
+            <div class="gls-product-interest-details" id="QuoteForm-ProductDetails" style="display:none;">
+              <a href="#" id="QuoteForm-ProductLink" target="_blank" rel="noopener" class="gls-product-interest-link">View Product →</a>
+            </div>
+          </div>
+
           <!-- Product Category -->
           <div class="gls-form-group">
             <label class="gls-form-label" for="ContactForm-category">
@@ -220,8 +237,55 @@
   </div>
 </div>
 
+<style>
+  .gls-product-interest-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .gls-product-interest-field input[readonly] {
+    background-color: #f8faf6;
+    cursor: default;
+    padding-right: 40px;
+  }
+  .gls-product-interest-field .gls-product-interest-clear {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #999;
+    padding: 4px 8px;
+    line-height: 1;
+    border-radius: 50%;
+    transition: all 0.2s;
+  }
+  .gls-product-interest-field .gls-product-interest-clear:hover {
+    color: #333;
+    background-color: rgba(0,0,0,0.05);
+  }
+  .gls-product-interest-details {
+    margin-top: 6px;
+  }
+  .gls-product-interest-link {
+    font-size: 13px;
+    color: #7AAE5C;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+  .gls-product-interest-link:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
+</style>
+
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    /* ── Form submit handler ── */
     var form = document.getElementById('QuoteForm');
     var button = document.getElementById('QuoteFormSubmit');
     
@@ -229,13 +293,11 @@
       var buttonText = button.querySelector('.gls-form-btn-text');
       
       form.addEventListener('submit', function(e) {
-        // Explicitly check validity just in case
         if (!form.checkValidity()) {
           e.preventDefault();
           return;
         }
 
-        // Only show loading state if form is valid (browser validation usually handles this before submit event)
         button.setAttribute('disabled', 'disabled');
         if (buttonText) {
           buttonText.textContent = 'Sending...';
@@ -245,6 +307,100 @@
         spinner.className = 'gls-spinner';
         button.appendChild(spinner);
       });
+    }
+
+    /* ── Product of Interest auto-population ── */
+    var params = new URLSearchParams(window.location.search);
+    var productName = params.get('product');
+    var productHandle = params.get('handle');
+    var productVariant = params.get('variant');
+
+    var productInput = document.getElementById('ContactForm-product-interest');
+    var productUrlInput = document.getElementById('ContactForm-product-url');
+    var clearBtn = document.getElementById('QuoteForm-ClearProduct');
+    var detailsDiv = document.getElementById('QuoteForm-ProductDetails');
+    var productLink = document.getElementById('QuoteForm-ProductLink');
+
+    if (!productInput) return;
+
+    /**
+     * Sets the product field with the given info.
+     */
+    function setProductInfo(name, url, variant) {
+      var displayValue = name || '';
+      if (variant && variant !== 'Default Title') {
+        displayValue += ' — ' + variant;
+      }
+
+      productInput.value = displayValue;
+      productInput.setAttribute('readonly', 'readonly');
+      productInput.style.backgroundColor = '#f8faf6';
+
+      if (url) {
+        productUrlInput.value = window.location.origin + url;
+        productLink.href = url;
+        detailsDiv.style.display = 'block';
+      }
+
+      clearBtn.style.display = 'inline-block';
+    }
+
+    /**
+     * Clears the product field so the user can type freely.
+     */
+    function clearProductInfo() {
+      productInput.value = '';
+      productInput.removeAttribute('readonly');
+      productInput.style.backgroundColor = '';
+      productInput.placeholder = 'Type a product name...';
+      productInput.focus();
+
+      productUrlInput.value = '';
+      clearBtn.style.display = 'none';
+      detailsDiv.style.display = 'none';
+    }
+
+    clearBtn.addEventListener('click', clearProductInfo);
+
+    /* If a product handle is in the URL, fetch details from Shopify AJAX API */
+    if (productHandle) {
+      /* Set the name immediately from URL param (instant, no loading delay) */
+      setProductInfo(productName, '/products/' + productHandle, productVariant);
+
+      /* Then enhance with live data from AJAX API (optional enrichment) */
+      fetch('/products/' + encodeURIComponent(productHandle) + '.json')
+        .then(function(res) { return res.ok ? res.json() : null; })
+        .then(function(data) {
+          if (data && data.product) {
+            var p = data.product;
+            var fullName = p.title;
+            var url = '/products/' + p.handle;
+
+            /* Use the first matching variant title if variant param exists */
+            var variantTitle = productVariant;
+            if (productVariant && p.variants && p.variants.length > 0) {
+              for (var i = 0; i < p.variants.length; i++) {
+                if (p.variants[i].title === productVariant) {
+                  variantTitle = p.variants[i].title;
+                  break;
+                }
+              }
+            }
+
+            setProductInfo(fullName, url, variantTitle);
+          }
+        })
+        .catch(function() {
+          /* Graceful degradation: keep the name from URL params */
+        });
+
+    } else if (productName) {
+      /* Fallback: only product name in URL (no handle) */
+      setProductInfo(productName, null, productVariant);
+    } else {
+      /* No product context: make field normally editable */
+      productInput.removeAttribute('readonly');
+      productInput.style.backgroundColor = '';
     }
   });
 </script>
