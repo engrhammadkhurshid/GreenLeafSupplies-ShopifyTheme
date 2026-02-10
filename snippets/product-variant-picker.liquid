@@ -9,6 +9,10 @@
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
 {%- unless product.has_only_default_variant -%}
+  {%- if product.metafields.custom.custom_sizes != blank -%}
+    {{ 'gls-custom-sizes.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'gls-custom-sizes.js' | asset_url }}" defer="defer"></script>
+  {%- endif -%}
   <variant-selects
     id="variant-selects-{{ section.id }}"
     data-section="{{ section.id }}"
@@ -51,6 +55,62 @@
             block: block,
             picker_type: picker_type
           %}
+
+          {%- comment -%} Custom Sizes pill — only shows for Size options when metafield exists {%- endcomment -%}
+          {%- assign option_name_lower = option.name | downcase -%}
+          {%- if option_name_lower == 'size' and product.metafields.custom.custom_sizes != blank -%}
+            {%- assign custom_sizes_list = product.metafields.custom.custom_sizes | newline_to_br | split: '<br />' -%}
+            <div class="gls-custom-sizes-wrapper">
+              <button
+                type="button"
+                class="gls-custom-sizes-toggle"
+                id="CustomSizesToggle-{{ section.id }}"
+                aria-expanded="false"
+                aria-controls="CustomSizesList-{{ section.id }}"
+                aria-label="Show custom sizes for {{ product.title | escape }}"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                  <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                </svg>
+                Custom Sizes
+                <svg class="gls-custom-sizes-caret" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+
+              <div
+                class="gls-custom-sizes-dropdown"
+                id="CustomSizesList-{{ section.id }}"
+                role="listbox"
+                aria-label="Available custom sizes"
+                style="display: none;"
+              >
+                <div class="gls-custom-sizes-header">
+                  <span class="gls-custom-sizes-header-text">Available Custom Sizes</span>
+                  <span class="gls-custom-sizes-header-hint">Click a size to request a quote</span>
+                </div>
+                <ul class="gls-custom-sizes-list">
+                  {%- for custom_size in custom_sizes_list -%}
+                    {%- assign trimmed_size = custom_size | strip -%}
+                    {%- if trimmed_size != blank -%}
+                      <li class="gls-custom-size-item" role="option">
+                        <a
+                          href="/pages/request-a-quote?product={{ product.title | url_encode }}&handle={{ product.handle | url_encode }}&product_id={{ product.id }}&variant={{ trimmed_size | url_encode }}"
+                          class="gls-custom-size-link"
+                          aria-label="Request quote for {{ product.title | escape }} in size {{ trimmed_size | escape }}"
+                        >
+                          <span class="gls-custom-size-name">{{ trimmed_size }}</span>
+                          <span class="gls-custom-size-quote">Get Quote →</span>
+                        </a>
+                      </li>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </ul>
+              </div>
+            </div>
+          {%- endif -%}
         </fieldset>
       {%- else -%}
         <div class="product-form__input product-form__input--dropdown">
@@ -83,6 +143,62 @@
               {{- 'icon-caret.svg' | inline_asset_content -}}
             </span>
           </div>
+
+          {%- comment -%} Custom Sizes — also for dropdown picker type {%- endcomment -%}
+          {%- assign option_name_lower_dd = option.name | downcase -%}
+          {%- if option_name_lower_dd == 'size' and product.metafields.custom.custom_sizes != blank -%}
+            {%- assign custom_sizes_list_dd = product.metafields.custom.custom_sizes | newline_to_br | split: '<br />' -%}
+            <div class="gls-custom-sizes-wrapper" style="margin-top: 10px;">
+              <button
+                type="button"
+                class="gls-custom-sizes-toggle"
+                id="CustomSizesToggle-dd-{{ section.id }}"
+                aria-expanded="false"
+                aria-controls="CustomSizesList-dd-{{ section.id }}"
+                aria-label="Show custom sizes for {{ product.title | escape }}"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                  <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                </svg>
+                Custom Sizes
+                <svg class="gls-custom-sizes-caret" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+
+              <div
+                class="gls-custom-sizes-dropdown"
+                id="CustomSizesList-dd-{{ section.id }}"
+                role="listbox"
+                aria-label="Available custom sizes"
+                style="display: none;"
+              >
+                <div class="gls-custom-sizes-header">
+                  <span class="gls-custom-sizes-header-text">Available Custom Sizes</span>
+                  <span class="gls-custom-sizes-header-hint">Click a size to request a quote</span>
+                </div>
+                <ul class="gls-custom-sizes-list">
+                  {%- for custom_size in custom_sizes_list_dd -%}
+                    {%- assign trimmed_size_dd = custom_size | strip -%}
+                    {%- if trimmed_size_dd != blank -%}
+                      <li class="gls-custom-size-item" role="option">
+                        <a
+                          href="/pages/request-a-quote?product={{ product.title | url_encode }}&handle={{ product.handle | url_encode }}&product_id={{ product.id }}&variant={{ trimmed_size_dd | url_encode }}"
+                          class="gls-custom-size-link"
+                          aria-label="Request quote for {{ product.title | escape }} in size {{ trimmed_size_dd | escape }}"
+                        >
+                          <span class="gls-custom-size-name">{{ trimmed_size_dd }}</span>
+                          <span class="gls-custom-size-quote">Get Quote →</span>
+                        </a>
+                      </li>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </ul>
+              </div>
+            </div>
+          {%- endif -%}
         </div>
       {%- endif -%}
     {%- endfor -%}
