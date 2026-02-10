@@ -56,8 +56,8 @@
             picker_type: picker_type
           %}
 
-          {%- comment -%} Custom Size — user-typed input pill (only for Size options) {%- endcomment -%}
-          {%- if option_name_lower == 'size' -%}
+          {%- comment -%} Custom Size — user-typed input pill (only for Size-like options) {%- endcomment -%}
+          {%- if option_name_lower == 'size' or option_name_lower == 'capacity' or option_name_lower == 'dimensions' or option_name_lower == 'volume' -%}
             <span class="gls-custom-size-pill">
               <input
                 type="radio"
@@ -121,8 +121,8 @@
             </span>
           </div>
 
-          {%- comment -%} Custom Size — user-typed input for dropdown picker (Size only) {%- endcomment -%}
-          {%- if option_name_lower == 'size' -%}
+          {%- comment -%} Custom Size — user-typed input for dropdown picker (Size-like options) {%- endcomment -%}
+          {%- if option_name_lower == 'size' or option_name_lower == 'capacity' or option_name_lower == 'dimensions' or option_name_lower == 'volume' -%}
             <div style="margin-top: 10px;">
               <span class="gls-custom-size-pill">
                 <input
