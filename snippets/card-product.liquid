@@ -182,7 +182,7 @@
             <span class="card__moq-label">MOQ: {{ moq }}</span>
 
             {% if card_product.price == 0 %}
-              <a href="/pages/request-a-quote?product={{ card_product.title | url_encode }}&handle={{ card_product.handle | url_encode }}" class="card__button" aria-label="Request quote for {{ card_product.title | escape }}">
+              <a href="/pages/request-a-quote?product={{ card_product.title | url_encode }}&handle={{ card_product.handle | url_encode }}&product_id={{ card_product.id }}" class="card__button" aria-label="Request quote for {{ card_product.title | escape }}">
                 Request Quote
               </a>
             {% else %}

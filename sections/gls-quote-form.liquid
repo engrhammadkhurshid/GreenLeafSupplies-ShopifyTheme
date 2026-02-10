@@ -176,6 +176,8 @@
             <div class="gls-product-interest-field" id="QuoteForm-ProductInterest-Container">
               <input class="gls-form-input" type="text" id="ContactForm-product-interest" name="contact[Product of Interest]" placeholder="Enter product name or arrive from a product page" readonly>
               <input type="hidden" id="ContactForm-product-url" name="contact[Product URL]" value="">
+              <input type="hidden" id="ContactForm-product-id" name="contact[Product ID]" value="">
+              <input type="hidden" id="ContactForm-variant-id" name="contact[Variant ID]" value="">
               <button type="button" class="gls-product-interest-clear" id="QuoteForm-ClearProduct" aria-label="Clear product selection" style="display:none;">
                 ✕
               </button>
@@ -314,9 +316,13 @@
     var productName = params.get('product');
     var productHandle = params.get('handle');
     var productVariant = params.get('variant');
+    var productId = params.get('product_id');
+    var variantId = params.get('variant_id');
 
     var productInput = document.getElementById('ContactForm-product-interest');
     var productUrlInput = document.getElementById('ContactForm-product-url');
+    var productIdInput = document.getElementById('ContactForm-product-id');
+    var variantIdInput = document.getElementById('ContactForm-variant-id');
     var clearBtn = document.getElementById('QuoteForm-ClearProduct');
     var detailsDiv = document.getElementById('QuoteForm-ProductDetails');
     var productLink = document.getElementById('QuoteForm-ProductLink');
@@ -326,7 +332,7 @@
     /**
      * Sets the product field with the given info.
      */
-    function setProductInfo(name, url, variant) {
+    function setProductInfo(name, url, variant, pId, vId) {
       var displayValue = name || '';
       if (variant && variant !== 'Default Title') {
         displayValue += ' — ' + variant;
@@ -342,6 +348,9 @@
         detailsDiv.style.display = 'block';
       }
 
+      if (pId) productIdInput.value = pId;
+      if (vId) variantIdInput.value = vId;
+
       clearBtn.style.display = 'inline-block';
     }
 
@@ -356,6 +365,8 @@
       productInput.focus();
 
       productUrlInput.value = '';
+      productIdInput.value = '';
+      variantIdInput.value = '';
       clearBtn.style.display = 'none';
       detailsDiv.style.display = 'none';
     }
@@ -365,7 +376,7 @@
     /* If a product handle is in the URL, fetch details from Shopify AJAX API */
     if (productHandle) {
       /* Set the name immediately from URL param (instant, no loading delay) */
-      setProductInfo(productName, '/products/' + productHandle, productVariant);
+      setProductInfo(productName, '/products/' + productHandle, productVariant, productId, variantId);
 
       /* Then enhance with live data from AJAX API (optional enrichment) */
       fetch('/products/' + encodeURIComponent(productHandle) + '.json')
@@ -375,19 +386,26 @@
             var p = data.product;
             var fullName = p.title;
             var url = '/products/' + p.handle;
+            var resolvedProductId = productId || String(p.id);
 
-            /* Use the first matching variant title if variant param exists */
+            /* Use the first matching variant title and ID if variant param exists */
             var variantTitle = productVariant;
-            if (productVariant && p.variants && p.variants.length > 0) {
+            var resolvedVariantId = variantId || '';
+            if (p.variants && p.variants.length > 0) {
               for (var i = 0; i < p.variants.length; i++) {
-                if (p.variants[i].title === productVariant) {
+                if (productVariant && p.variants[i].title === productVariant) {
                   variantTitle = p.variants[i].title;
+                  resolvedVariantId = resolvedVariantId || String(p.variants[i].id);
                   break;
                 }
               }
+              /* If no variant matched or no variant param, use first variant */
+              if (!resolvedVariantId && p.variants[0]) {
+                resolvedVariantId = String(p.variants[0].id);
+              }
             }
 
-            setProductInfo(fullName, url, variantTitle);
+            setProductInfo(fullName, url, variantTitle, resolvedProductId, resolvedVariantId);
           }
         })
         .catch(function() {
@@ -396,7 +414,7 @@
 
     } else if (productName) {
       /* Fallback: only product name in URL (no handle) */
-      setProductInfo(productName, null, productVariant);
+      setProductInfo(productName, null, productVariant, productId, variantId);
     } else {
       /* No product context: make field normally editable */
       productInput.removeAttribute('readonly');

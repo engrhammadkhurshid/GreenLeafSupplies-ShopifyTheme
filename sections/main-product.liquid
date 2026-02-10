@@ -524,7 +524,7 @@
               {%- when 'buy_buttons' -%}
                 {% if product.price == 0 %}
                   <div class="product-form__buttons" {{ block.shopify_attributes }}>
-                    <a href="/pages/request-a-quote?product={{ product.title | url_encode }}&handle={{ product.handle | url_encode }}&variant={{ product.selected_or_first_available_variant.title | url_encode }}" class="product-form__submit button button--full-width button--primary">
+                    <a href="/pages/request-a-quote?product={{ product.title | url_encode }}&handle={{ product.handle | url_encode }}&variant={{ product.selected_or_first_available_variant.title | url_encode }}&product_id={{ product.id }}&variant_id={{ product.selected_or_first_available_variant.id }}" class="product-form__submit button button--full-width button--primary">
                       Request a Quote
                     </a>
                   </div>
