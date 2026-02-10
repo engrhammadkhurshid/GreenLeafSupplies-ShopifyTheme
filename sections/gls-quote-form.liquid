@@ -187,6 +187,14 @@
             </div>
           </div>
 
+          <!-- Custom Size Requested (auto-populated from URL) -->
+          <div class="gls-form-group gls-form-group--full" id="QuoteForm-CustomSize-Wrapper" style="display:none;">
+            <label class="gls-form-label" for="ContactForm-custom-size">
+              Custom Size Requested
+            </label>
+            <input class="gls-form-input" type="text" id="ContactForm-custom-size" name="contact[Custom Size Requested]" placeholder="Custom size" readonly style="background-color: #f8faf6; font-weight: 600; color: #7aae5c;">
+          </div>
+
           <!-- Product Category -->
           <div class="gls-form-group">
             <label class="gls-form-label" for="ContactForm-category">
@@ -318,6 +326,7 @@
     var productVariant = params.get('variant');
     var productId = params.get('product_id');
     var variantId = params.get('variant_id');
+    var customSize = params.get('custom_size');
 
     var productInput = document.getElementById('ContactForm-product-interest');
     var productUrlInput = document.getElementById('ContactForm-product-url');
@@ -328,6 +337,14 @@
     var productLink = document.getElementById('QuoteForm-ProductLink');
 
     if (!productInput) return;
+
+    /* ── Custom Size field ── */
+    var customSizeWrapper = document.getElementById('QuoteForm-CustomSize-Wrapper');
+    var customSizeInput = document.getElementById('ContactForm-custom-size');
+    if (customSize && customSize.trim() && customSizeWrapper && customSizeInput) {
+      customSizeInput.value = customSize.trim();
+      customSizeWrapper.style.display = 'block';
+    }
 
     /**
      * Sets the product field with the given info.

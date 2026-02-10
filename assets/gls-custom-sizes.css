@@ -1,180 +1,141 @@
 /* ============================================
-   GLS Custom Sizes — Pill & Dropdown
+   GLS Custom Size — User Input Pill & Field
    ============================================ */
 
-/* Wrapper keeps dropdown positioned relative to the toggle */
-.gls-custom-sizes-wrapper {
-  position: relative;
-  display: inline-block;
-  vertical-align: top;
-  margin-top: 4px;
+/* ── Custom Size Pill (appears after variant pills) ── */
+.gls-custom-size-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    vertical-align: top;
 }
 
-/* ── Toggle Button (Pill) ── */
-.gls-custom-sizes-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  border: 1.5px dashed #7aae5c;
-  border-radius: 40px;
-  background-color: rgba(122, 174, 92, 0.06);
-  color: #7aae5c;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  white-space: nowrap;
-  line-height: 1;
+.gls-custom-size-pill input[type="radio"] {
+    display: none;
 }
 
-.gls-custom-sizes-toggle:hover {
-  background-color: rgba(122, 174, 92, 0.14);
-  border-color: #6a9e4c;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(122, 174, 92, 0.18);
+.gls-custom-size-pill label {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 16px;
+    border: 1.5px dashed #7aae5c;
+    border-radius: 40px;
+    background-color: rgba(122, 174, 92, 0.06);
+    color: #7aae5c;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+    line-height: 1;
 }
 
-.gls-custom-sizes-toggle:focus-visible {
-  outline: 2px solid #7aae5c;
-  outline-offset: 2px;
+.gls-custom-size-pill label:hover {
+    background-color: rgba(122, 174, 92, 0.14);
+    border-color: #6a9e4c;
+    box-shadow: 0 2px 8px rgba(122, 174, 92, 0.18);
 }
 
-.gls-custom-sizes-toggle[aria-expanded="true"] {
-  background-color: #7aae5c;
-  color: #fff;
-  border-style: solid;
+.gls-custom-size-pill input[type="radio"]:checked+label {
+    background-color: #7aae5c;
+    color: #ffffff;
+    border-style: solid;
+    border-color: #7aae5c;
 }
 
-.gls-custom-sizes-toggle[aria-expanded="true"] .gls-custom-sizes-caret {
-  transform: rotate(180deg);
+.gls-custom-size-pill input[type="radio"]:focus-visible+label {
+    outline: 2px solid #7aae5c;
+    outline-offset: 2px;
 }
 
-.gls-custom-sizes-caret {
-  transition: transform 0.25s ease;
-  margin-left: 2px;
+/* ── Custom Size Input Field ── */
+.gls-custom-size-input-row {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #f0f9eb 0%, #f8faf6 100%);
+    border: 1px solid #d4e8c8;
+    border-radius: 10px;
+    animation: glsCustomSizeFadeIn 0.25s ease-out;
 }
 
-/* ── Dropdown Panel ── */
-.gls-custom-sizes-dropdown {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  z-index: 100;
-  min-width: 280px;
-  max-width: 380px;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
-  animation: glsCustomSizesSlideIn 0.2s ease-out;
-  overflow: hidden;
+.gls-custom-size-input-row.is-visible {
+    display: flex;
 }
 
-@keyframes glsCustomSizesSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes glsCustomSizeFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* ── Dropdown Header ── */
-.gls-custom-sizes-header {
-  padding: 12px 16px;
-  background: linear-gradient(135deg, #f0f9eb 0%, #f8faf6 100%);
-  border-bottom: 1px solid #e5e7eb;
+.gls-custom-size-input-row label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #495057;
+    white-space: nowrap;
 }
 
-.gls-custom-sizes-header-text {
-  display: block;
-  font-size: 13px;
-  font-weight: 700;
-  color: #1a1a1a;
-  letter-spacing: 0.02em;
+.gls-custom-size-input-row input[type="text"] {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1.5px solid #c5ddb5;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s;
+    min-width: 0;
+    max-width: 200px;
 }
 
-.gls-custom-sizes-header-hint {
-  display: block;
-  font-size: 11px;
-  color: #888;
-  margin-top: 2px;
+.gls-custom-size-input-row input[type="text"]:focus {
+    border-color: #7aae5c;
+    box-shadow: 0 0 0 3px rgba(122, 174, 92, 0.15);
 }
 
-/* ── Size List ── */
-.gls-custom-sizes-list {
-  list-style: none;
-  margin: 0;
-  padding: 6px 0;
-  max-height: 260px;
-  overflow-y: auto;
+.gls-custom-size-input-row input[type="text"]::placeholder {
+    color: #aaa;
+    font-style: italic;
 }
 
-.gls-custom-sizes-list::-webkit-scrollbar {
-  width: 4px;
+.gls-custom-size-hint {
+    font-size: 11px;
+    color: #888;
+    margin-top: 6px;
+    display: none;
 }
 
-.gls-custom-sizes-list::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 4px;
-}
-
-.gls-custom-size-item {
-  margin: 0;
-  padding: 0;
-}
-
-.gls-custom-size-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 16px;
-  text-decoration: none;
-  color: #333;
-  font-size: 14px;
-  transition: all 0.15s ease;
-  border-left: 3px solid transparent;
-}
-
-.gls-custom-size-link:hover {
-  background-color: #f0f9eb;
-  color: #2d5016;
-  border-left-color: #7aae5c;
-}
-
-.gls-custom-size-name {
-  font-weight: 500;
-}
-
-.gls-custom-size-quote {
-  font-size: 12px;
-  color: #7aae5c;
-  font-weight: 600;
-  opacity: 0;
-  transform: translateX(-4px);
-  transition: all 0.2s ease;
-  white-space: nowrap;
-}
-
-.gls-custom-size-link:hover .gls-custom-size-quote {
-  opacity: 1;
-  transform: translateX(0);
+.gls-custom-size-hint.is-visible {
+    display: block;
 }
 
 /* ── Responsive ── */
 @media (max-width: 749px) {
-  .gls-custom-sizes-dropdown {
-    min-width: 240px;
-    max-width: calc(100vw - 40px);
-    right: 0;
-    left: auto;
-  }
+    .gls-custom-size-pill label {
+        font-size: 13px;
+        padding: 7px 14px;
+    }
 
-  .gls-custom-sizes-toggle {
-    font-size: 13px;
-    padding: 7px 14px;
-  }
+    .gls-custom-size-input-row {
+        flex-wrap: wrap;
+    }
+
+    .gls-custom-size-input-row input[type="text"] {
+        max-width: 100%;
+    }
 }
