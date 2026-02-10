@@ -56,23 +56,14 @@
             picker_type: picker_type
           %}
 
-          {%- comment -%} Custom Size — user-typed input pill (only for Size-like options) {%- endcomment -%}
+          {%- comment -%} Custom Size Button (Pill) — only for Size-like options {%- endcomment -%}
           {%- if option_name_lower == 'size' or option_name_lower == 'capacity' or option_name_lower == 'dimensions' or option_name_lower == 'volume' -%}
-            <span class="gls-custom-size-pill">
-              <input
-                type="radio"
-                id="CustomSizeRadio-{{ section.id }}"
-                name="{{ option.name }}-{{ option.position }}"
-                value="Custom Size"
-                form="{{ product_form_id }}"
-              >
-              <label for="CustomSizeRadio-{{ section.id }}">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
-                </svg>
-                Custom Size
-              </label>
-            </span>
+            <button type="button" class="gls-custom-size-btn" id="CustomSizeBtn-{{ section.id }}-{{ forloop.index }}">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right:4px; vertical-align:middle;">
+                <path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+              </svg>
+              Custom Size
+            </button>
 
             <div class="gls-custom-size-input-row" data-section-id="{{ section.id }}">
               <label for="CustomSizeInput-{{ section.id }}">Your size:</label>
@@ -80,7 +71,7 @@
                 type="text"
                 id="CustomSizeInput-{{ section.id }}"
                 class="gls-custom-size-text"
-                placeholder="e.g. 15oz, 250ml, 9x12in"
+                placeholder="e.g. 15oz, 450ml"
                 autocomplete="off"
               >
             </div>
@@ -121,23 +112,15 @@
             </span>
           </div>
 
-          {%- comment -%} Custom Size — user-typed input for dropdown picker (Size-like options) {%- endcomment -%}
+          {%- comment -%} Custom Size Button — inside dropdown container area {%- endcomment -%}
           {%- if option_name_lower == 'size' or option_name_lower == 'capacity' or option_name_lower == 'dimensions' or option_name_lower == 'volume' -%}
             <div style="margin-top: 10px;">
-              <span class="gls-custom-size-pill">
-                <input
-                  type="radio"
-                  id="CustomSizeRadio-dd-{{ section.id }}"
-                  name="custom-size-dd-{{ option.position }}"
-                  value="Custom Size"
-                >
-                <label for="CustomSizeRadio-dd-{{ section.id }}">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
-                  </svg>
-                  Custom Size
-                </label>
-              </span>
+              <button type="button" class="gls-custom-size-btn" id="CustomSizeBtn-dd-{{ section.id }}-{{ forloop.index }}">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right:4px; vertical-align:middle;">
+                  <path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                </svg>
+                Custom Size
+              </button>
             </div>
 
             <div class="gls-custom-size-input-row" data-section-id="dd-{{ section.id }}">
@@ -146,7 +129,7 @@
                 type="text"
                 id="CustomSizeInput-dd-{{ section.id }}"
                 class="gls-custom-size-text"
-                placeholder="e.g. 15oz, 250ml, 9x12in"
+                placeholder="e.g. 15oz, 450ml"
                 autocomplete="off"
               >
             </div>

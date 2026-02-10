@@ -2,27 +2,14 @@
    GLS Custom Size — User Input Pill & Field
    ============================================ */
 
-/* ── Custom Size Pill (appears after variant pills) ── */
-.gls-custom-size-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    padding: 0;
-    border: none;
-    background: none;
-    cursor: pointer;
-    vertical-align: top;
-}
-
-.gls-custom-size-pill input[type="radio"] {
-    display: none;
-}
-
-.gls-custom-size-pill label {
+/* ── Custom Size Button (Pill) ── */
+.gls-custom-size-btn {
     display: inline-flex;
     align-items: center;
     gap: 5px;
     padding: 8px 16px;
+    margin: 0 0 5px 5px;
+    /* Alignment with other pills */
     border: 1.5px dashed #7aae5c;
     border-radius: 40px;
     background-color: rgba(122, 174, 92, 0.06);
@@ -30,25 +17,28 @@
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.25s ease;
+    transition: all 0.2s ease;
     white-space: nowrap;
-    line-height: 1;
+    line-height: normal;
+    /* Fix for button element defaults */
+    font-family: inherit;
+    /* Inherit theme font */
 }
 
-.gls-custom-size-pill label:hover {
+.gls-custom-size-btn:hover {
     background-color: rgba(122, 174, 92, 0.14);
     border-color: #6a9e4c;
     box-shadow: 0 2px 8px rgba(122, 174, 92, 0.18);
 }
 
-.gls-custom-size-pill input[type="radio"]:checked+label {
+.gls-custom-size-btn.is-selected {
     background-color: #7aae5c;
     color: #ffffff;
     border-style: solid;
     border-color: #7aae5c;
 }
 
-.gls-custom-size-pill input[type="radio"]:focus-visible+label {
+.gls-custom-size-btn:focus-visible {
     outline: 2px solid #7aae5c;
     outline-offset: 2px;
 }
@@ -87,6 +77,7 @@
     font-weight: 600;
     color: #495057;
     white-space: nowrap;
+    margin: 0;
 }
 
 .gls-custom-size-input-row input[type="text"] {
@@ -101,6 +92,9 @@
     transition: border-color 0.2s;
     min-width: 0;
     max-width: 200px;
+    height: auto;
+    /* reset theme defaults */
+    margin: 0;
 }
 
 .gls-custom-size-input-row input[type="text"]:focus {
@@ -114,9 +108,11 @@
 }
 
 .gls-custom-size-hint {
-    font-size: 11px;
-    color: #888;
-    margin-top: 6px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #666;
+    margin-top: 8px;
+    margin-bottom: 0;
     display: none;
 }
 
@@ -124,9 +120,13 @@
     display: block;
 }
 
+.gls-custom-size-hint strong {
+    color: #7aae5c;
+}
+
 /* ── Responsive ── */
 @media (max-width: 749px) {
-    .gls-custom-size-pill label {
+    .gls-custom-size-btn {
         font-size: 13px;
         padding: 7px 14px;
     }
