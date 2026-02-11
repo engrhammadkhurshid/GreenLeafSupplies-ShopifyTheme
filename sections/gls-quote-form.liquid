@@ -168,23 +168,37 @@
             <input class="gls-form-input" type="text" id="ContactForm-company" name="contact[Company]" placeholder="{{ section.settings.placeholder_company }}" {% unless section.settings.required_company == false %}required{% endunless %}>
           </div>
 
-          <!-- Product of Interest (auto-populated from URL) -->
+          <!-- Product of Interest (Bento Card or Text Input) -->
           <div class="gls-form-group gls-form-group--full" id="QuoteForm-ProductInfo-Wrapper">
-            <label class="gls-form-label" for="ContactForm-product-interest">
-              Product of Interest
-            </label>
-            <div class="gls-product-interest-field" id="QuoteForm-ProductInterest-Container">
-              <input class="gls-form-input" type="text" id="ContactForm-product-interest" name="contact[Product of Interest]" placeholder="Enter product name or arrive from a product page" readonly>
-              <input type="hidden" id="ContactForm-product-url" name="contact[Product URL]" value="">
-              <input type="hidden" id="ContactForm-product-id" name="contact[Product ID]" value="">
-              <input type="hidden" id="ContactForm-variant-id" name="contact[Variant ID]" value="">
-              <button type="button" class="gls-product-interest-clear" id="QuoteForm-ClearProduct" aria-label="Clear product selection" style="display:none;">
-                ✕
-              </button>
+            <label class="gls-form-label">Product of Interest</label>
+
+            <!-- 1. Manual Input (Fallback for direct visits) -->
+            <div class="gls-product-interest-field" id="QuoteForm-ManualInput-Container">
+              <input class="gls-form-input" type="text" id="ContactForm-product-interest" name="contact[Product of Interest]" placeholder="Enter product name or arrive from a product page">
             </div>
-            <div class="gls-product-interest-details" id="QuoteForm-ProductDetails" style="display:none;">
-              <a href="#" id="QuoteForm-ProductLink" target="_blank" rel="noopener" class="gls-product-interest-link">View Product →</a>
+
+            <!-- 2. Bento Card (Auto-populated) -->
+            <div class="gls-bento-card" id="QuoteForm-BentoCard" style="display:none;">
+              <div class="gls-bento-image-wrapper">
+                <img id="Bento-ProductImage" src="" alt="" class="gls-bento-image">
+              </div>
+              <div class="gls-bento-content">
+                <h4 id="Bento-ProductTitle" class="gls-bento-title"></h4>
+                <div id="Bento-VariantInfo" class="gls-bento-variant"></div>
+                <div class="gls-bento-meta">
+                  <span class="gls-bento-pill">ID: <span id="Bento-ProductID"></span></span>
+                  <a href="#" id="Bento-ProductLink" target="_blank" class="gls-bento-link">View Product ↗</a>
+                </div>
+                <button type="button" id="QuoteForm-ClearProduct" class="gls-bento-remove" aria-label="Remove product">Remove</button>
+              </div>
             </div>
+
+            <!-- Hidden Fields for Submission -->
+            <input type="hidden" id="ContactForm-product-url" name="contact[Product URL]" value="">
+            <input type="hidden" id="ContactForm-product-id" name="contact[Product ID]" value="">
+            <input type="hidden" id="ContactForm-variant-id" name="contact[Variant ID]" value="">
+            <!-- Hidden input to sync bento title to form submission if manual input is hidden -->
+            <input type="hidden" id="ContactForm-product-interest-hidden" name="contact[Product of Interest]" disabled> 
           </div>
 
           <!-- Custom Size Requested (auto-populated from URL) -->
@@ -248,48 +262,108 @@
 </div>
 
 <style>
-  .gls-product-interest-field {
-    position: relative;
+  /* ── Bento Card Styles ── */
+  .gls-bento-card {
     display: flex;
     align-items: center;
+    gap: 16px;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    border-left: 4px solid #7aae5c; /* Highlight accent */
   }
-  .gls-product-interest-field input[readonly] {
-    background-color: #f8faf6;
-    cursor: default;
-    padding-right: 40px;
+  .gls-bento-card:hover {
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    transform: translateY(-1px);
   }
-  .gls-product-interest-field .gls-product-interest-clear {
+  
+  .gls-bento-image-wrapper {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #f4f4f4;
+    border: 1px solid #eee;
+  }
+  .gls-bento-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* display whole product */
+    object-position: center;
+  }
+
+  .gls-bento-content {
+    flex: 1;
+    min-width: 0; /* text truncation fix */
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+  }
+
+  .gls-bento-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.3;
+  }
+
+  .gls-bento-variant {
+    font-size: 13px;
+    color: #555;
+    font-weight: 500;
+  }
+
+  .gls-bento-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+  }
+
+  .gls-bento-pill {
+    font-size: 11px;
+    background: #f0f9eb;
+    color: #2d5016;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .gls-bento-link {
+    font-size: 12px;
+    color: #7aae5c;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .gls-bento-link:hover { text-decoration: underline; }
+
+  .gls-bento-remove {
     position: absolute;
-    right: 8px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: -8px;
+    right: -8px;
     background: none;
     border: none;
-    font-size: 16px;
-    cursor: pointer;
     color: #999;
-    padding: 4px 8px;
-    line-height: 1;
-    border-radius: 50%;
-    transition: all 0.2s;
-  }
-  .gls-product-interest-field .gls-product-interest-clear:hover {
-    color: #333;
-    background-color: rgba(0,0,0,0.05);
-  }
-  .gls-product-interest-details {
-    margin-top: 6px;
-  }
-  .gls-product-interest-link {
-    font-size: 13px;
-    color: #7AAE5C;
-    text-decoration: none;
-    font-weight: 500;
-    transition: opacity 0.2s;
-  }
-  .gls-product-interest-link:hover {
-    opacity: 0.8;
+    font-size: 11px;
+    cursor: pointer;
     text-decoration: underline;
+    padding: 8px;
+  }
+  .gls-bento-remove:hover { color: #d32f2f; }
+
+  @media (max-width: 480px) {
+    .gls-bento-card { padding: 10px; }
+    .gls-bento-image-wrapper { width: 60px; height: 60px; }
+    .gls-bento-title { font-size: 14px; }
   }
 </style>
 
@@ -329,12 +403,20 @@
     var customSize = params.get('custom_size');
 
     var productInput = document.getElementById('ContactForm-product-interest');
+    /* New Bento elements */
+    var bentoCard = document.getElementById('QuoteForm-BentoCard');
+    var manualContainer = document.getElementById('QuoteForm-ManualInput-Container');
+    var bentoImg = document.getElementById('Bento-ProductImage');
+    var bentoTitle = document.getElementById('Bento-ProductTitle');
+    var bentoVariant = document.getElementById('Bento-VariantInfo');
+    var bentoPid = document.getElementById('Bento-ProductID');
+    var bentoLink = document.getElementById('Bento-ProductLink');
+    var finalHiddenInput = document.getElementById('ContactForm-product-interest-hidden');
+
     var productUrlInput = document.getElementById('ContactForm-product-url');
     var productIdInput = document.getElementById('ContactForm-product-id');
     var variantIdInput = document.getElementById('ContactForm-variant-id');
     var clearBtn = document.getElementById('QuoteForm-ClearProduct');
-    var detailsDiv = document.getElementById('QuoteForm-ProductDetails');
-    var productLink = document.getElementById('QuoteForm-ProductLink');
 
     if (!productInput) return;
 
@@ -347,55 +429,68 @@
     }
 
     /**
-     * Sets the product field with the given info.
+     * Set product info in Bento Card
      */
-    function setProductInfo(name, url, variant, pId, vId) {
-      var displayValue = name || '';
-      if (variant && variant !== 'Default Title') {
-        displayValue += ' — ' + variant;
-      }
-
-      productInput.value = displayValue;
-      productInput.setAttribute('readonly', 'readonly');
-      productInput.style.backgroundColor = '#f8faf6';
-
-      if (url) {
-        productUrlInput.value = window.location.origin + url;
-        productLink.href = url;
-        detailsDiv.style.display = 'block';
-      }
-
+    function setBentoCard(name, url, variant, pId, vId, imgSrc) {
+      /* 1. Update Hidden Fields */
       if (pId) productIdInput.value = pId;
       if (vId) variantIdInput.value = vId;
+      if (url) productUrlInput.value = window.location.origin + url;
+      
+      /* 2. Update Bento UI */
+      bentoTitle.textContent = name || 'Product';
+      bentoVariant.textContent = (variant && variant !== 'Default Title') ? variant : '';
+      bentoPid.textContent = pId || '-';
+      bentoLink.href = url || '#';
+      
+      if (imgSrc) {
+        bentoImg.src = imgSrc;
+        bentoImg.alt = name;
+      } else {
+        /* Placeholder if no image */
+        bentoImg.src = 'https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png?format=jpg&quality=90&v=1530129081'; 
+      }
 
-      clearBtn.style.display = 'inline-block';
+      /* 3. Handle Form Submission Logic */
+      /* Since manual input is hidden, we use a hidden input to send the title */
+      var fullTitle = name + (variant && variant !== 'Default Title' ? ' — ' + variant : '');
+      finalHiddenInput.value = fullTitle;
+      finalHiddenInput.disabled = false;
+      productInput.disabled = true; /* Disable manual input so it doesn't conflict */
+
+      /* 4. Switch Views */
+      manualContainer.style.display = 'none';
+      bentoCard.style.display = 'flex';
     }
 
     /**
-     * Clears the product field so the user can type freely.
+     * Clear product info (Switch to Manual Mode)
      */
     function clearProductInfo() {
-      productInput.value = '';
-      productInput.removeAttribute('readonly');
-      productInput.style.backgroundColor = '';
-      productInput.placeholder = 'Type a product name...';
-      productInput.focus();
-
+      /* Reset Hidden Fields */
       productUrlInput.value = '';
       productIdInput.value = '';
       variantIdInput.value = '';
-      clearBtn.style.display = 'none';
-      detailsDiv.style.display = 'none';
+      
+      /* Reset UI */
+      manualContainer.style.display = 'block';
+      bentoCard.style.display = 'none';
+      
+      /* Enable manual input, disable bento hidden input */
+      productInput.disabled = false;
+      productInput.value = '';
+      productInput.focus();
+      finalHiddenInput.disabled = true;
     }
 
     clearBtn.addEventListener('click', clearProductInfo);
 
-    /* If a product handle is in the URL, fetch details from Shopify AJAX API */
+    /* Logic to fetch data */
     if (productHandle) {
-      /* Set the name immediately from URL param (instant, no loading delay) */
-      setProductInfo(productName, '/products/' + productHandle, productVariant, productId, variantId);
+      /* Initial partial set (before AJAX) */
+      setBentoCard(productName, '/products/' + productHandle, productVariant, productId, variantId, null);
 
-      /* Then enhance with live data from AJAX API (optional enrichment) */
+      /* Fetch full data (Image, correct ID) */
       fetch('/products/' + encodeURIComponent(productHandle) + '.json')
         .then(function(res) { return res.ok ? res.json() : null; })
         .then(function(data) {
@@ -403,9 +498,10 @@
             var p = data.product;
             var fullName = p.title;
             var url = '/products/' + p.handle;
-            var resolvedProductId = productId || String(p.id);
+            var resolvedProductId = String(p.id);
+            var imgSrc = p.image ? p.image.src : null;
 
-            /* Use the first matching variant title and ID if variant param exists */
+            /* Resolve Variant */
             var variantTitle = productVariant;
             var resolvedVariantId = variantId || '';
             if (p.variants && p.variants.length > 0) {
@@ -416,26 +512,24 @@
                   break;
                 }
               }
-              /* If no variant matched or no variant param, use first variant */
               if (!resolvedVariantId && p.variants[0]) {
                 resolvedVariantId = String(p.variants[0].id);
               }
             }
 
-            setProductInfo(fullName, url, variantTitle, resolvedProductId, resolvedVariantId);
+            setBentoCard(fullName, url, variantTitle, resolvedProductId, resolvedVariantId, imgSrc);
           }
         })
         .catch(function() {
-          /* Graceful degradation: keep the name from URL params */
+          /* Error handling: Keep what we have */
         });
 
     } else if (productName) {
-      /* Fallback: only product name in URL (no handle) */
-      setProductInfo(productName, null, productVariant, productId, variantId);
+      /* Fallback: Name only */
+      setBentoCard(productName, null, productVariant, productId, variantId, null);
     } else {
-      /* No product context: make field normally editable */
-      productInput.removeAttribute('readonly');
-      productInput.style.backgroundColor = '';
+      /* No product - show manual input by default */
+      clearProductInfo();
     }
   });
 </script>
